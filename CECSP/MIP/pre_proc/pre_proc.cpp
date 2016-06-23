@@ -34,7 +34,7 @@ int boundSepEvts(const Problem<double>& P,std::vector<std::vector<double>>& boun
 
   bound.resize(2*P.nbTask-1);
   for (uint i=0;i<bound.size();++i){
-    bound[i].resize(std::min(sep,2*P.nbTask-(int)i));
+    bound[i].resize(std::min(sep,2*P.nbTask-(int)i-1));
     for (int j=1;j<=sep && i+j < I.size() ; j++)
       bound[i][j-1]=std::max(I[i+j].t2,I[i].t2)-std::min(I[i].t1,I[i+j].t1);
   }

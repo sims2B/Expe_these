@@ -561,8 +561,12 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     if (config[6])
       boundEvts(P,bd);
     createConstraintTimeW(P,model,t,z,bd);// te > ri et tf < di 
-   if (config[5]) createConstraintBoundEvt(P,model,t,bd);
- 
+    if (config[5]) {
+      if (!config[6]) 
+	boundEvts(P,bd);
+      createConstraintBoundEvt(P,model,t,bd);
+    }
+    
    if (config[7])
      createConstraintKnapsack(P,env,model,z);//knapsack
    else if (config[8])  
