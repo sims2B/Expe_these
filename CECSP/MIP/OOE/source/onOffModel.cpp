@@ -528,7 +528,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
   }
 }
 
-int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w,const std::vector<int>& config) {
+int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w,const std::vector<int>& config) {z
   try {
     assert(config[2]+config[3]<=1);
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
@@ -709,7 +709,7 @@ int createConstraintMinDur(const Problem<double>& P, IloModel& model, IloNumVarA
 }
 
 int createConstraintEnergy(const Problem<double>& P, IloEnv& env, IloModel& model, 
-			   IloNumVarArray& t, IloNumVarMatrix& z, 
+			   IloNumVarArray& t, 
 			   IloNumVarMatrix& b, IloNumVarMatrix& w){
   for (int i=0;i<P.nbTask;++i){
     IloExpr expr(env);
@@ -717,7 +717,6 @@ int createConstraintEnergy(const Problem<double>& P, IloEnv& env, IloModel& mode
       for (int q=0;q<P.A[i].Fi.nbPiece;++q)
 	model.add(P.A[i].Fi.F[q].f.a*b[i][e]+
 		  P.A[i].Fi.F[q].f.c*(t[e+1]-t[e])>=w[i][e]);
-      model.add(P.W(i)*z[i][e]>=w[i][e]);
       expr+=w[i][e];
     }
     model.add(expr == P.W(i));

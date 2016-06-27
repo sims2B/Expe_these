@@ -11,6 +11,10 @@ const int time_limit=7200;
 const int M=10000;
 
 
+//********************************************************
+//********************** CALLBACK ************************
+//********************************************************
+
 IloCplex::Callback loggingCallback(IloEnv env, IloNum lastlog, 
 IloNum lastIncumbent, IloNum startTime, IloNum startDetTime);
 IloCplex::Callback depth(IloEnv env, IloInt& nodeDepth);
@@ -80,7 +84,7 @@ IloNumVarMatrix&);
 int createConstraintMinDur(const Problem<double>&, IloModel&, IloNumVarArray&, 
 IloNumVarMatrix&);
 int createConstraintEnergy(const Problem<double>&, IloEnv&, IloModel&, 
-			   IloNumVarArray&, IloNumVarMatrix&, 
+			   IloNumVarArray&, 
  IloNumVarMatrix&, IloNumVarMatrix&);
 int createConstraintBmin(const Problem<double>&P, IloModel&, IloNumVarArray&, IloNumVarMatrix&, IloNumVarMatrix&,
 const std::vector<std::vector<double>>&);
