@@ -35,8 +35,8 @@ sub handle_file {
 								for my $o (0..1){
 									for my $p (0..1){
 										for my $q (0..1){
-	    								system("echo '$name' >> $target$i$j$k$l$m$n$o$p$q.txt");
-	    								system("./bin/modelOO $file $i $j $k $l $m $n $o $p $q >> $target$i$j$k$l$m$n$o$p$q.txt");
+	    								system("echo '$name' >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o\_$p\_$q.txt");
+	    								system("./bin/modelOO $file $i $j $k $l $m $n $o $p $q >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o\_$p\_$q.txt");
 	}}}}}}}}} #fermeture de tous les for
 	}
 }
