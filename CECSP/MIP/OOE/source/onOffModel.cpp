@@ -515,7 +515,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     createConstraintNonPreemp(P,env,model,z);//non preemption
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
     createConstraintMinDur(P,model,t,z);//durée minimale
-    createConstraintEnergy(P,env,model,t,z,b,w);//contrainte Wi
+    createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
     createConstraintBmin(P,model,t,z,b,0); //contrainte bmin
     createConstraintBmax(P,model,t,b);//contrainte bmax
     createConstraintNonConsump(P,model,z,b,0);//bie=0 si zie=0
@@ -528,7 +528,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
   }
 }
 
-int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w,const std::vector<int>& config) {z
+int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w,const std::vector<int>& config) {
   try {
     assert(config[2]+config[3]<=1);
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
@@ -539,7 +539,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     createConstraintNonPreemp(P,env,model,z);//non preemption
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
     createConstraintMinDur(P,model,t,z);//durée minimale
-    createConstraintEnergy(P,env,model,t,z,b,w);//contrainte Wi
+    createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
     createConstraintBmax(P,model,t,b);//contrainte bmax
     createConstraintNonConsump(P,model,z,b,config[4]);//bie=0 si zie=0
     
