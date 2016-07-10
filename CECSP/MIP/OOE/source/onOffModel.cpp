@@ -374,10 +374,10 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
       time_exec=cplex.getCplexTime()-start;
       std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
 		<< time_exec << std::endl;
-      std:: cout << "Final objective: " << cplex.getObjValue() 
+      /*      std:: cout << "Final objective: " << cplex.getObjValue() 
 		 <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
 		 << std::endl;   
-      if (config[0]) std::cout << "number of preemp cuts: "
+      */if (config[0]) std::cout << "number of preemp cuts: "
 			       << cptCut << "\n";
       modelToSol(P,s,cplex,t,z,b);
       env.end();
@@ -533,7 +533,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     assert(config[2]+config[3]<=1);
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
     std::vector<double> bd(2*P.nbTask,P.D);
-    createObj(P,env,model,b);//objective min b_ie
+    //createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrai sum zie>=1
     createConstraintNonPreemp(P,env,model,z);//non preemption
