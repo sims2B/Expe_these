@@ -158,7 +158,7 @@ template<> int Problem<int>::totalEnergyConsumption(const Interval<int> &I) cons
 
 
 template<> int Problem<int>::totalResourceConsumption(const Interval<int> &I) const;
-
+*/
 template<typename type> 
 type Problem<type>::totalEnergyConsumption(const Interval<type> &I) const{
   type conso=0.0;
@@ -176,47 +176,66 @@ type Problem<type>::totalResourceConsumption(const Interval<type> &I) const{
   return conso;
 }
 
-template<> inline int Problem<int>::energeticReasonning(const Interval<int>& I,int total) const;
+/*template<> inline int Problem<int>::energeticReasonning(const Interval<int>& I,int total) const;
+ */
 
 template<typename type>
 int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
-  const type capacity=B*(I.t2-I.t1);
-  type  SL,LS; 
-  SL=capacity-total+A[i].resourceConsumption(I);
-  LS=A[i].resourceConversion(A[i].leftShift_adjust(I),I);
-  if (SL-LS< NEGATIVE_ZERO) {
-    if (bmin(i)!=0.0)
-      A[i].ri=std::max(r(i),I.t2-SL/bmin(i));
-    A[i].emin=std::max(emin(i),I.t2+(LS-SL)/bmax(i));
-    A[i].updateEMin();  
-return 1; 
- }
-  return 0;
+  int performed=0;
+  if (I.t2 > d(i)){
+    const type capacity=B*(I.t2-I.t1);
+    type  SL,LS,LSboth; 
+    SL=capacity-total+A[i].resourceConsumption(I);
+    LS=A[i].resourceConversion(A[i].leftShift(I),I);
+    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
+    if (SL-LS< NEGATIVE_ZERO) {
+      A[i].emin=std::max(emin(i),I.t2+(LS-SL)/bmax(i));
+      performed=1;
+    }
+    if (SL-LSboth < NEGATIVE_ZERO && bmin(i)!=0.0) {
+      A[i].ri=std::max(r(i),I.t2-SL/bmin(i));  
+      performed=1;
+    }
+  }
+  return performed;
 }
 
 
 template<typename type> 
 int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
-  const type capacity=B*(I.t2-I.t1);
-  type SL,RS;  
-  SL=capacity-total+A[i].resourceConsumption(I);
-  RS=A[i].resourceConversion(A[i].rightShift_adjust(I),I);
-  if (SL- RS< NEGATIVE_ZERO) {
-    A[i].smax=std::min(smax(i),I.t1-(RS-SL)/bmax(i));
-    if (bmin(i)!=0.0)
+  int performed=0;
+  if (I.t1 < r(i)){
+    const type capacity=B*(I.t2-I.t1);
+    type SL,RS,RSboth;  
+    SL=capacity-total+A[i].resourceConsumption(I);
+    RS=A[i].resourceConversion(A[i].rightShift(I),I);
+    RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
+    if (SL- RS< NEGATIVE_ZERO) {
+      A[i].smax=std::min(smax(i),I.t1-(RS-SL)/bmax(i));
+      performed=1;
+    }
+    if (bmin(i)!=0.0 && SL-RSboth < NEGATIVE_ZERO) {
       A[i].di=std::min(d(i),I.t1+SL/bmin(i)); 
-    A[i].updateSMax();  
-  return 1;
-	}
-  return 0;
+      performed=1;
+    }
+  }
+  return performed;
 }
 
 
 
 template<typename type>
 int Problem<type>::totalTest(const Interval<type>& current){
-  return 0;
+  const type total=totalResourceConsumption(current);
+  if (!energeticReasonning(current,total))
+    return 0;
+  else {
+    adjustmentLS(current,total);
+    adjustmentRS(current,total);
+  }
+  return 1;
 }
+/*
 template<> int Problem<int>::adjustmentLS(const Interval<int> &I, int i, int total);
 
 

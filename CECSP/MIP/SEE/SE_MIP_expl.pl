@@ -36,6 +36,7 @@ sub handle_file {
 									if ($j+$k<=1){							
 										system("echo '$name' >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o.txt");
    									system("./bin/modelSE $file $i $j $k $l $m $n $o >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o.txt");
+system(" echo '$name' >> traite.txt");
 	}}}}}}}} #fermeture de tous les for
 	}
 }

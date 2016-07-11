@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <random>
 
-
-
 template<typename type>
 Task<type>::Task(int _nbPiece) :  ri(0.0) , di(0.0) , Wi(0.0), bmin(0.0) , bmax(0.0) , Fi(_nbPiece) ,emin(0.0) , smax(0.0) {}
 
@@ -107,12 +105,13 @@ void Task<type>::displayTask() const{
 }
 
    
-template<> inline void Task<int>::updateSMax() ;
+/*template<> inline void Task<int>::updateSMax() ;
 template<> inline void Task<int>::updateEMin() ;
 template<> inline void Task<int>::updateRi() ;
 template<> inline void Task<int>::updateDi() ;
 template<> inline int Task<int>::dataConsistency() const;
-/*
+
+
 template<typename type>
 type Task<type>::leftShift_adjust(const Interval<type> &I) const{
   return std::min(leftShift(I),std::max(Fi(bmin)*(I.t2-std::max(I.t1,ri)),
@@ -123,35 +122,28 @@ template<typename type>
 type Task<type>::rightShift_adjust(const Interval<type> &I) const{
   return std::min(rightShift(I),std::max(Fi(bmin)*(std::min(I.t2,di)-I.t1),
 					 Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)+std::max(0.0,di-I.t2))));
-}
+					 }*/
 
 template<typename type>
 type Task<type>::leftShift(const Interval<type> &I) const{
-  if (I.t1 >= di || I.t2 <=ri)
-    return 0.0;
-  else
-    return std::max(0.0,Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)));
+  return std::max(0.0,Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)));
 }
 
 template<typename type>
 type Task<type>::rightShift(const Interval<type> &I) const{
-    if (I.t1 >= di || I.t2 <=ri)
-    return 0.0;
-  else
   return std::max(0.0,Wi-Fi(bmax)*(std::max(0.0,di-I.t2)));
 }
 
 template<typename type>
 type Task<type>::bothShift(const Interval<type> &I) const{
-  if (I.t1 >= ri && I.t2 <= di)
-    return std::max(Fi(bmin)*(I.t2-I.t1),
-		    Wi-Fi(bmax)*(I.t1-ri+di-I.t2));
-  else return std::numeric_limits<type>::max();
+  return std::max(Fi(bmin)*(I.t2-I.t1),
+		  Wi-Fi(bmax)*(std::max(0.0,I.t1-ri) + std::max(di-I.t2,0.0)));
 }
 
 template<typename type>
 type Task<type>::energyConsumption(const Interval<type>& I) const{
-  return std::min(std::min(leftShift(I),rightShift(I)), bothShift(I));}
+  return std::min(std::min(leftShift(I),rightShift(I)), bothShift(I));
+}
 
 template<typename type>
 type Task<type>::resourceConversion(const type& energy,const Interval<type> &I) const{
@@ -160,11 +152,11 @@ type Task<type>::resourceConversion(const type& energy,const Interval<type> &I) 
   for (int q=0;q<Fi.nbPiece;++q) 
     max= std::max((energy- sizeIntersection(J,I)*Fi.F[q].f.c)/Fi.F[q].f.a,
 		  max);
-    if (bmin!=0.0)  
-      return std::max(bmin*energy/Fi(bmin),
-		      max);
+  if (bmin!=0.0)  
+    return std::max(bmin*energy/Fi(bmin),
+		    max);
   else
-    return std::max(0.0,max);
+    return max;
 }
 
 
@@ -173,7 +165,7 @@ type Task<type>::resourceConsumption(const Interval<type> &I) const{
   return resourceConversion(this->energyConsumption(I),I);
 }
 
-template<> int Task<int>::resourceConversion(const int& energy,const Interval<int> &I) const; 
+/*template<> int Task<int>::resourceConversion(const int& energy,const Interval<int> &I) const; 
 template<> int Task<int>::rightShift(const Interval<int> &I) const;
 template<>int Task<int>::leftShift(const Interval<int> &I) const;
 template<> int Task<int>::leftShift_adjust(const Interval<int> &I) const;

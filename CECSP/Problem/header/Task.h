@@ -27,7 +27,7 @@ void addPiecewiseFunction();
 
   inline int dataConsistency() const {return (Fi(bmax)*(di-ri) - Wi >=NEGATIVE_ZERO);}
  
-  /*type energyConsumption(const Interval<type>&) const;
+  type energyConsumption(const Interval<type>&) const;
   type resourceConsumption(const Interval<type>&) const;
   type resourceConversion(const type& energy, const Interval<type>&) const;
   type leftShift_adjust(const Interval<type>&) const;
@@ -35,7 +35,7 @@ void addPiecewiseFunction();
 
   type leftShift(const Interval<type>&) const;
   type rightShift(const Interval<type>&) const;
-  type bothShift(const Interval<type>&) const;*/
+  type bothShift(const Interval<type>&) const;
   
   type ri;
   type di;

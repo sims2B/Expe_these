@@ -35,7 +35,7 @@ template<> Task<int>::Task(int _ri,int _di,int _Wi,int _bmin,int _bmax,int _nbPi
     assert(Wi <= Fi(bmax) * (di -ri) );
   }
 } 
-
+/*
 
 template<> inline void Task<int>::updateSMax() {
   emin = std::max(emin,di- (int)ceil(Wi/(double)Fi(bmax)));
@@ -56,7 +56,7 @@ template<> inline void Task<int>::updateDi() {
 template<> inline int Task<int>::dataConsistency() const {
   return (Fi(bmax)*(di-ri) - Wi >= 0);
 }
-/*
+
 template<> int Task<int>::resourceConversion(const int& energy,const Interval<int> &I) const{
   int max=0;
   Interval<int> J(ri,di);

@@ -38,7 +38,7 @@ struct Problem {
 
   int dataConsistency() const;
 
-/*  type totalEnergyConsumption(const Interval<type>&) const;
+  type totalEnergyConsumption(const Interval<type>&) const;
   type totalResourceConsumption(const Interval<type>&) const;
   inline int energeticReasonning(const Interval<type>& I,type total) const
   {return (B*(I.t2-I.t1) - total>= NEGATIVE_ZERO);}
@@ -46,7 +46,7 @@ struct Problem {
   //vérifier ajustement !!!
   int adjustmentLS(const Interval<type>&,int,type);
   int adjustmentRS(const Interval<type>&,int,type);
-  int totalTest(const Interval<type>&);*/
+  int totalTest(const Interval<type>&);
 
   int nbTask;
   type B;

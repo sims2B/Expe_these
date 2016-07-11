@@ -54,6 +54,7 @@ int createObj(const Problem<double> &, IloEnv&, IloModel&, IloNumVarMatrix&);
 //*******************CONSTRAINTS************************
 //******************************************************
 
+int createConstraintStartBeforeEnd(const Problem<double>&, IloEnv&,IloModel&,IloNumVarMatrix&,IloNumVarMatrix&);
 int createConstraintOrd(const Problem<double>&,IloModel&,IloNumVarArray&);
 
 int createConstraintOneStart(const Problem<double>&, IloEnv&, 			     IloModel&, IloNumVarMatrix&, IloNumVarMatrix&);

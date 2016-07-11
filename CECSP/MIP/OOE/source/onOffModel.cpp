@@ -508,7 +508,7 @@ int createOOVars(const Problem<double>& P, IloEnv& env, IloNumVarMatrix& z, IloN
 
 int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w) {
   try {
-    createObj(P,env,model,b);//objective min b_ie
+    //    createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrainte sum zie>=1
     createConstraintTimeW(P,model,t,z);// te > ri et tf < di

@@ -193,6 +193,7 @@ int createConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, Il
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
     std::vector<double> bd(2*P.nbTask,P.D);
     createObj(P,env,model,b);//objective min b_ie
+    createConstraintStartBeforeEnd(P,env, model,x,y);
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,x,y);//contrai sum zie>=1
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
@@ -256,6 +257,21 @@ int createObj(const Problem<double>& P,IloEnv& env, IloModel& model,
 //******************************************************
 //*******************CONSTRAINTS************************
 //******************************************************
+
+int createConstraintStartBeforeEnd(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& x, IloNumVarMatrix& y){ 
+  for (int i=0;i<P.nbTask;++i){
+    for (int e=0; e < 2*P.nbTask;++e){
+      IloExpr expr(env);
+      for (int f=0;f<=e ;++ f) 
+	expr += y[i][f];
+      for (int f=e;f<2*P.nbTask ;++ f) 
+	expr += x[i][f];
+      model.add(expr <= 1);
+    }
+  }
+  return 0;
+}
+
 
 int createConstraintOrd(const Problem<double>& P,IloModel& model, 
 			IloNumVarArray& t){
