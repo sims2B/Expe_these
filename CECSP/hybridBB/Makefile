@@ -10,8 +10,7 @@ RM=@rm
 CP=@cp
 
 RELEASE_DIR=${HOME}/local
-DEBUG=0
-#enable to provide debug infos
+DEBUG=0 #enable to provide debug infos
 
 ### FLAGS #############################################
 LDFLAGS= -L/home/mnattaf/Library/cplex_12_6/cplex/lib/x86-64_linux/static_pic -L/home/mnattaf/Library/cplex_12_6/concert/lib/x86-64_linux/static_pic
@@ -32,7 +31,6 @@ SRCS=	~/Dev2016/CECSP/Problem/source/LinearFunction.cpp \
 	~/Dev2016/CECSP/MIP/pre_proc/pre_proc.cpp \
 	~/Dev2016/CECSP/MIP/OOE/source/onOffModel.cpp \
 	~/Dev2016/CECSP/TTFlow/source/flot_model.cpp \
-	./source/hybridBB.cpp \
 	./source/main.cpp
 
 #~/Dev2016/CECSP/MIP/time_indexed/source/timeModel.cpp \

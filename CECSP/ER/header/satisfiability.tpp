@@ -73,23 +73,16 @@ int intervalTotalTest(Problem<type>& P){
     IntervalList<type> LA;
     computeLSInterval(LA,P,i); 
     for (uint j=0; j<LA.size();++j){
-      total =P.totalResourceConsumption(LA[j]);  
-      /*if (!P.energeticReasonning(LA[j],total))
-	return 0;*/
-      if (P.adjustmentLS(LA[j],i,total))
+      if (P.adjustmentLS(LA[j],i,P.totalResourceConsumption(LA[j])))
 	++adjust;
     }
     IntervalList<type> RA;
     computeRSInterval(RA,P,i);
     for (uint j=0; j<RA.size();++j){
-      total =P.totalResourceConsumption(RA[j]);  
-      /*      if (!P.energeticReasonning(RA[j],total))
-	      return 0;*/
-      if (P.adjustmentRS(RA[j],i,total))
+      if (P.adjustmentRS(RA[j],i,P.totalResourceConsumption(RA[j])))
 	++adjust;  
     }
   }
-  if (adjust)   return (adjust+1);
-  else  return 1;
+  return (adjust+1);
 }
 

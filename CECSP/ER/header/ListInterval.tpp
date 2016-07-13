@@ -4,24 +4,16 @@
 
 template<typename type>
 int push_backBound(IntervalList<type>& list,type t1,type t2){
-  list.push_back(Interval<type>(t1,t2));
+  list.push_back(Interval<type>(std::max(0.0,t1),t2));
   return 0;
 }
 
-
+//gamma(t_1)
 template<typename type>
 type U(const Problem<type>& P,int i,type val){
   assert(P.bmin(i)!=0.0);
-  return (val*(P.A[i].Fi(P.bmin(i))-P.A[i].Fi(P.bmax(i)))+P.r(i)*P.A[i].Fi(P.bmax(i))+P.W(i))
+  return (P.W(i)+val*(P.A[i].Fi(P.bmin(i))-P.A[i].Fi(P.bmax(i)))+P.r(i)*P.A[i].Fi(P.bmax(i)))
     /P.A[i].Fi(P.bmin(i));
-}
-
-template<typename type>
-type D(const Problem<type> &P,int i,type val){
-  if (P.bmin(i)==P.bmax(i))
-    return P.r(i)+P.W(i)/P.A[i].Fi(P.bmax(i));
-  else return (val*P.A[i].Fi(P.bmin(i))-P.d(i)*P.A[i].Fi(P.bmax(i))-P.W(i))
-	 /(P.A[i].Fi(P.bmax(i))-P.A[i].Fi(P.bmin(i)));
 }
 
 
@@ -32,6 +24,15 @@ type Dp(const Problem<type>& P,int i,type val){
     /P.A[i].Fi(P.bmin(i)); //bimin !=0 (car ce cas est traité a part)
 }
 
+
+//delta(t_1)
+template<typename type>
+type D(const Problem<type> &P,int i,type val){
+  if (P.bmin(i)==P.bmax(i))
+    return P.r(i)+P.W(i)/P.A[i].Fi(P.bmax(i));
+  else return (-P.W(i)- val*P.A[i].Fi(P.bmin(i))+P.d(i)*P.A[i].Fi(P.bmax(i)))
+	 /(P.A[i].Fi(P.bmax(i))-P.A[i].Fi(P.bmin(i)));
+}
 
 template<typename type>
 type Up(const Problem<type> &P,int i,type val){

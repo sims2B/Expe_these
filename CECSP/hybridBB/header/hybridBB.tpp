@@ -64,7 +64,7 @@ int chooseVar3(const Problem<type>& P,type epsilon){
 
 template<typename type>
 int chooseVar4(const Problem<type>& P, type epsilon){  
-  type max=0.0;
+  type max=std::numeric_limits<double>::min();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
@@ -102,7 +102,7 @@ int chooseVar5(const Problem<type>& P,type epsilon){
 
 template<typename type>
 int chooseVar6(const Problem<type>& P,type epsilon){
-  type max=0.0;
+  type max=std::numeric_limits<double>::min();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
@@ -148,6 +148,7 @@ void createBranch(Problem<type>& P,int x,std::stack<Problem<type>>& explore, dou
 
 template<typename type,typename type2= type>
 int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar, ptrTest<type> TotalTest,  type epsilon, double param){
+  std:: cout << "epsilon vaut " << epsilon << std::endl; 
   struct timeval tim;
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
@@ -168,8 +169,11 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
     P1=explore.top();
     explore.pop();
     if (P1.dataConsistency()) {
-      if (0!=(test=TotalTest(P1))) {
-	if (test ==2) ++cptAdjust;
+      test=TotalTest(P1);
+      std::cout << "test " << test << std::endl;
+      if (0 != test) {
+	cptAdjust+=test-1;
+	std::cout << "ajust " << cptAdjust << std::endl;
 	x=choiceVar(P1,epsilon);
 	if (x!=-1) 
 	  createBranch(P1,x,explore,param);
