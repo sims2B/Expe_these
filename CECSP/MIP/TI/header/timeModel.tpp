@@ -4,53 +4,94 @@
 #include <vector>
 #include <algorithm>
 
+//********************************************************
+//********************** CALLBACK ************************
+//********************************************************
 
 IloCplex::Callback getFirstSolInfo(IloEnv env, IloInt& cpt, IloNum startTime);
+IloCplex::Callback depth(IloEnv env, IloInt& nodeDepth);
+IloCplex::Callback energyCuts(IloEnv env, const Problem<double>& P, IloModel& model,
+			      IloNumVarMatrix& x, IloNumVarMatrix& y,IloNum eps,  IloInt& nodeDepth, 
+			      IloInt& maxDepth);
+
+
+//*********************************************************
+//************************SOLVE**************************
+//*********************************************************
 
 template<typename type,typename type2>
 int timeModel<type,type2>::Solve(const Problem<type>& P,Solution<type,type2> &s,double time_limit,int ERIneq) {
-  IloNum start,time_exec;
-  const int n= P.nbTask;
+  try{
+    IloNum start,time_exec;
+    const int n= P.nbTask;
+    IloInt cptCut=0;
   
-  IloEnv env;
-  IloModel model(env);
+    IloEnv env;
+    IloModel model(env);
   		
-  IloNumVarMatrix x(env,n);
-  IloNumVarMatrix y(env,n);
-  IloNumVarMatrix b(env,n);
-  IloNumVarMatrix w(env,n);
+    IloNumVarMatrix x(env,n);
+    IloNumVarMatrix y(env,n);
+    IloNumVarMatrix b(env,n);
+    IloNumVarMatrix w(env,n);
 
-  createModel(P,env,model,x,y,b,w);
-  if (ERIneq) {
-    std::cout << " Starting resolution with ER inequalities\n";
-    addERinequalities(P,env,model,x,y,b);
-  }
-  else 
-    std::cout << " Starting resolution without ER inequalities\n";
+    createModel(P,env,model,x,y,b,w);
+    IloCplex cplex(model);
+
+    if (ERIneq==1) {
+      std::cout << " Starting resolution with ER inequalities at root node\n";
+      addERinequalities(P,env,model,x,y,b);
+    }
+  
+    /*if (ERIneq==2) {
+      std::cout << " Starting resolution with ER inequalities in tree <10\n";
+      IloInt nodeDepth=0;
+      IloInt maxDepth=10;
+      cplex.use(depth(env,nodeDepth));
+      cplex.use(energyCuts(env,P,x,y, 0.01, cptCut,nodeDepth,maxDepth));
+    }*/
+    else 
+      std::cout << " Starting resolution without ER inequalities\n";
 				
-  IloCplex cplex(model);
-  cplex.setParam(IloCplex::TiLim, time_limit);
-  cplex.setParam(IloCplex::Threads,2);
-  cplex.setOut(env.getNullStream());
-  start= cplex.getCplexTime();
-  IloInt cpt=0;
-  cplex.use(getFirstSolInfo(env,cpt,start));
-  // solve !
-  if (cplex.solve()) {	 
-    time_exec=cplex.getCplexTime()-start;
-    std::cout << "Final status: \t"<< cplex.getStatus() << " en " << time_exec << std::endl;
-    std:: cout << "Final objective: " << cplex.getObjValue() <<"\nFinal gap: \t" 
-	       << cplex.getMIPRelativeGap()<< std::endl;   
-    modelToSol(P,s,cplex,x,y,b);
+    cplex.setParam(IloCplex::TiLim, time_limit);
+    cplex.setParam(IloCplex::Threads,2);
+    cplex.setOut(env.getNullStream());
+    start= cplex.getCplexTime();
+    IloInt cpt=0;
+    cplex.use(getFirstSolInfo(env,cpt,start));
+    // solve !
+    if (cplex.solve()) {	 
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
+		<< time_exec << std::endl;
+      std:: cout << "Final objective: " << cplex.getObjValue() 
+		 <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
+		 << std::endl;   
+      if (ERIneq==2) 
+	std::cout << "number of preemp cuts: "
+		  << cptCut << "\n";
+      modelToSol(P,s,cplex,x,y,b);
+      env.end();
+      return 0;
+    }
+    else if (cplex.getStatus()==IloAlgorithm::Infeasible){
+      time_exec=cplex.getCplexTime()-start;
+      if (ERIneq==2) std::cout << "number of ER cuts: "
+			       << cptCut << "\n";
+      std::cout << "status: "<< cplex.getStatus() << " en " 
+		<< time_exec << std::endl;
+    }
     env.end();
     return 1;
   }
-  else if (cplex.getStatus()==IloAlgorithm::Infeasible){
-    time_exec=cplex.getCplexTime()-start;
-    std::cout << "status: "<< cplex.getStatus() << " en " << time_exec << std::endl;
+  catch (IloException &e) {
+    std::cout << "Iloexception in solve" << e << std::endl;
+    e.end();
+    return 1;
+  } 
+  catch (...){
+    std::cout << "Error unknown\n";
+    return 1;
   }
-  env.end();
-  return 0;
 }
 
 
@@ -96,12 +137,12 @@ int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env
 					     IloModel &model,IloNumVarMatrix& x,
 					     IloNumVarMatrix&  y, IloNumVarMatrix&  b) {
   int t, i;
-   IntervalList<type> list;
-   computeCheckInterval(list,P);
+  IntervalList<type> list;
+  computeCheckInterval(list,P);
   Interval<type> current;
   type2 _b;
-   for (uint I=0;I<list.size();++I){
-  current=list[I];
+  for (uint I=0;I<list.size();++I){
+    current=list[I];
     type _B=P.totalResourceConsumption(current) ;
     if (current.t1 < current.t2){
       for (i=0;i<P.nbTask;++i){
@@ -133,7 +174,7 @@ int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env
 	for (t=0;t<=current.t1;++t)
 	  expr5+=x[i][t];
 	/*	  for (t=current.t1; t <std::min(P.D,current.t2+1);++t)
-	expr2+=b[i][t];
+		  expr2+=b[i][t];
 	*/for (t=current.t2;t<=P.D;++t)
 	  expr5+=y[i][t];
 	model.add( (expr5-1)*_b +_B <= P.B*(current.t2 - current.t1));
@@ -221,14 +262,6 @@ int timeModel<type,type2>::createVars(const Problem<type>& P, IloEnv& env,  IloN
       ub_b[j]=P.A[i].Fi.F[0].f.a*P.bmax(i)+P.A[i].Fi.F[0].f.c;
     w[i]=IloNumVarArray(env,0,ub_b, ILOFLOAT);
   }
-  char namevar[24];
-  for (int i=0;i<n;i++)
-    for (int t=0;t<=P.D;t++) {
-      sprintf(namevar,"x_%d_%d",i,t);
-      x[i][t].setName(namevar);
-      sprintf(namevar,"y_%d_%d",i,t);
-      y[i][t].setName(namevar);
-    }
 		
   return createB(P,env,b);
 }
@@ -242,14 +275,14 @@ int timeModel<type,type2>::createConstraints(const Problem<type>& P, IloEnv& env
   int i,t,tau;
   const int nbTaskInt=P.nbTask;	
 
-  IloExpr expr(env);
-  for (i=0;i<nbTaskInt;++i){
-    for (t=0;t<P.D;++t)
+    IloExpr expr(env);
+      for (i=0;i<nbTaskInt;++i){
+      for (t=0;t<P.D;++t)
       expr += b[i][t];
-  }
-  model.add(IloMinimize(env,expr));
-  expr.end();
-
+      }
+      model.add(IloMinimize(env,expr));
+      expr.end();
+  
   // (sum x_it == 1) et (sum yit==1)
   for (i=0; i<nbTaskInt; i++) {
     IloExpr exprx(env);

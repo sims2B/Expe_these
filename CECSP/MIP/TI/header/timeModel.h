@@ -17,16 +17,6 @@ template<typename type, typename type2=type>
 struct timeModel{
   int sol=0;
 
-//********************************************************
-//********************** CALLBACK ************************
-//********************************************************
-
-IloCplex::Callback loggingCallback(IloEnv env, IloNum lastlog, 
-IloNum lastIncumbent, IloNum startTime, IloNum startDetTime);
-IloCplex::Callback depth(IloEnv env, IloInt& nodeDepth);
-IloCplex::Callback noPreemption_tk(IloEnv env, const Problem<double>& P, 
-IloNumVarMatrix& z, IloNum eps, IloInt& nbCut, IloInt& nodeDepth, 
-IloInt& maxDepth);
 
 //********************************************************
 //************************ SOLVE *************************
