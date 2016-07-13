@@ -7,8 +7,6 @@ use Cwd;
 
 my $path = Cwd::realpath(shift);
 my $target = Cwd::realpath(shift);
-my $target2 = Cwd::realpath(shift);
-my $target3 = Cwd::realpath(shift);
 
 sub explore {
 	my $p = shift;
@@ -31,6 +29,7 @@ sub handle_file {
 	system(" echo $name >> $target$i");
 	system("./bin/modelTI $file 7200 $i >> $target$i ");
 		}
+}
 }
 
 #system("mkdir -p $target");
