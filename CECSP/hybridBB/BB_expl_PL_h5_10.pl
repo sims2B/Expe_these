@@ -6,7 +6,7 @@ use File::Basename;
 use Cwd;
 
 my $path = Cwd::realpath(shift);
-#my $target = Cwd::realpath(shift);
+my $target = Cwd::realpath(shift);
 
 sub explore {
     my $p=shift;
@@ -25,25 +25,14 @@ sub handle_file {
     my $file = shift;
     my $name = basename($file);
     if ($file=~ /.*$/) {
- 
-	    system("echo '$name' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ERFlow_h5_2_solPL.txt");
-	    #system("echo '$name' >> $target2");
-	    system("timeout --signal=9 4000s ./bin/hybridBB $file 5 4 2.5  2>&1 >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ERFlow_h5_2_solPL.txt; echo \"\$?\" >>/home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ERFlow_h5_2_solPL.txt");
+ for my $i (1,3){
+	for my $j (10,5,2.5,1){
+	    system("echo '$name' >> $target\_$i\_$j.txt");
+	    system("timeout --signal=9 7220s ./bin/hybridBB_TI $file 3 $i $j 2>&1 >> $target\_$i\_$j.txt");
 
-	    system("echo '     ***********************************************************************' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ERFlow_h5_2_solPL.txt");
-
-	    system("echo '$name' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_TTFlow_h5_2_solPL.txt");
-	    #system("echo '$name' >> $target2");
-	    system("timeout --signal=9 4000s ./bin/hybridBB $file 5 3 2.5  2>&1 >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_TTFlow_h5_2_solPL.txt; echo \"\$?\" >>/home/mnattaf/Dev2016/CECSP/res_CP/res_BB_TTFlow_h5_2_solPL.txt");
-
-	    system("echo '     ***********************************************************************' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_TTFlow_h5_2_solPL.txt");
-
-	    system("echo '$name' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ER_h5_2_solPL.txt");
-	    #system("echo '$name' >> $target2");
-	    system("timeout --signal=9 4000s ./bin/hybridBB $file 5 1 2.5  2>&1 >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ER_h5_2_solPL.txt; echo \"\$?\" >>/home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ER_h5_2_solPL.txt");
-
-	    system("echo '     ***********************************************************************' >> /home/mnattaf/Dev2016/CECSP/res_CP/res_BB_ER_h5_2_solPL.txt");
-#	    system("echo '     ***********************************************************************' >> $target2");
+	    system("echo '     ***********************************************************************' >> $target\_$i\_$j.txt");
+}
+}
     }
 }
 

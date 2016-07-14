@@ -148,7 +148,6 @@ void createBranch(Problem<type>& P,int x,std::stack<Problem<type>>& explore, dou
 
 template<typename type,typename type2= type>
 int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar, ptrTest<type> TotalTest,  type epsilon, double param){
-  std:: cout << "epsilon vaut " << epsilon << std::endl; 
   struct timeval tim;
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
@@ -170,10 +169,8 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
     explore.pop();
     if (P1.dataConsistency()) {
       test=TotalTest(P1);
-      std::cout << "test " << test << std::endl;
       if (0 != test) {
 	cptAdjust+=test-1;
-	std::cout << "ajust " << cptAdjust << std::endl;
 	x=choiceVar(P1,epsilon);
 	if (x!=-1) 
 	  createBranch(P1,x,explore,param);
