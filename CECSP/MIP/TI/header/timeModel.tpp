@@ -39,7 +39,7 @@ int timeModel<type,type2>::Solve(const Problem<type>& P,Solution<type,type2> &s,
 
     if (ERIneq==1) {
       std::cout << " Starting resolution with ER inequalities at root node\n";
-      addERinequalities(P,env,model,x,y,b);
+      addERinequalities(P,env,model,x,y);
     }
   
     /*if (ERIneq==2) {
@@ -133,9 +133,9 @@ int timeModel<type,type2>::Solve(const Problem<type>& P,Solution<type,type2> &s,
 
 
 template<typename type,typename type2>
-int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env, 
+int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env,
 					     IloModel &model,IloNumVarMatrix& x,
-					     IloNumVarMatrix&  y, IloNumVarMatrix&  b) {
+					     IloNumVarMatrix&  y) {
   int t, i;
   IntervalList<type> list;
   computeCheckInterval(list,P);

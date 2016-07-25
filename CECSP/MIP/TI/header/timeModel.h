@@ -27,7 +27,7 @@ int Solve(const Problem<type>& P,Solution<type,type2> &s,double time_limit,doubl
 
 //TODO _b ou véritable expression (cf. manuscrit)
 int addERinequalities(const Problem<type>&, IloEnv&, IloModel&, 
-IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&);
+IloNumVarMatrix&,IloNumVarMatrix&);
 
 
 int modelToSol(const Problem<type>&,Solution<type,type2>&,IloCplex&,

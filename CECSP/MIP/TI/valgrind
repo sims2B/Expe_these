@@ -1,0 +1,657 @@
+==11044== Memcheck, a memory error detector
+==11044== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==11044== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==11044== Command: ./bin/modelTI /home/mnattaf/instance_CECSP/instance_CECSP_identite/OR_spectrum_sans_function/inst25_2.txt 1000 2
+==11044== 
+==11044== 
+==11044== HEAP SUMMARY:
+==11044==     in use at exit: 1,085,112 bytes in 329 blocks
+==11044==   total heap usage: 533 allocs, 204 frees, 1,137,496 bytes allocated
+==11044== 
+==11044== 16 bytes in 1 blocks are still reachable in loss record 1 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x45161F: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 24 bytes in 1 blocks are still reachable in loss record 2 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EAAA: IloMemory::IloMemory(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4512CC: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 24 bytes in 1 blocks are still reachable in loss record 3 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x451807: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 40 bytes in 1 blocks are still reachable in loss record 4 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x4517BA: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 56 bytes in 1 blocks are still reachable in loss record 5 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x451836: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 56 bytes in 1 blocks are still reachable in loss record 6 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x451A6B: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 200 bytes in 1 blocks are still reachable in loss record 7 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x4157EC: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x415F4A: Solution<double, double>::Solution(int, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6F2: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 200 bytes in 1 blocks are still reachable in loss record 8 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x4157EC: std::vector<double, std::allocator<double> >::_M_default_append(unsigned long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x415F6D: Solution<double, double>::Solution(int, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6F2: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 336 bytes in 6 blocks are still reachable in loss record 9 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EBF6: IloMemory::IloMemory(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4512CC: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 360 bytes in 1 blocks are still reachable in loss record 10 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41422F: std::vector<double, std::allocator<double> >::reserve(unsigned long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x415E3D: Solution<double, double>::Solution(int, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6F2: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 448 bytes in 8 blocks are still reachable in loss record 11 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EB33: IloMemory::IloMemory(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4512CC: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 600 bytes in 1 blocks are still reachable in loss record 12 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x415988: std::vector<std::vector<double, std::allocator<double> >, std::allocator<std::vector<double, std::allocator<double> > > >::_M_default_append(unsigned long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x415F3D: Solution<double, double>::Solution(int, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6F2: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 800 bytes in 25 blocks are still reachable in loss record 13 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x4155BD: Problem<double>::readFromFile(std::basic_ifstream<char, std::char_traits<char> >&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6C7: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 1,040 bytes in 1 blocks are still reachable in loss record 14 of 66
+==11044==    at 0x4C2CC70: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x58B1380: __new_exitfn (cxa_atexit.c:101)
+==11044==    by 0x58B1428: __internal_atexit (cxa_atexit.c:35)
+==11044==    by 0x58B1428: __cxa_atexit (cxa_atexit.c:58)
+==11044==    by 0x51EC15: global constructors keyed to evalexpand.cpp (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x10D9F7C: __libc_csu_init (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x5896ED4: (below main) (libc-start.c:246)
+==11044== 
+==11044== 1,040 bytes in 1 blocks are still reachable in loss record 15 of 66
+==11044==    at 0x4C2CC70: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x58B1380: __new_exitfn (cxa_atexit.c:101)
+==11044==    by 0x58B1428: __internal_atexit (cxa_atexit.c:35)
+==11044==    by 0x58B1428: __cxa_atexit (cxa_atexit.c:58)
+==11044==    by 0x10D9F7C: __libc_csu_init (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x5896ED4: (below main) (libc-start.c:246)
+==11044== 
+==11044== 1,312 bytes in 1 blocks are still reachable in loss record 16 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x451CF9: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 2,200 bytes in 1 blocks are still reachable in loss record 17 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x413EA6: std::vector<Task<double>, std::allocator<Task<double> > >::reserve(unsigned long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6BC: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 18 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x45171B: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 19 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4C4424: IloSymbolTable::IloSymbolTable(IloMemoryManager, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451730: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 20 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B6808: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44AF97: IloRecycleBinI::IloRecycleBinI(IloEnvI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451C84: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 21 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44041F: IloArrayI::allocData(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4447E9: IloArrayI::IloArrayI(IloGenAlloc*, long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B681E: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44AF97: IloRecycleBinI::IloRecycleBinI(IloEnvI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451C84: IloEnvI::IloEnvI() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451D04: IloEnv::IloEnv() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D7FE: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 22 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x45337B: IloEnvI::getOrMakeSharedDomain(long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x472F53: IloNumVarI::IloNumVarI(IloEnvI*, IloNumVar::Type, double, double, char const*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4CEB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 23 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4534E2: IloEnvI::getOrMakeSharedDomain(long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x472F53: IloNumVarI::IloNumVarI(IloEnvI*, IloNumVar::Type, double, double, char const*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4CEB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 24 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x454BBC: IloEnvHashTable<IloIntRangeI*, IloVarDomainI*>::addWithoutCheck(IloIntRangeI*, IloVarDomainI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x453525: IloEnvI::getOrMakeSharedDomain(long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x472F53: IloNumVarI::IloNumVarI(IloEnvI*, IloNumVar::Type, double, double, char const*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4CEB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 25 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444158: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4105A1: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 26 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C46A: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x410387: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 27 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x443F18: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 28 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444158: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4106C4: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 29 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B6C8C: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4AFB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 30 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x443F18: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4105A1: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 31 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B6C8C: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4AFB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4105A1: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 32 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x443F18: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4106C4: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 33 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B6C8C: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4AFB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4106C4: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 34 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444032: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4105A1: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 35 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C46A: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x410347: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 36 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x443F18: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 37 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444158: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 38 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444032: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 39 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B6C8C: IloExtractableArray::IloExtractableArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4AFB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 40 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46ACD6: IloExpr::IloExpr(IloEnv, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40EC5E: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 41 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46ACD6: IloExpr::IloExpr(IloEnv, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40EE85: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 42 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x42D722: operator==(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40EFB9: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 43 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4AFACD: IloModelI::add(IloExtractableI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4AFBE8: IloModel::add(IloExtractable) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F481: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 44 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C147: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C47D: operator-(IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x49D46A: operator-(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F6B6: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 4,008 bytes in 1 blocks are still reachable in loss record 45 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4AFACD: IloModelI::add(IloExtractableI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4AFBE8: IloModel::add(IloExtractable) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F7B9: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 8,016 bytes in 2 blocks are still reachable in loss record 46 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44046B: IloArrayI::allocData(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4447E9: IloArrayI::IloArrayI(IloGenAlloc*, long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C480: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x410367: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 8,016 bytes in 2 blocks are still reachable in loss record 47 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44046B: IloArrayI::allocData(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4447E9: IloArrayI::IloArrayI(IloGenAlloc*, long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C480: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x410387: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 8,016 bytes in 2 blocks are still reachable in loss record 48 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x462ED5: IloExpr::operator+=(IloNumVar) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F0FD: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 8,800 bytes in 25 blocks are still reachable in loss record 49 of 66
+==11044==    at 0x4C2B0E0: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x415BEB: std::vector<double, std::allocator<double> >::_M_fill_insert(__gnu_cxx::__normal_iterator<double*, std::vector<double, std::allocator<double> > >, unsigned long, double const&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x415EE5: Solution<double, double>::Solution(int, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B6F2: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 12,024 bytes in 3 blocks are still reachable in loss record 50 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x444032: IloArrayI::grow(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B2730: IloExtractableArray::add(IloExtractable) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4D18: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 12,024 bytes in 3 blocks are still reachable in loss record 51 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44046B: IloArrayI::allocData(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4447E9: IloArrayI::IloArrayI(IloGenAlloc*, long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C480: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x410347: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 12,024 bytes in 3 blocks are still reachable in loss record 52 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4576B0: IloMemory::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x451286: IloConcertAlloc::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44046B: IloArrayI::allocData(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4447E9: IloArrayI::IloArrayI(IloGenAlloc*, long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44C480: IloNumArray::IloNumArray(IloEnv, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41072E: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 12,024 bytes in 3 blocks are still reachable in loss record 53 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x462ED5: IloExpr::operator+=(IloNumVar) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40EF75: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 16,032 bytes in 4 blocks are still reachable in loss record 54 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C147: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C47D: operator-(IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x49D46A: operator-(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F37E: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 16,032 bytes in 4 blocks are still reachable in loss record 55 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x42EBC5: operator>=(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F797: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 28,056 bytes in 7 blocks are still reachable in loss record 56 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x462ED5: IloExpr::operator+=(IloNumVar) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40ED39: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 28,056 bytes in 7 blocks are still reachable in loss record 57 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x42E23A: operator<=(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F45F: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 32,064 bytes in 8 blocks are still reachable in loss record 58 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C157: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C47D: operator-(IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x49D46A: operator-(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F6B6: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 60,120 bytes in 15 blocks are still reachable in loss record 59 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4C80: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4105A1: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 60,120 bytes in 15 blocks are still reachable in loss record 60 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4C80: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 60,120 bytes in 15 blocks are still reachable in loss record 61 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x43ED31: IloEnvI::alloc(unsigned long) const (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C157: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C47D: operator-(IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x49D46A: operator-(IloNumExprArg, IloNumExprArg) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F37E: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 64,128 bytes in 16 blocks are still reachable in loss record 62 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4C80: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41049A: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 64,128 bytes in 16 blocks are still reachable in loss record 63 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4C80: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4106C4: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 65,560 bytes in 1 blocks are still reachable in loss record 64 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41DFC0: IloAllocationList::alloc(long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x450274: IloIdManager::growData(long, long) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x450468: IloIdManager::newId(IloExtractableI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x450583: IloEnvI::init(IloExtractableI*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4B0D23: IloExtractableI::IloExtractableI(IloEnvI*, char const*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x472EC6: IloNumVarI::IloNumVarI(IloEnvI*, IloNumVar::Type, double, double, char const*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A4CEB: IloNumVarArray::IloNumVarArray(IloEnv, double, IloNumArray, IloNumVar::Type) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x41082F: timeModel<double, double>::createVars(Problem<double> const&, IloEnv&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40D97B: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 128,256 bytes in 32 blocks are still reachable in loss record 65 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46B6BF: IloNumLinTermI::copy() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A8DA3: IloNumExprI::getFreeCopy() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C1A9: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F785: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== 260,520 bytes in 65 blocks are still reachable in loss record 66 of 66
+==11044==    at 0x4C2B800: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==11044==    by 0x41EF9B: IloFixedSizeAllocatorI::allocateBlock(IloMemory*) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x44DCE6: IloEnvI::newTerm(IloNumVarI*, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46B6BF: IloNumLinTermI::copy() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x4A8DA3: IloNumExprI::getFreeCopy() (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x46C1A9: operator*(IloNumExprArg, double) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40F44D: timeModel<double, double>::createConstraints(Problem<double> const&, IloEnv&, IloModel&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&, IloArray<IloNumVarArray>&) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40DCC1: timeModel<double, double>::Solve(Problem<double> const&, Solution<double, double>&, double, int) (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044==    by 0x40B728: main (in /home/mnattaf/Dev2016/CECSP/MIP/TI/bin/modelTI)
+==11044== 
+==11044== LEAK SUMMARY:
+==11044==    definitely lost: 0 bytes in 0 blocks
+==11044==    indirectly lost: 0 bytes in 0 blocks
+==11044==      possibly lost: 0 bytes in 0 blocks
+==11044==    still reachable: 1,085,112 bytes in 329 blocks
+==11044==         suppressed: 0 bytes in 0 blocks
+==11044== 
+==11044== For counts of detected and suppressed errors, rerun with: -v
+==11044== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

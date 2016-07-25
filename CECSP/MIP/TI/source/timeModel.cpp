@@ -24,28 +24,28 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
   
   if ( nodeDepth >= 1 && nodeDepth <= depthMax ) {    
     int t, i;
-    IntervalList<double> list;
-    computeCheckInterval(list,P);
+    IntervalList<double> L;
+    computeCheckInterval(L,P);
     double _b;
-    for (uint I=0;I<list.size();++I){
-      double _B=P.totalResourceConsumption(list[I]) ;
-      if (list[I].t1 < list[I].t2){
+    for (uint l=0;l<L.size();++l){
+      double _B=P.totalResourceConsumption(L[l]) ;
+      if (L[l].t1 < L[l].t2){
 	for (i=0;i<P.nbTask;++i){
 	  double val = 0.0;
 	  IloExpr expr(getEnv());	  
 	  IloRange cut;
-	  _B= _B - P.A[i].resourceConsumption(list[I]);
-	  _b=P.A[i].resourceConversion(P.W(i),list[I]);
-	  for (t=0;t<list[I].t1;++t)
+	  _B= _B - P.A[i].resourceConsumption(L[l]);
+	  _b=P.A[i].resourceConversion(P.W(i),L[l]);
+	  for (t=0;t<std::min(L[l].t1,P.D+1);++t)
 	    val -= getValue(x[i][t]);
-	  for (t=list[I].t2+1;t<=P.D;++t)
+	  for (t=std::max(P.r(i)+1,L[l].t2+1);t<=P.D;++t)
 	    val -= getValue(y[i][t]);
 
-	  IloNum rhs = P.B * (list[I].t2 - list[I].t1);
+	  IloNum rhs = P.B * (L[l].t2 - L[l].t1);
 	  if ((1+val * _b + _B <= rhs)){
-	      for (t=0;t<list[I].t1;++t)
-		expr -= x[i][t];
-	      for (t=list[I].t2+1;t<=P.D;++t)
+	  for (t=0;t<std::min(L[l].t1,P.D+1);++t)
+	    expr -= x[i][t];
+	  for (t=std::max(0,(int)L[l].t2+1);t<=P.D;++t)
 		expr -= y[i][t];
 	      try{
 		cut= ( (1 + expr) * _b + _B  <= rhs);
@@ -58,46 +58,47 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
 	      }
 	      expr.end();
 	    }
-	    
-	    _b=P.A[i].resourceConversion(std::max(0.0,P.W(i)-P.A[i].Fi(P.bmax(i))*(std::max(0.0,list[I].t1-P.r(i)) +std::max(0.0, P.d(i) - list[I].t2))),list[I]);
-	    if ((getValue(x[i][P.A[i].ri])+ getValue(y[i][P.A[i].di]-1))*_b+_B <= P.B*(list[I].t2 - list[I].t1))
-	      add((x[i][P.A[i].ri]+ y[i][P.A[i].di]-1)*_b+_B <= P.B*(list[I].t2 - list[I].t1));
-	    
-	    val =0.0;
-	    _b=P.A[i].resourceConversion(P.A[i].leftShift(list[I]),list[I]);
-	    for (t=list[I].t1+1;t<list[I].t2;++t)
-	      val +=getValue(y[i][t]);
-	    if ((val+getValue(x[i][P.A[i].ri])-1)*_b + _B <= P.B*(list[I].t2 - list[I].t1)){
-	      for (t=list[I].t1+1;t<list[I].t2;++t) 
-		expr+=y[i][t];
-	      add((expr+x[i][P.A[i].ri]-1)*_b + _B <= P.B*(list[I].t2 - list[I].t1));
-	      expr.end();}
-
-	    val=0.0;
-	    _b=P.A[i].resourceConversion(P.A[i].rightShift(list[I]),list[I]);	
-	    for (t=list[I].t1;t<list[I].t2;++t)
-	      val += getValue(x[i][t]);
-	    if ((val+ getValue(y[i][P.A[i].di-1]))*_b + _B <= P.B*(list[I].t2 - list[I].t1)){
-	      for (t=list[I].t1;t<list[I].t2;++t)
-		expr+=x[i][t];
-	      add((expr+ y[i][P.A[i].di-1])*_b + _B <= P.B*(list[I].t2 - list[I].t1));
-	      expr.end();}
 	  
-	    _b=P.bmin(i)*(list[I].t2 - list[I].t1);       
+	    _b=P.A[i].resourceConversion(std::max(0.0,P.W(i)-P.A[i].Fi(P.bmax(i))*(std::max(0.0,L[l].t1-P.r(i)) +std::max(0.0, P.d(i) - L[l].t2))),L[l]);
+	    if ((getValue(x[i][P.A[i].ri])+ getValue(y[i][P.A[i].di]-1))*_b+_B <= P.B*(L[l].t2 - L[l].t1))
+	      add((x[i][P.A[i].ri]+ y[i][P.A[i].di]-1)*_b+_B <= P.B*(L[l].t2 - L[l].t1));
+	       
 	    val =0.0;
-	    for (t=0;t<=list[I].t1;++t)
-	      val+=getValue(x[i][t]);
-	    for (t=list[I].t2;t<=P.D;++t)
-	      val+=getValue(y[i][t]);
-	    if ((val-1)*_b +_B <= P.B*(list[I].t2 - list[I].t1)){
-	      for (t=0;t<=list[I].t1;++t)
-		expr+=x[i][t];
-	      for (t=list[I].t2;t<=P.D;++t)
+	    _b=P.A[i].resourceConversion(P.A[i].leftShift(L[l]),L[l]);
+	    for (t=std::max(0,(int)L[l].t1+1);t<=std::min(P.D,L[l].t2-1);++t)
+	      val +=getValue(y[i][t]);
+	    if ((val+getValue(x[i][P.A[i].ri])-1)*_b + _B <= P.B*(L[l].t2 - L[l].t1)){
+	      for (t=std::max(0,(int)L[l].t1+1);t<=std::min(P.D,L[l].t2-1);++t) 
 		expr+=y[i][t];
-	      add( (expr-1)*_b +_B <= P.B*(list[I].t2 - list[I].t1));
+	      add((expr+x[i][P.A[i].ri]-1)*_b + _B <= P.B*(L[l].t2 - L[l].t1));
 	      expr.end();
 	    }
-	    _B = _B + P.A[i].resourceConsumption(list[I]);
+	    
+	    val=0.0;
+	    _b=P.A[i].resourceConversion(P.A[i].rightShift(L[l]),L[l]);	
+	    for (t=std::max(0,(int)L[l].t1);t<std::min(P.D+1,L[l].t2);++t)
+	      val += getValue(x[i][t]);
+	    if ((val+ getValue(y[i][P.A[i].di-1]))*_b + _B <= P.B*(L[l].t2 - L[l].t1)){
+	    for (t=std::max(0,(int)L[l].t1);t<std::min(P.D+1,L[l].t2);++t)
+		expr+=x[i][t];
+	      add((expr+ y[i][P.A[i].di-1])*_b + _B <= P.B*(L[l].t2 - L[l].t1));
+	      expr.end();}
+	      
+	      _b=P.bmin(i)*(L[l].t2 - L[l].t1);       
+	    val =0.0;
+	    for (t= 0;t<=std::min(P.D,L[l].t1);++t)
+	      val+=getValue(x[i][t]);
+	    for (t=std::max((int)L[l].t2,0);t<=P.D;++t)
+	      val+=getValue(y[i][t]);
+	    if ((val-1)*_b +_B <= P.B*(L[l].t2 - L[l].t1)){
+	    for (t=0;t<=std::min(P.D,L[l].t1);++t)
+		expr+=x[i][t];
+	    for (t=std::max((int)L[l].t2,0);t<=P.D;++t)
+		expr+=y[i][t];
+	      add( (expr-1)*_b +_B <= P.B*(L[l].t2 - L[l].t1));
+	      expr.end();
+	      }
+	    _B = _B + P.A[i].resourceConsumption(L[l]);
 	    }
 	}
       }
@@ -120,7 +121,7 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
   }
 
   template<>
-    int timeModel<double,double>::Solve(const Problem<double>& P,Solution<double,double> &s,double time_limit,int ERIneq) {
+  int timeModel<double,double>::Solve(const Problem<double>& P,Solution<double,double> &s,double time_limit,int ERIneq) {
     try{
       IloNum start,time_exec;
       const int n= P.nbTask;
@@ -139,7 +140,7 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
   
       if (ERIneq==1) {
 	std::cout << " Starting resolution with ER inequalities at root node\n";
-	addERinequalities(P,env,model,x,y,b);
+	addERinequalities(P,env,model,x,y);
       }
   
       else if (ERIneq==2) {
@@ -154,32 +155,32 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
   
       cplex.setParam(IloCplex::TiLim, time_limit);
       cplex.setParam(IloCplex::Threads,2);
-      cplex.setOut(env.getNullStream());
+      //cplex.setOut(env.getNullStream());
       start= cplex.getCplexTime();
       IloInt cpt=0;
       cplex.use(getFirstSolInfo(env,cpt,start));
       // solve !
-      if (cplex.solve()) {	 
+      if (cplex.solve()) {
 	time_exec=cplex.getCplexTime()-start;
-	std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
+	/*	std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
 		  << time_exec << std::endl;
 	std:: cout << "Final objective: " << cplex.getObjValue() 
 		   <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
 		   << std::endl;   
-	modelToSol(P,s,cplex,x,y,b);
-	env.end();
+		   modelToSol(P,s,cplex,x,y,b);
+	env.end();*/
 	return 0;
       }
       else if (cplex.getStatus()==IloAlgorithm::Infeasible){
 	time_exec=cplex.getCplexTime()-start;
 	std::cout << "status: "<< cplex.getStatus() << " en " 
-		  << time_exec << std::endl;
+	<< time_exec << std::endl;
       }
       env.end();
       return 1;
     }
     catch (IloException &e) {
-      std::cout << "Iloexception in solve" << e << std::endl;
+      std::cout << "Iloexception in solve : " << e << std::endl;
       e.end();
       return 1;
     } 
