@@ -25,7 +25,7 @@ sub handle_file {
 	my $file = shift;
 	my $name = basename($file);
 	if ($file =~ /.*$/) {
-	for my $i (0..1){
+	for my $i (2){
 	system(" echo $name >> $target$i");
 	system("./bin/modelTI $file 7200 $i >> $target$i ");
 		}
