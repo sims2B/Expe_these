@@ -10,7 +10,7 @@ RM=@rm
 CP=@cp
 
 RELEASE_DIR=${HOME}/local
-DEBUG=0
+DEBUG=1
 #enable to provide debug infos
 
 ### FLAGS #############################################

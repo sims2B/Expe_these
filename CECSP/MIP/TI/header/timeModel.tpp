@@ -262,7 +262,15 @@ int timeModel<type,type2>::createVars(const Problem<type>& P, IloEnv& env,  IloN
       ub_b[j]=P.A[i].Fi.F[0].f.a*P.bmax(i)+P.A[i].Fi.F[0].f.c;
     w[i]=IloNumVarArray(env,0,ub_b, ILOFLOAT);
   }
-		
+  char namevar[24];
+  for (int i=0;i<n;i++){
+    for (int t=0;t<=P.D;t++) {
+      sprintf(namevar,"x_%d_%d",i,t);
+      x[i][t].setName(namevar);
+      sprintf(namevar,"y_%d_%d",i,t);
+      y[i][t].setName(namevar);
+    }	
+  }
   return createB(P,env,b);
 }
 

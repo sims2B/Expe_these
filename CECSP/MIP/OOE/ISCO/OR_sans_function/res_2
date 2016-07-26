@@ -1,0 +1,780 @@
+inst20_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  231
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 231
+Unknown en : 16.7653
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 231
+Gap: 0
+Optimal en : 21.9132
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 231
+Gap: 0
+Optimal en : 23.0287
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  249
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 249
+Unknown en : 38.3748
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 249
+Gap: 0
+Optimal en : 73.7444
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 249
+Gap: 0
+Optimal en : 72.3823
+valide? 1
+_________Others results_____________
+Root gap without cut: -1.14143e-14
+*****************************************************************************
+inst20_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  242
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 242
+Unknown en : 22.6313
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 242
+Gap: 0
+Optimal en : 239.848
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 242
+Gap: 0
+Optimal en : 235.457
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  240
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 240
+Unknown en : 16.2695
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 240
+Gap: 0
+Optimal en : 24.4081
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 240
+Gap: 0
+Optimal en : 24.2953
+valide? 1
+_________Others results_____________
+Root gap without cut: -2.0132e-13
+*****************************************************************************
+inst20_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  210
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 210
+Unknown en : 18.9476
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 210
+Gap: 0
+Optimal en : 32.0208
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 210
+Gap: 0
+Optimal en : 32.0256
+valide? 1
+_________Others results_____________
+Root gap without cut: -4.06024e-14
+*****************************************************************************
+inst20_5.txt
+________Starting LP relaxation resolution_______
+root objective value:  248
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 248
+Unknown en : 27.4215
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 248
+Gap: 0
+Optimal en : 37.4305
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 248
+Gap: 0
+Optimal en : 37.5337
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  250
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 250
+Unknown en : 28.4689
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 250
+Gap: 0
+Optimal en : 30.3197
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 250
+Gap: 0
+Optimal en : 30.3776
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  237
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 237
+Unknown en : 25.3815
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 237
+Gap: 0
+Optimal en : 463.518
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 237
+Gap: 0
+Optimal en : 462.927
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  292
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 292
+Unknown en : 22.5364
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 292
+Gap: 0
+Optimal en : 53.9634
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 292
+Gap: 0
+Optimal en : 54.0264
+valide? 1
+_________Others results_____________
+Root gap without cut: -1.94669e-14
+*****************************************************************************
+inst20_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  240
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 240
+Unknown en : 19.1882
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 240
+Gap: 0
+Optimal en : 81.5554
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 240
+Gap: 0
+Optimal en : 81.5829
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst20_10.txt
+________Starting LP relaxation resolution_______
+root objective value:  252
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 252
+Unknown en : 18.936
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 252
+Unknown en : 1000
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 252
+Unknown en : 1000
+valide? 0
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst10_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  111
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 111
+Unknown en : 0.632902
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 111
+Gap: 0
+Optimal en : 0.834829
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 111
+Gap: 0
+Optimal en : 0.837227
+valide? 1
+_________Others results_____________
+Root gap without cut: -1.28026e-14
+*****************************************************************************
+inst10_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  111
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 111
+Gap: 0
+Optimal en : 0.427197
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 112.333
+Gap: 0.0118694
+Feasible en : 0.396369
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 111
+Gap: 0
+Optimal en : 0.432015
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst10_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  89
+________Starting MIP resolution with node Lim=1 et without cut_______
+New incumbent found 
+objective value: 89
+Gap: 0
+Optimal en : 0.208387
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 96.5
+Gap: 1
+Feasible en : 0.0219209
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 89
+Gap: 0
+Optimal en : 0.208911
+valide? 1
+_________Others results_____________
+Root gap without cut: 1.59673e-14
+*****************************************************************************
+inst10_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  127
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 127
+Gap: 0
+Optimal en : 0.135579
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 127
+Gap: 0
+Optimal en : 0.134691
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 127
+Gap: 0
+Optimal en : 0.135603
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst10_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  154
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 154
+Gap: 0
+Optimal en : 0.353179
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 154
+Gap: 0
+Optimal en : 0.349601
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 154
+Gap: 0
+Optimal en : 0.349894
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst25_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  334
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 334
+Unknown en : 58.3127
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 335
+Gap: 0.00298507
+Feasible en : 665.724
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+objective value: 334
+Gap: 0
+Optimal en : 682.567
+valide? 1
+_________Others results_____________
+Root gap without cut: 1.7019e-14
+*****************************************************************************
+inst25_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  342
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 342
+Unknown en : 84.5809
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 342
+Gap: 0
+Optimal en : 112.396
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 342
+Gap: 0
+Optimal en : 112.556
+valide? 1
+_________Others results_____________
+Root gap without cut: -1.66209e-14
+*****************************************************************************
+inst25_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  354
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 354
+Unknown en : 53.4186
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 354
+Gap: 0
+Optimal en : 412.639
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 354
+Gap: 0
+Optimal en : 428.542
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst25_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  307
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 307
+Unknown en : 66.3154
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 307
+Unknown en : 1000
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 307
+Unknown en : 1000.01
+valide? 0
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst25_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  267
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 267
+Unknown en : 53.4081
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 267
+Gap: 0
+Optimal en : 634.823
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 267
+Gap: 0
+Optimal en : 608.948
+valide? 1
+_________Others results_____________
+Root gap without cut: -6.3869e-14
+*****************************************************************************
+inst25_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  267
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 267
+Unknown en : 66.032
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 267.333
+Gap: 0.00124688
+Feasible en : 109.75
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+objective value: 267
+Gap: 0
+Optimal en : 147.916
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst25_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  324
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 324
+Unknown en : 49.0147
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 330
+Gap: 0.0181818
+Feasible en : 192.97
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+New incumbent found 
+objective value: 324
+Gap: 0
+Optimal en : 228.348
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst25_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  342
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 342
+Unknown en : 63.8086
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 342
+Gap: 0
+Optimal en : 538.765
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 342
+Gap: 0
+Optimal en : 542.087
+valide? 1
+_________Others results_____________
+Root gap without cut: 1.66209e-14
+*****************************************************************************
+inst25_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  376
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 376
+Unknown en : 66.8878
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 376
+Unknown en : 1000.01
+valide? 0
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 376
+Gap: 0
+Optimal en : 987.75
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst30_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  377
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 377
+Unknown en : 141.346
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 377
+Unknown en : 1000.05
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 377
+Unknown en : 1000.01
+valide? 0
+_________Others results_____________
+Root gap without cut: -1.50778e-14
+*****************************************************************************
+inst30_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  447
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 447
+Unknown en : 112.038
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 447
+Unknown en : 1000.01
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 447
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+Root gap without cut: 1.27166e-13
+*****************************************************************************
+inst30_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  392
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 392
+Unknown en : 188.904
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 392
+Gap: 0
+Optimal en : 356.505
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 392
+Gap: 0
+Optimal en : 358.261
+valide? 1
+_________Others results_____________
+Root gap without cut: -4.35026e-14
+*****************************************************************************
+inst30_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  367
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 367
+Unknown en : 149.908
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 367
+Unknown en : 1000.01
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 367
+Unknown en : 1000.04
+valide? 0
+_________Others results_____________
+Root gap without cut: 3.09773e-14
+*****************************************************************************
+inst30_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  357
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 357
+Unknown en : 131.688
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 357
+Unknown en : 1000.03
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 357
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+Root gap without cut: 2.5476e-13
+*****************************************************************************
+inst30_5.txt
+________Starting LP relaxation resolution_______
+root objective value:  303
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 303
+Unknown en : 133.809
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 303
+Unknown en : 1000.02
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 303
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+Root gap without cut: 4.31485e-13
+*****************************************************************************
+inst30_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  417
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 417
+Unknown en : 124.822
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 417
+Unknown en : 1000.01
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 417
+Unknown en : 1000.01
+valide? 0
+_________Others results_____________
+Root gap without cut: -1.00873e-12
+*****************************************************************************
+inst30_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  452
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 452
+Unknown en : 133.001
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 452
+Unknown en : 1000.03
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 452
+Unknown en : 1000.03
+valide? 0
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst30_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  393
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 393
+Unknown en : 144.947
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 393
+Unknown en : 1000.02
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 393
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+Root gap without cut: -1.4464e-14
+*****************************************************************************
+inst30_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  346
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 346
+Unknown en : 137.083
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 346
+Gap: 0
+Optimal en : 158.205
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 346
+Gap: 0
+Optimal en : 158.44
+valide? 1
+_________Others results_____________
+Root gap without cut: 0
+*****************************************************************************
+inst60-1_25-0_2-0_2-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3829
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 3829
+Unknown en : 1000.15
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 3829
+Unknown en : 1000.16
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 3829
+Unknown en : 1000.14
+valide? 0
+_________Others results_____________
+Root gap without cut: -2.37528e-14
+*****************************************************************************
+inst60-1_25-0_15-0_4-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3839
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 3839
+Unknown en : 1000.3
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 3839
+Unknown en : 1000.32
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 3839
+Unknown en : 1000.32
+valide? 0
+_________Others results_____________
+Root gap without cut: 2.36909e-14
+*****************************************************************************
+inst60-1_25-0_25-1_6-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3815
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 3815
+Unknown en : 1000.32
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 3815
+Unknown en : 1000.34
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 3815
+Unknown en : 1000.32
+valide? 0
+_________Others results_____________
+Root gap without cut: 1.3112e-13
+*****************************************************************************
+inst60-2_5-0_2-3_2-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  7556
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 7556
+Unknown en : 1000.52
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 7556
+Unknown en : 1000.52
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 7556
+Unknown en : 1000.51
+valide? 0
+_________Others results_____________
+Root gap without cut: -2.52771e-13
+*****************************************************************************
+inst60-5_0-0_15-0_1-1.dat
+________Starting LP relaxation resolution_______
+root objective value:  1561
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 1561
+Unknown en : 1000.39
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 1561
+Unknown en : 1000.38
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 1561
+Unknown en : 1000.38
+valide? 0
+_________Others results_____________
+Root gap without cut: -7.23925e-12
+*****************************************************************************

@@ -24,23 +24,13 @@ sub explore {
 sub handle_file {
 	my $file = shift;
 	my $name = basename($file);
-	if ($file =~ /.*$/) {
-		for my $i (0..1){
-	 		for my $j (0..1){
-				for my $k (0..1){
-					for my $l (0..1){
-						if ($k + $l <= 1){
-						for my $m (0..1){
-							for my $n (0..1){
-								for my $o (0..1){	    	
-									if ($j+$k<=1){							
-										system("echo '$name' >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o.txt");
-   									system("./bin/modelSE $file $i $j $k $l $m $n $o >> $target\_$i\_$j\_$k\_$l\_$m\_$n\_$o.txt");
-system(" echo '$name' >> traite.txt");
-	}}}}}}}} #fermeture de tous les for
+	if ($file =~ /.*$/) {							
+		system("echo '$name' >> $target");
+   		system("./bin/modelSE $file 0 0 1 1 0 0 0 >> $target");
+  		system(" echo '$name' >> traite.txt");
 	}
 }
-}
+
 
 #system("mkdir -p $target");
 explore $path;

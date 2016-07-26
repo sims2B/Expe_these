@@ -1,0 +1,884 @@
+inst20_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  231
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 231
+number of preemp cuts: 6
+Unknown en : 44.1246
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 231
+Gap: 0
+number of preemp cuts: 241
+Optimal en : 96.2102
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 231
+Gap: 0
+number of preemp cuts: 241
+Optimal en : 128.367
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  249
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 249
+number of preemp cuts: 13
+Unknown en : 77.5936
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 249
+Gap: 0
+number of preemp cuts: 86
+Optimal en : 121.233
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 249
+Gap: 0
+number of preemp cuts: 86
+Optimal en : 124.191
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  242
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 242
+number of preemp cuts: 6
+Unknown en : 44.4913
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 243.222
+Gap: 0.00502513
+number of preemp cuts: 279
+Feasible en : 791.75
+valide? 1
+________Starting MIP resolution with default settings_______
+best objective value: 242
+number of preemp cuts: 273
+Unknown en : 1000
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst20_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  240
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 240
+number of preemp cuts: 7
+Unknown en : 67.725
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 240
+Gap: 0
+number of preemp cuts: 11
+Optimal en : 175.644
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 240
+Gap: 0
+number of preemp cuts: 11
+Optimal en : 181.537
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  210
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 210
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 19.0964
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 210
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 16.7188
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 210
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 17.5433
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_5.txt
+________Starting LP relaxation resolution_______
+root objective value:  248
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 248
+number of preemp cuts: 4
+Unknown en : 39.85
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 248.333
+Gap: 0.00134228
+number of preemp cuts: 19
+Feasible en : 110.214
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+objective value: 248
+Gap: 0
+number of preemp cuts: 19
+Optimal en : 109.146
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  250
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 250
+number of preemp cuts: 2
+Unknown en : 42.376
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 250
+Gap: 0
+number of preemp cuts: 264
+Optimal en : 75.2031
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 250
+Gap: 0
+number of preemp cuts: 264
+Optimal en : 91.0818
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  237
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 237
+number of preemp cuts: 4
+Unknown en : 53.2468
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 237
+Gap: 0
+number of preemp cuts: 216
+Optimal en : 147.235
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 237
+Gap: 0
+number of preemp cuts: 216
+Optimal en : 161.487
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  292
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 292
+number of preemp cuts: 17
+Unknown en : 102.232
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 292
+Gap: 0
+number of preemp cuts: 127
+Optimal en : 168.86
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 292
+Gap: 0
+number of preemp cuts: 127
+Optimal en : 164.162
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  240
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 240
+number of preemp cuts: 8
+Unknown en : 43.0767
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 240
+Gap: 0
+number of preemp cuts: 383
+Optimal en : 85.9879
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 240
+Gap: 0
+number of preemp cuts: 383
+Optimal en : 89.8946
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst20_10.txt
+________Starting LP relaxation resolution_______
+root objective value:  252
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 252
+number of preemp cuts: 5
+Unknown en : 38.4231
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 252
+number of preemp cuts: 500
+Unknown en : 1000
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 252
+number of preemp cuts: 500
+Unknown en : 1000
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst10_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  111
+________Starting MIP resolution with node Lim=1 et without cut_______
+New incumbent found 
+New incumbent found 
+objective value: 113
+Gap: 0.0176991
+number of preemp cuts: 0
+Feasible en : 0.773527
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 119
+Gap: 1
+number of preemp cuts: 0
+Feasible en : 0.0324631
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+New incumbent found 
+objective value: 111
+Gap: 0
+number of preemp cuts: 3
+Optimal en : 0.895937
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst10_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  111
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 111
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.684715
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 111
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.523433
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 111
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.502404
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst10_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  89
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 89
+Gap: 0
+number of preemp cuts: 33
+Optimal en : 0.404311
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 89
+Gap: 0
+number of preemp cuts: 33
+Optimal en : 0.403812
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 89
+Gap: 0
+number of preemp cuts: 33
+Optimal en : 0.517751
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst10_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  127
+________Starting MIP resolution with node Lim=1 et without cut_______
+objective value: 127
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.661179
+________Starting MIP resolution with nbSol=1 and without cuts_______
+objective value: 127
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.717848
+valide? 1
+________Starting MIP resolution with default settings_______
+objective value: 127
+Gap: 0
+number of preemp cuts: 0
+Optimal en : 0.604449
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst10_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  154
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 154
+number of preemp cuts: 0
+Unknown en : 0.819465
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 154
+Gap: 0
+number of preemp cuts: 52
+Optimal en : 1.7071
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 154
+Gap: 0
+number of preemp cuts: 52
+Optimal en : 1.73262
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  334
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 334
+number of preemp cuts: 12
+Unknown en : 148.762
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 335.278
+Gap: 0.0038111
+number of preemp cuts: 162
+Feasible en : 357.636
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+New incumbent found 
+objective value: 334
+Gap: 0
+number of preemp cuts: 162
+Optimal en : 455.458
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  342
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 342
+number of preemp cuts: 14
+Unknown en : 217.513
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 342
+Gap: 0
+number of preemp cuts: 262
+Optimal en : 302.701
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 342
+Gap: 0
+number of preemp cuts: 262
+Optimal en : 238.17
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  354
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 354
+number of preemp cuts: 26
+Unknown en : 164.657
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 354
+Gap: 0
+number of preemp cuts: 501
+Optimal en : 411.777
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 354
+Gap: 0
+number of preemp cuts: 501
+Optimal en : 711.345
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  307
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 307
+number of preemp cuts: 6
+Unknown en : 106.754
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 307
+number of preemp cuts: 500
+Unknown en : 1000.01
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 307
+number of preemp cuts: 450
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst25_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  267
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 267
+number of preemp cuts: 6
+Unknown en : 134.228
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 267
+Gap: 0
+number of preemp cuts: 155
+Optimal en : 494.148
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 267
+Gap: 0
+number of preemp cuts: 155
+Optimal en : 325.789
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  267
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 267
+number of preemp cuts: 6
+Unknown en : 96.4138
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 287.333
+Gap: 0.0707657
+number of preemp cuts: 338
+Feasible en : 327.654
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+objective value: 267
+Gap: 0
+number of preemp cuts: 338
+Optimal en : 910.692
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  324
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 324
+number of preemp cuts: 5
+Unknown en : 85.6743
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 324
+Gap: 0
+number of preemp cuts: 500
+Optimal en : 529.368
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 324
+Gap: 0
+number of preemp cuts: 500
+Optimal en : 530.452
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  342
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 342
+number of preemp cuts: 16
+Unknown en : 119.522
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 342
+Gap: 0
+number of preemp cuts: 36
+Optimal en : 253.006
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 342
+Gap: 0
+number of preemp cuts: 36
+Optimal en : 252.456
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst25_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  376
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 376
+number of preemp cuts: 14
+Unknown en : 77.192
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 376
+Gap: 0
+number of preemp cuts: 99
+Optimal en : 171.223
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 376
+Gap: 0
+number of preemp cuts: 99
+Optimal en : 171.63
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst30_0.txt
+________Starting LP relaxation resolution_______
+root objective value:  377
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 377
+number of preemp cuts: 10
+Unknown en : 224.359
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 377.5
+Gap: 0.0013245
+number of preemp cuts: 210
+Feasible en : 403.146
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+objective value: 377
+Gap: 0
+number of preemp cuts: 210
+Optimal en : 409.054
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst30_1.txt
+________Starting LP relaxation resolution_______
+root objective value:  447
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 447
+number of preemp cuts: 28
+Unknown en : 303.649
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 447
+number of preemp cuts: 263
+Unknown en : 1000.02
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 447
+number of preemp cuts: 263
+Unknown en : 1000.01
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst30_2.txt
+________Starting LP relaxation resolution_______
+root objective value:  392
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 392
+number of preemp cuts: 25
+Unknown en : 470.761
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 392
+Gap: 0
+number of preemp cuts: 80
+Optimal en : 983.971
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 392
+Gap: 0
+number of preemp cuts: 80
+Optimal en : 984.48
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst30_3.txt
+________Starting LP relaxation resolution_______
+root objective value:  367
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 367
+number of preemp cuts: 15
+Unknown en : 241.183
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 367
+number of preemp cuts: 99
+Unknown en : 1000.02
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 367
+number of preemp cuts: 99
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst30_4.txt
+________Starting LP relaxation resolution_______
+root objective value:  357
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 357
+number of preemp cuts: 27
+Unknown en : 498.501
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 357
+number of preemp cuts: 501
+Unknown en : 1000.03
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 357
+number of preemp cuts: 501
+Unknown en : 1000.02
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst30_5.txt
+________Starting LP relaxation resolution_______
+root objective value:  303
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 303
+number of preemp cuts: 2
+Unknown en : 212.688
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 303
+Gap: 0
+number of preemp cuts: 500
+Optimal en : 562.387
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 303
+Gap: 0
+number of preemp cuts: 500
+Optimal en : 561.465
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst30_6.txt
+________Starting LP relaxation resolution_______
+root objective value:  417
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 417
+number of preemp cuts: 8
+Unknown en : 174.206
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 417
+number of preemp cuts: 501
+Unknown en : 1000.03
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 417
+number of preemp cuts: 501
+Unknown en : 1000.03
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst30_7.txt
+________Starting LP relaxation resolution_______
+root objective value:  452
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 452
+number of preemp cuts: 6
+Unknown en : 246.399
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 459
+Gap: 0.0152505
+number of preemp cuts: 158
+Feasible en : 633.425
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+New incumbent found 
+objective value: 452
+Gap: 0
+number of preemp cuts: 158
+Optimal en : 667.332
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst30_8.txt
+________Starting LP relaxation resolution_______
+root objective value:  393
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 393
+number of preemp cuts: 12
+Unknown en : 309.669
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 393
+number of preemp cuts: 113
+Unknown en : 1000.02
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 393
+number of preemp cuts: 113
+Unknown en : 1000.01
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst30_9.txt
+________Starting LP relaxation resolution_______
+root objective value:  346
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 346
+number of preemp cuts: 2
+Unknown en : 148.766
+________Starting MIP resolution with nbSol=1 and without cuts_______
+New incumbent found 
+objective value: 346
+Gap: 0
+number of preemp cuts: 102
+Optimal en : 406.536
+valide? 1
+________Starting MIP resolution with default settings_______
+New incumbent found 
+objective value: 346
+Gap: 0
+number of preemp cuts: 102
+Optimal en : 405.23
+valide? 1
+_________Others results_____________
+*****************************************************************************
+inst60-1_25-0_2-0_2-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3829
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 1e+75
+number of preemp cuts: 0
+Infeasible en : 111.278
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 1e+75
+number of preemp cuts: 0
+Infeasible en : 111.483
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 1e+75
+number of preemp cuts: 0
+Infeasible en : 111.878
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst60-1_25-0_15-0_4-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3839
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 1.39743
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 1.39424
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 1.39563
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst60-1_25-0_25-1_6-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  3815
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 3815
+number of preemp cuts: 0
+Unknown en : 1000.2
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 3815
+number of preemp cuts: 0
+Unknown en : 1000.19
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 3815
+number of preemp cuts: 0
+Unknown en : 1000.08
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst60-2_5-0_2-3_2-10.dat
+________Starting LP relaxation resolution_______
+root objective value:  7556
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 7556
+number of preemp cuts: 0
+Unknown en : 1000.06
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 7556
+number of preemp cuts: 0
+Unknown en : 1000.07
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 7556
+number of preemp cuts: 0
+Unknown en : 1000.15
+valide? 0
+_________Others results_____________
+*****************************************************************************
+inst60-5_0-0_15-0_1-1.dat
+________Starting LP relaxation resolution_______
+root objective value:  1561
+________Starting MIP resolution with node Lim=1 et without cut_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 0.627176
+________Starting MIP resolution with nbSol=1 and without cuts_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 0.625867
+valide? 0
+________Starting MIP resolution with default settings_______
+best objective value: 0
+number of preemp cuts: 0
+Infeasible en : 0.626429
+valide? 0
+_________Others results_____________
+*****************************************************************************
