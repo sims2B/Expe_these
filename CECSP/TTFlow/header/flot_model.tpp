@@ -33,7 +33,7 @@ int solve(const Problem<type>& P) {
   cplex.setOut(env.getNullStream());
 
   // solve !
-  if (cplex.solve() ||cplex.getStatus()==IloAlgorithm::Unknown) {
+  if (cplex.solve() || cplex.getStatus()==IloAlgorithm::Unknown) {
     env.end();
     return 1;
   }
