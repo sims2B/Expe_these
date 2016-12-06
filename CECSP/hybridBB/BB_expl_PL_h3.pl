@@ -28,7 +28,7 @@ sub handle_file {
  for my $i (1,3){
 	for my $j (10,5,2.5){
 	    system("echo '$name' >> $target\_$i\_$j.txt");
-	    system("timeout --signal=9 7220s ./bin/hybridBB_TI $file 3 $i $j 2>&1 >> $target\_$i\_$j.txt");
+	    system("timeout --signal=9 7220s ./bin/hybridBB $file 3 $i $j 2>&1 >> $target\_$i\_$j.txt");
 
 	    system("echo '     ***********************************************************************' >> $target\_$i\_$j.txt");
 }

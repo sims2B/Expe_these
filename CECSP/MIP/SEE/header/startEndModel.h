@@ -4,7 +4,7 @@
 
 
 const double M=10000;
-const int time_limit=7200;
+const int time_limit=1000;
 typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 
 IloCplex::Callback getFirstSolInfo(IloEnv env, IloInt& cpt, IloNum startTime);

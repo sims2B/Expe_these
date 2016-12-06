@@ -4,12 +4,20 @@
 #include <ilcplex/ilocplex.h>
 #include "Solution.h"
 
-#define DBL_MAX std::numeric_limits<double>::max();
+
 typedef std::tuple<int,double,int> evt;
 typedef IloArray<IloNumVarArray> IloNumVarMatrix;
-const int time_limit=7200;
-const int M=10000;
 
+
+#ifndef time_limit
+#define time_limit 7200
+#endif
+#ifndef DBL_MAX
+#define DBL_MAX std::numeric_limits<double>::max()
+#endif
+#ifndef M
+#define M 10000
+#endif
 
 //********************************************************
 //********************** CALLBACK ************************
@@ -30,11 +38,13 @@ int setCplexParam(IloCplex&,IloEnv&);
 
 int LPsolveOO(const Problem<double>& P,const std::vector<double>& bound,
 const std::vector<double>& bd,bool addTe=0,bool addSep=0, bool addPreem=0, 
-bool addKnapsack=0, int time_limite=1000);
+bool addKnapsack=0);
+
+int LPsolveOO(const Problem<double>& P,const std::vector<int>&);
 
 int solveOO(const Problem<double>& P,Solution<double,double> &s,double&);
 
-int solveOO(const Problem<double>& P,Solution<double,double> &s,double&,int,int, int);
+int solveOO(const Problem<double>& P,Solution<double,double> &s,double&,int,int);
 
 int solveOO(const Problem<double>& P,Solution<double,double> &s,
 const std::vector<int>&);

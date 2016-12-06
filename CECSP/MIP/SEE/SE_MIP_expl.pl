@@ -27,7 +27,6 @@ sub handle_file {
 	if ($file =~ /.*$/) {							
 		system("echo '$name' >> $target");
    		system("./bin/modelSE $file 0 0 1 1 0 0 0 >> $target");
-  		system(" echo '$name' >> traite.txt");
 	}
 }
 

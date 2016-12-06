@@ -188,17 +188,17 @@ ILOINCUMBENTCALLBACK2(getFirstSolInfo, IloInt&, cpt, IloNum, startTime){
 //********************************************************
 //************************ SOLVE *************************
 //********************************************************
-int setCplexParam(IloCplex& cplex, IloEnv& env, int time_limit){
+int setCplexParam(IloCplex& cplex, IloEnv& env){
   //Set cplex parameter
   cplex.setParam(IloCplex::TiLim, time_limit);
-  cplex.setParam(IloCplex::Threads, 2);
+  //cplex.setParam(IloCplex::Threads, 2);
   cplex.setOut(env.getNullStream());
-  cplex.setParam(IloCplex::PreLinear, 0);
+  //cplex.setParam(IloCplex::PreLinear, 0);
 
   return 0;
 }
 
-int LPsolveOO(const Problem<double>& P,const std::vector<double>& bound,const std::vector<double>& bd,bool addTe,bool addSep, bool addPreem, bool addKnapsack, int time_limit){
+int LPsolveOO(const Problem<double>& P,const std::vector<double>& bound,const std::vector<double>& bd,bool addTe,bool addSep, bool addPreem, bool addKnapsack){
     try  {
       /*  IloNum start,time_exec;
     const int n = P.nbTask;
@@ -251,6 +251,56 @@ int LPsolveOO(const Problem<double>& P,const std::vector<double>& bound,const st
   }
 }
 
+int LPsolveOO(const Problem<double>& P,const std::vector<int>& config){
+    try  {
+      IloNum start,time_exec;
+      const int n = P.nbTask;
+    
+      // create cplex model
+      IloEnv env;
+      IloModel model(env);
+      IloNumVarMatrix z(env,n),b(env,n), w(env,n);
+      IloNumVarArray t(env, 2*n, 0, P.D, ILOFLOAT);
+    
+      createOOModel(P,env,model,t,z,b,w,config);
+      IloCplex cplex(model);
+      for (int i=0;i<n;++i){
+	for (int e=0;e<2*n-1;++e)
+	  model.add(IloConversion(env,z[i][e],ILOFLOAT));
+      }
+      setCplexParam(cplex,env);
+      start= cplex.getCplexTime();
+      if (config[0]){
+      IloInt cptCut=0;
+      IloInt nodeDepth=0;
+      cplex.use(noPreemption_tk(env,P,z, 0.01, cptCut,nodeDepth,10));
+    }
+    
+    // solve !
+    if (cplex.solve()) {	 
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "Root objective: \t"<< cplex.getObjValue() << std::endl;   
+      env.end();
+      return 0;
+    }
+    else if (cplex.getStatus()==IloAlgorithm::Infeasible){
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "status: "<< cplex.getStatus() << " at root node en " << time_exec << std::endl;
+    }
+    env.end();
+    return 1;
+    }
+  catch (IloException &e) {
+    std::cout << "Iloexception in solve" << e << std::endl;
+    e.end();
+    return 1;
+  } 
+  catch (...){
+    std::cout << "Error unknown\n";
+    return 1;
+  }
+}
+
 int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time){
   try  {
     const int n = P.nbTask;
@@ -264,7 +314,7 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time){
     createOOModel_BB(P,env,model,t,z,b,w);
     IloCplex cplex(model);
     
-    setCplexParam(cplex,env,time_limit);
+    setCplexParam(cplex,env);
     cplex.setParam(IloCplex::EpRHS,0.00001);
         
     start=cplex.getCplexTime();
@@ -295,7 +345,7 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time){
 }
 
 
-int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time, int nbThread,int output, int time_limite){
+int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time, int nbThread,int output){
   try  {
     const int n = P.nbTask;
     IloNum start,time_exec;
@@ -308,7 +358,7 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s, double& time, i
     createOOModel_BB(P,env,model,t,z,b,w);
     IloCplex cplex(model);
     
-  cplex.setParam(IloCplex::TiLim, time_limite);
+  cplex.setParam(IloCplex::TiLim, time_limit);
   cplex.setParam(IloCplex::Threads, nbThread);
   if (!output)
     cplex.setOut(env.getNullStream());
@@ -364,20 +414,22 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
       cplex.use(noPreemption_tk(env,P,z, 0.01, cptCut,nodeDepth,10));
     }
     
-    setCplexParam(cplex,env,time_limit);
+    setCplexParam(cplex,env);
     cplex.setParam(IloCplex::MIPDisplay, 2);
     start = cplex.getCplexTime();
     IloInt cpt=0;
-    cplex.use(getFirstSolInfo(env,cpt,start));
+    //cplex.use(getFirstSolInfo(env,cpt,start));
     // solve !
     if (cplex.solve()) {	 
       time_exec=cplex.getCplexTime()-start;
       std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
 		<< time_exec << std::endl;
-      /*      std:: cout << "Final objective: " << cplex.getObjValue() 
-		 <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
+      //std:: cout << "Final objective: " << cplex.getObjValue() 
+      //<<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
+      //<< std::endl;  
+      std:: cout << "Number of nodes: " << cplex.getNnodes()  
 		 << std::endl;   
-      */if (config[0]) std::cout << "number of preemp cuts: "
+      if (config[0]) std::cout << "number of preemp cuts: "
 			       << cptCut << "\n";
       modelToSol(P,s,cplex,t,z,b);
       env.end();
@@ -508,7 +560,7 @@ int createOOVars(const Problem<double>& P, IloEnv& env, IloNumVarMatrix& z, IloN
 
 int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w) {
   try {
-    //    createObj(P,env,model,b);//objective min b_ie
+    createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrainte sum zie>=1
     createConstraintTimeW(P,model,t,z);// te > ri et tf < di

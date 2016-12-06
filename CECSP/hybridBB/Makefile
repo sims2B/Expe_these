@@ -21,7 +21,7 @@ DEBUG_FLAGS= -W  -Wall -gstabs
 
 
 ### PROPERTIES ########################################
-PROJECTNAME=bin/hybridBB_TI
+PROJECTNAME=bin/hybridBB
 SRCS=	~/Dev2016/CECSP/Problem/source/LinearFunction.cpp \
       ~/Dev2016/CECSP/Problem/source/Interval.cpp \
       ~/Dev2016/CECSP/Problem/source/Piece.cpp \
