@@ -10,7 +10,7 @@ int flowERTotalTest(Problem<type> & P){
   int flowTest=flowTotalTest(P);
   if (!flowTest || !ERTest)
     return 0;
-  else return std::max(flowTest,ERTest);
+  else return ERTest;
 }
 
 
@@ -29,7 +29,7 @@ int solve(const Problem<type>& P) {
 				
   IloCplex cplex(model);
   cplex.setParam(IloCplex::TiLim, flot_time_limit);
-  cplex.setParam(IloCplex::Threads, 2);
+  //cplex.setParam(IloCplex::Threads, 2);
   cplex.setOut(env.getNullStream());
 
   // solve !

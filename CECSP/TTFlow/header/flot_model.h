@@ -10,7 +10,7 @@
 
 typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 const double M_flot=100000;
-const int flot_time_limit=1000;
+const int flot_time_limit=10;
 //const int M=100000;
 
 template<typename type>

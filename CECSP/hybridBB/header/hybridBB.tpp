@@ -198,9 +198,10 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
     gettimeofday(&tim,NULL);
     t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   }
-    std::cout << "le nombre de noeud : " << nbNode<<std::endl;
-    std::cout << "le nombre de MIP : " << cptMIP <<std::endl;
-    std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
-    std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
+  std::cout << "Instance non résolue" << std::endl;
+  std::cout << "le nombre de noeud : " << nbNode<<std::endl;
+  std::cout << "le nombre de MIP : " << cptMIP <<std::endl;
+  std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
+  std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
   return 0;
 }

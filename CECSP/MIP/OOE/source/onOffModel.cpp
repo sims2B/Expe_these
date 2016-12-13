@@ -198,7 +198,7 @@ int setCplexParam(IloCplex& cplex, IloEnv& env){
   return 0;
 }
 
-int LPsolveOO(const Problem<double>& P,const std::vector<double>& bound,const std::vector<double>& bd,bool addTe,bool addSep, bool addPreem, bool addKnapsack){
+int LPsolveOO(const Problem<double>& /*P*/,const std::vector<double>& /*bound*/,const std::vector<double>& /*bd*/,bool /*addTe*/,bool /*addSep*/, bool /*addPreem*/, bool /*addKnapsack*/){
     try  {
       /*  IloNum start,time_exec;
     const int n = P.nbTask;
@@ -417,7 +417,7 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
     setCplexParam(cplex,env);
     cplex.setParam(IloCplex::MIPDisplay, 2);
     start = cplex.getCplexTime();
-    IloInt cpt=0;
+    //IloInt cpt=0;
     //cplex.use(getFirstSolInfo(env,cpt,start));
     // solve !
     if (cplex.solve()) {	 
@@ -560,7 +560,7 @@ int createOOVars(const Problem<double>& P, IloEnv& env, IloNumVarMatrix& z, IloN
 
 int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarArray& t, IloNumVarMatrix& z, IloNumVarMatrix& b, IloNumVarMatrix &w) {
   try {
-    createObj(P,env,model,b);//objective min b_ie
+    //createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrainte sum zie>=1
     createConstraintTimeW(P,model,t,z);// te > ri et tf < di
@@ -568,9 +568,9 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
     createConstraintMinDur(P,model,t,z);//durée minimale
     createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
-    createConstraintBmin(P,model,t,z,b,0); //contrainte bmin
+    createConstraintBmin(P,model,t,z,b,1); //contrainte bmin
     createConstraintBmax(P,model,t,b);//contrainte bmax
-    createConstraintNonConsump(P,model,z,b,0);//bie=0 si zie=0
+    createConstraintNonConsump(P,model,z,b,1);//bie=0 si zie=0
     return 0;
   }
   catch (IloException& e){
