@@ -29,7 +29,7 @@ sub handle_file {
 	for my $j (10,5,2.5){
 	for my $k (1,3,4,5,6){
 	    system("echo '$name' >> $target\_h$k\_$i\_$j.txt");
-	    system("timeout --signal=9 7220s ./bin/hybridBB $file $k $i $j >> $target\_h$k\_$i\_$j.txt 2>&1 ");
+	    system("timeout --signal=9 7220s ./bin/hybridBB_test $file $k $i $j  >> $target\_h$k\_$i\_$j.txt 2>&1 ");
 
 	    system("echo '     ***********************************************************************' >> $target\_h$k\_$i\_$j.txt");
 }}

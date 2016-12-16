@@ -62,7 +62,7 @@ int interInf_t2(IntervalList<type>& list, const Problem<type> &P,type t1,int i){
   if (t1 + NEGATIVE_ZERO <= P.r(i))
     push_backBound(list,t1,P.d(i));
   else if (t1 +NEGATIVE_ZERO <= P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i))){
-    if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) +POSITIVE_ZERO <= P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))){  
+    if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) +NEGATIVE_ZERO <= P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))){  
       if (P.r(i)+P.d(i) - t1  > t1 +NEGATIVE_ZERO)
 	push_backBound(list, t1,P.r(i)+P.d(i)-t1);
     }
@@ -75,7 +75,7 @@ int interInf_t2(IntervalList<type>& list, const Problem<type> &P,type t1,int i){
 	if (t1 +NEGATIVE_ZERO < U(P,i,t1))
 	  push_backBound(list,t1,U(P,i,t1)); 
       }
-      else if (t1 +NEGATIVE_ZERO > Ht1(P,i) && P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) +POSITIVE_ZERO < P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i)) ){
+      else if (t1 +NEGATIVE_ZERO > Ht1(P,i) && P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) +POSITIVE_ZERO < P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i)) ){	
 	if (t1 +NEGATIVE_ZERO<U(P,i,t1))
 	  push_backBound(list,t1,U(P,i,t1));
 	if (t1 +NEGATIVE_ZERO<D(P,i,t1)) 
@@ -91,7 +91,7 @@ int interInf_t1(IntervalList<type>& list, const Problem<type> &P,type t2,int i){
   if (t2 + POSITIVE_ZERO >= P.d(i))
     push_backBound(list,P.r(i),t2);
   else if (t2 + POSITIVE_ZERO >= P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))){
-    if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) + POSITIVE_ZERO <= P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))) {
+    if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) + NEGATIVE_ZERO <= P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))) {
       if (P.r(i)+P.d(i)-t2 +POSITIVE_ZERO < t2)
 	push_backBound(list, P.r(i)+P.d(i)-t2,t2);
     }
@@ -127,7 +127,7 @@ int interSup_t2(IntervalList<type>& list, const Problem<type> &P,type t1,int i){
       if (t1 +POSITIVE_ZERO<D(P,i,t1))
 	push_backBound(list,t1,D(P,i,t1));
     }
-    else if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i)) +POSITIVE_ZERO < P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))){
+    else if (P.r(i) + P.W(i)/P.A[i].Fi(P.bmax(i))+POSITIVE_ZERO < P.d(i)-P.W(i)/P.A[i].Fi(P.bmax(i))){
       if (t1 + NEGATIVE_ZERO >= Ht1(P,i)){
 	if (P.r(i) +P.d(i) -t1 +NEGATIVE_ZERO>t1)
 	  push_backBound(list, t1,P.r(i)+P.d(i)-t1);
@@ -195,7 +195,7 @@ int computeCheckInterval(IntervalList<type>& list,const Problem<type>& P){
 	interNul_t2(list,P,t1[t],i); 
       else if (P.W(i) + NEGATIVE_ZERO <= P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
 	interInf_t2(list,P,t1[t],i);
-      else if (P.W(i) + NEGATIVE_ZERO > P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
+      else if (P.W(i) - POSITIVE_ZERO > P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
 	interSup_t2(list,P,t1[t],i);
     }
   }
@@ -211,7 +211,7 @@ int computeCheckInterval(IntervalList<type>& list,const Problem<type>& P){
 	interNul_t1(list,P,t1[t],i); 
       else if (P.W(i) + NEGATIVE_ZERO <= P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
 	interInf_t1(list,P,t1[t],i);
-      else if (P.W(i) + NEGATIVE_ZERO > P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
+      else if (P.W(i) - POSITIVE_ZERO > P.A[i].Fi(P.bmin(i))*(P.d(i)-P.r(i)))
 	interSup_t1(list,P,t1[t],i);
     }
   }
