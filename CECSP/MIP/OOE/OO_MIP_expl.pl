@@ -24,6 +24,24 @@ sub handle_file {
 	my $file = shift;
 	my $name = basename($file);
 	if ($file =~ /.*$/) {
+		system("echo '$name' >> $target\_0\_0\_0\_1\_1\_0\_0\_0\_0.txt");
+		system("./bin/modelOO $file 0 0 0 1 1 0 0 0 0 >> $target\_0\_0\_0\_1\_1\_0\_0\_0\_0.txt");
+		system("echo '$name' >> $target\_0\_1\_1\_0\_1\_0\_0\_0\_0.txt");
+		system("./bin/modelOO $file 0 1 1 0 1 0 0 0 0 >> $target\_0\_1\_1\_0\_1\_0\_0\_0\_0.txt");
+		system("echo '$name' >> $target\_0\_0\_0\_0\_1\_1\_1\_0\_0.txt");
+		system("./bin/modelOO $file 0 0 0 0 1 1 1 0 0 >> $target\_0\_0\_0\_0\_1\_1\_1\_0\_0.txt");
+		system("echo '$name' >> $target\_0\_0\_0\_1\_1\_0\_0\_1\_0.txt");
+		system("./bin/modelOO $file 0 0 0 1 1 0 0 1 0 >> $target\_0\_0\_0\_1\_1\_0\_0\_1\_0.txt");
+		system("echo '$name' >> $target\_1\_0\_0\_1\_1\_0\_0\_0\_0.txt");
+		system("./bin/modelOO $file 1 0 0 1 1 0 0 0 0 >> $target\_1\_0\_0\_1\_1\_0\_0\_0\_0.txt");
+		system("echo '$name' >> $target\_0\_1\_1\_0\_1\_1\_1\_1\_0.txt");
+		system("./bin/modelOO $file 0 1 1 0 1 1 1 1 0 >> $target\_0\_1\_1\_0\_1\_1\_1\_1\_0.txt");
+		system("echo '$name' >> $target\_1\_1\_1\_0\_1\_1\_1\_0\_0.txt");
+		system("./bin/modelOO $file 1 1 1 0 1 1 1 0 0 >> $target\_1\_1\_1\_0\_1\_1\_1\_0\_0.txt");
+		system("echo '$name' >> $target\_1\_1\_1\_0\_1\_0\_0\_1\_0.txt");
+		system("./bin/modelOO $file 1 1 1 0 1 0 0 1 0 >> $target\_1\_1\_1\_0\_1\_0\_0\_1\_0.txt");
+		system("echo '$name' >> $target\_1\_0\_0\_1\_1\_1\_1\_1\_0.txt");
+		system("./bin/modelOO $file 1 0 0 1 1 1 1 1 0 >> $target\_1\_0\_0\_1\_1\_1\_1\_1\_0.txt");
 		system("echo '$name' >> $target\_1\_1\_1\_0\_1\_1\_1\_1\_0.txt");
 		system("./bin/modelOO $file 1 1 1 0 1 1 1 1 0 >> $target\_1\_1\_1\_0\_1\_1\_1\_1\_0.txt");
 	}
