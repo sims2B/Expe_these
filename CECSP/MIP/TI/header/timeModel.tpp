@@ -10,8 +10,8 @@
 
 IloCplex::Callback getFirstSolInfo(IloEnv env, IloInt& cpt, IloNum startTime);
 IloCplex::Callback depth(IloEnv env, IloInt& nodeDepth);
-IloCplex::Callback energyCuts(IloEnv env, const Problem<double>& P, IloModel& model,
-			      IloNumVarMatrix& x, IloNumVarMatrix& y,IloNum eps,  IloInt& nodeDepth, 
+IloCplex::Callback energyCuts(IloEnv env, const Problem<double>& P,
+			      IloNumVarMatrix& x, IloNumVarMatrix& y,IloNum eps, IloInt& cpt,  IloInt& nodeDepth, 
 			      IloInt& maxDepth);
 
 
@@ -42,13 +42,13 @@ int timeModel<type,type2>::Solve(const Problem<type>& P,Solution<type,type2> &s,
       addERinequalities(P,env,model,x,y);
     }
   
-    /*if (ERIneq==2) {
+    if (ERIneq==2) {
       std::cout << " Starting resolution with ER inequalities in tree <10\n";
       IloInt nodeDepth=0;
       IloInt maxDepth=10;
       cplex.use(depth(env,nodeDepth));
       cplex.use(energyCuts(env,P,x,y, 0.01, cptCut,nodeDepth,maxDepth));
-    }*/
+    }
     else 
       std::cout << " Starting resolution without ER inequalities\n";
 				
@@ -133,23 +133,24 @@ int timeModel<type,type2>::Solve(const Problem<type>& P,Solution<type,type2> &s,
 
 
 template<typename type,typename type2>
-int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env,
+int timeModel<type,type2>::addERinequalities(
+					     const Problem<type>& P, IloEnv& env,
 					     IloModel &model,IloNumVarMatrix& x,
 					     IloNumVarMatrix&  y) {
-  int t, i;
+  /*  int t, i;
   IntervalList<type> list;
   computeCheckInterval(list,P);
   Interval<type> current;
   type2 _b;
   for (uint I=0;I<list.size();++I){
     current=list[I];
-    type _B=P.totalResourceConsumption(current) ;
     if (current.t1 < current.t2){
+      type _B=P.totalResourceConsumption(current) ;
       for (i=0;i<P.nbTask;++i){
 	_B= _B - P.A[i].resourceConsumption(current);
 	_b=P.A[i].resourceConversion(P.W(i),current);
 	IloExpr expr(env),expr2(env),expr3(env),expr4(env),expr5(env);
-	for (t=0;t<current.t1;++t)
+	for (t=0;t<=current.t1;++t)
 	  expr-=x[i][t];
 	for (t=current.t2+1;t<=P.D;++t)
 	  expr-=y[i][t];
@@ -173,9 +174,9 @@ int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env
 	_b=P.bmin(i)*(current.t2 - current.t1);	
 	for (t=0;t<=current.t1;++t)
 	  expr5+=x[i][t];
-	/*	  for (t=current.t1; t <std::min(P.D,current.t2+1);++t)
-		  expr2+=b[i][t];
-	*/for (t=current.t2;t<=P.D;++t)
+	  for (t=current.t1; t <std::min(P.D,current.t2+1);++t)
+	    //		  expr2+=b[i][t];
+	for (t=current.t2;t<=P.D;++t)
 	  expr5+=y[i][t];
 	model.add( (expr5-1)*_b +_B <= P.B*(current.t2 - current.t1));
 	expr5.end();
@@ -183,7 +184,7 @@ int timeModel<type,type2>::addERinequalities(const Problem<type>& P, IloEnv& env
 	_B = _B + P.A[i].resourceConsumption(current);
       }
     }
-  } 
+    } */
   return 0;
 }
 

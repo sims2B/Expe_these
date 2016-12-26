@@ -16,7 +16,7 @@ ILONODECALLBACK1(depth, IloInt& , nodeDepth) {
   nodeDepth=getDepth(0);
 }
 
-ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P, 
+ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,  
 		    IloNumVarMatrix&, x,
 		    IloNumVarMatrix&,  y, IloNum, eps, IloInt&, nodeDepth, IloInt& , depthMax) {
   try{
@@ -37,7 +37,7 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
 	    IloRange cut;
 	    _B= _B - P.A[i].resourceConsumption(L[l]);
 	    _b=P.A[i].resourceConversion(P.W(i),L[l]);
-	    /* for (t=0;t<std::min(L[l].t1,P.D+1);++t)
+	     for (t=0;t<std::min(L[l].t1,P.D+1);++t)
 	      val -= getValue(x[i][t]);
 	    for (t=std::max(P.r(i)+1,L[l].t2+1);t<=P.D;++t)
 	      val -= getValue(y[i][t]);
@@ -54,7 +54,7 @@ ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,
 	      cut.end();	
 	      
 	      expr.end();
-	      }*/
+	    }
 	  
 	    _b=P.A[i].resourceConversion(std::max(0.0,P.W(i)-P.A[i].Fi(P.bmax(i))*(std::max(0.0,L[l].t1-P.r(i)) +std::max(0.0, P.d(i) - L[l].t2))),L[l]);
 	    if ((getValue(x[i][P.A[i].ri])+ getValue(y[i][P.A[i].di]-1))*_b+_B <= P.B*(L[l].t2 - L[l].t1))
@@ -134,7 +134,7 @@ int timeModel<double,double>::Solve(const Problem<double>& P,Solution<double,dou
   try{
     IloNum start,time_exec;
     const int n= P.nbTask;
-    //IloInt cptCut=0;
+    IloInt cptCut=0;
   
     IloEnv env;
     IloModel model(env);
@@ -153,11 +153,11 @@ int timeModel<double,double>::Solve(const Problem<double>& P,Solution<double,dou
     }
   
     else if (ERIneq==2) {
-      std::cout << " Starting resolution with ER inequalities in tree <10\n";
       IloInt nodeDepth=0;
       IloInt maxDepth=10;
+      std::cout << " Starting resolution with ER inequalities in tree < " << maxDepth << "\n";
       cplex.use(depth(env,nodeDepth));
-      cplex.use(energyCuts(env,P,x,y, 0.01, nodeDepth,maxDepth));
+      cplex.use(energyCuts(env,P,modle,x,y, 0.01,cptCut, nodeDepth,maxDepth));
     }
     else 
       std::cout << " Starting resolution without ER inequalities\n";
