@@ -27,7 +27,7 @@ sub handle_file {
 	if ($file =~ /.*$/) {
 	for my $i (0,1,2){
 	system(" echo $name >> $target\_$i");
-	system("./bin/modelTI $file 7200 $i >> $target\_$i ");
+	system("./bin/modelTI $file 7200 $i >> $target\_$i 2>&1");
 		}
 }
 }
