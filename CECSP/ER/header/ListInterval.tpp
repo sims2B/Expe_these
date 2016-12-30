@@ -354,6 +354,14 @@ int computeRSInterval(IntervalList<type>& list,const Problem<type>& P,int i){
 }
 
 
+template<typename type>
+int printListInterval(IntervalList<type>& list){
+  for (uint i=0;i<list.size();++i){
+    std::cout << list[i].t1 << " " << list[i].t2 << "\n";
+  }
+  return 0;
+}
+
 
 
 
