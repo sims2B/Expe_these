@@ -1,302 +1,13 @@
-inst20_0.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	231
-Sol n°1 time: 	0.481508
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.482132
-Final objective: 231
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_1.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	249
-Sol n°1 time: 	0.535117
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.535725
-Final objective: 249
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_2.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	248
-Sol n°1 time: 	0.273763
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.320996
-Final objective: 242
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_3.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	240
-Sol n°1 time: 	0.492689
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.493242
-Final objective: 240
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_4.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	210
-Sol n°1 time: 	0.345236
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.345857
-Final objective: 210
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_5.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	248
-Sol n°1 time: 	0.751981
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.752706
-Final objective: 248
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_6.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	250
-Sol n°1 time: 	0.707525
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.708267
-Final objective: 250
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_7.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	237
-Sol n°1 time: 	0.359361
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.359959
-Final objective: 237
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_8.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	293
-Sol n°1 time: 	0.706416
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 2.16047
-Final objective: 292
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_9.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	240
-Sol n°1 time: 	0.889194
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.901602
-Final objective: 240
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst20_10.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 0.0549991
-Hurray!
-valide? 0
-**************************************************
-inst10_0.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	116
-Sol n°1 time: 	0.0437911
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.114368
-Final objective: 111
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst10_2.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	112
-Sol n°1 time: 	0.052109
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.061805
-Final objective: 111
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst10_4.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	90
-Sol n°1 time: 	0.0472839
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.0554719
-Final objective: 89
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst10_7.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	130
-Sol n°1 time: 	0.087147
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.0898049
-Final objective: 127
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst10_9.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	154
-Sol n°1 time: 	0.228268
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 0.228899
-Final objective: 154
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_0.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	334
-Sol n°1 time: 	1.43261
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 1.4335
-Final objective: 334
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_1.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	343
-Sol n°1 time: 	2.70046
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 2.77429
-Final objective: 342
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_2.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	354
-Sol n°1 time: 	1.59424
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 1.6026
-Final objective: 354
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_3.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 0.141464
-Hurray!
-valide? 0
-**************************************************
-inst25_4.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	267
-Sol n°1 time: 	1.23927
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 1.24944
-Final objective: 267
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_6.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	267
-Sol n°1 time: 	1.06354
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 1.06442
-Final objective: 267
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst25_7.txt
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	324
-Sol n°1 time: 	1.10329
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 1.10416
-Final objective: 324
-Final gap: 	0
-...
-valide? 1
-**************************************************
 inst25_8.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	342
-Sol n°1 time: 	2.07812
+Sol n°1 obj: 	218.051
+Sol n°1 time: 	1.3495
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 2.09782
-Final objective: 342
-Final gap: 	0
+Final status: 	Feasible en 7200.05
+Final objective: 191.042
+Final gap: 	0.0415625
 ...
 valide? 1
 **************************************************
@@ -304,12 +15,12 @@ inst25_9.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	379
-Sol n°1 time: 	4.31519
+Sol n°1 obj: 	232.246
+Sol n°1 time: 	0.823992
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 4.39391
-Final objective: 376
-Final gap: 	0
+Final status: 	Feasible en 7200.07
+Final objective: 216.774
+Final gap: 	0.0243878
 ...
 valide? 1
 **************************************************
@@ -317,28 +28,38 @@ inst30_0.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 0.478627
-Hurray!
-valide? 0
+Sol n°1 obj: 	246.986
+Sol n°1 time: 	1.94881
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.15
+Final objective: 219.111
+Final gap: 	0.0344592
+...
+valide? 1
 **************************************************
 inst30_1.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 0.38182
-Hurray!
-valide? 0
+Sol n°1 obj: 	295.128
+Sol n°1 time: 	4.22156
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.16
+Final objective: 254.938
+Final gap: 	0.034592
+...
+valide? 1
 **************************************************
 inst30_2.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	392
-Sol n°1 time: 	2.23371
+Sol n°1 obj: 	234.035
+Sol n°1 time: 	1.54627
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 2.23563
-Final objective: 392
-Final gap: 	0
+Final status: 	Feasible en 7200.26
+Final objective: 207.931
+Final gap: 	0.0404898
 ...
 valide? 1
 **************************************************
@@ -346,12 +67,241 @@ inst30_3.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	367
-Sol n°1 time: 	4.06612
+Sol n°1 obj: 	263.471
+Sol n°1 time: 	1.38608
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 4.09862
-Final objective: 367
-Final gap: 	0
+Final status: 	Feasible en 7200.26
+Final objective: 223.502
+Final gap: 	0.0460469
+...
+valide? 1
+**************************************************
+inst20_0.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	156.542
+Sol n°1 time: 	0.366361
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.02
+Final objective: 141.168
+Final gap: 	0.03293
+...
+valide? 1
+**************************************************
+inst20_1.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	157.748
+Sol n°1 time: 	0.442414
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.11
+Final objective: 149.901
+Final gap: 	0.0341467
+...
+valide? 1
+**************************************************
+inst20_2.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	150.443
+Sol n°1 time: 	0.240929
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.02
+Final objective: 130.708
+Final gap: 	0.0525902
+...
+valide? 1
+**************************************************
+inst20_3.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	158.767
+Sol n°1 time: 	0.258379
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.22
+Final objective: 145.4
+Final gap: 	0.035229
+...
+valide? 1
+**************************************************
+inst20_4.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	155.674
+Sol n°1 time: 	0.344441
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.02
+Final objective: 139.456
+Final gap: 	0.0304714
+...
+valide? 1
+**************************************************
+inst20_5.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	194.321
+Sol n°1 time: 	0.35101
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.03
+Final objective: 153.951
+Final gap: 	0.0345243
+...
+valide? 1
+**************************************************
+inst20_6.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	175.005
+Sol n°1 time: 	0.359581
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.1
+Final objective: 150.012
+Final gap: 	0.0571522
+...
+valide? 1
+**************************************************
+inst20_7.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	157.355
+Sol n°1 time: 	0.366257
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.11
+Final objective: 142.01
+Final gap: 	0.0301723
+...
+valide? 1
+**************************************************
+inst20_8.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	181.165
+Sol n°1 time: 	0.31775
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.28
+Final objective: 168.023
+Final gap: 	0.046445
+...
+valide? 1
+**************************************************
+inst20_9.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	177.277
+Sol n°1 time: 	1.94522
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.18
+Final objective: 172.149
+Final gap: 	0.0176487
+...
+valide? 1
+**************************************************
+inst20_10.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	162.273
+Sol n°1 time: 	0.370795
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.03
+Final objective: 146.995
+Final gap: 	0.0230947
+...
+valide? 1
+**************************************************
+inst25_0.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	223.89
+Sol n°1 time: 	1.70134
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.17
+Final objective: 198.389
+Final gap: 	0.0348416
+...
+valide? 1
+**************************************************
+inst25_1.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	227.921
+Sol n°1 time: 	0.68496
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.21
+Final objective: 207.357
+Final gap: 	0.0309382
+...
+valide? 1
+**************************************************
+inst25_2.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	225.262
+Sol n°1 time: 	1.2754
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.23
+Final objective: 196.492
+Final gap: 	0.0339539
+...
+valide? 1
+**************************************************
+inst25_3.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+status: Infeasible en 0.272377
+Hurray!
+valide? 0
+**************************************************
+inst25_4.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	187.04
+Sol n°1 time: 	0.45751
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.12
+Final objective: 156.407
+Final gap: 	0.0264741
+...
+valide? 1
+**************************************************
+inst25_6.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	169.907
+Sol n°1 time: 	0.744181
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.11
+Final objective: 151.129
+Final gap: 	0.0459656
+...
+valide? 1
+**************************************************
+inst25_7.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	209.783
+Sol n°1 time: 	0.782184
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.16
+Final objective: 194.719
+Final gap: 	0.0295744
 ...
 valide? 1
 **************************************************
@@ -359,12 +309,12 @@ inst30_4.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	388
-Sol n°1 time: 	3.44458
+Sol n°1 obj: 	245.808
+Sol n°1 time: 	0.863071
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 3.81876
-Final objective: 357
-Final gap: 	0
+Final status: 	Feasible en 7200.28
+Final objective: 217.02
+Final gap: 	0.0458841
 ...
 valide? 1
 **************************************************
@@ -372,12 +322,12 @@ inst30_5.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	304
-Sol n°1 time: 	3.67321
+Sol n°1 obj: 	190.423
+Sol n°1 time: 	1.7974
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 3.7597
-Final objective: 303
-Final gap: 	0
+Final status: 	Feasible en 7200.17
+Final objective: 171.657
+Final gap: 	0.0430563
 ...
 valide? 1
 **************************************************
@@ -385,12 +335,12 @@ inst30_6.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	417
-Sol n°1 time: 	9.08745
+Sol n°1 obj: 	282.688
+Sol n°1 time: 	1.24598
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 9.10257
-Final objective: 417
-Final gap: 	0
+Final status: 	Feasible en 7200.17
+Final objective: 239.306
+Final gap: 	0.0289561
 ...
 valide? 1
 **************************************************
@@ -398,12 +348,12 @@ inst30_7.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	452
-Sol n°1 time: 	5.63656
+Sol n°1 obj: 	301.463
+Sol n°1 time: 	1.30249
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 5.67977
-Final objective: 452
-Final gap: 	0
+Final status: 	Feasible en 7200.28
+Final objective: 252.8
+Final gap: 	0.0299064
 ...
 valide? 1
 **************************************************
@@ -411,12 +361,12 @@ inst30_8.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	394
-Sol n°1 time: 	1.60478
+Sol n°1 obj: 	251.944
+Sol n°1 time: 	1.76136
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 4.29514
-Final objective: 393
-Final gap: 	0
+Final status: 	Feasible en 7200.26
+Final objective: 232.336
+Final gap: 	0.0276672
 ...
 valide? 1
 **************************************************
@@ -424,12 +374,77 @@ inst30_9.txt
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	346
-Sol n°1 time: 	2.13191
+Sol n°1 obj: 	251.743
+Sol n°1 time: 	1.94332
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 2.13407
-Final objective: 346
-Final gap: 	0
+Final status: 	Feasible en 7200.38
+Final objective: 189.985
+Final gap: 	0.0413077
+...
+valide? 1
+**************************************************
+inst10_0.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	77.2857
+Sol n°1 time: 	0.101417
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.13
+Final objective: 68.5913
+Final gap: 	0.00335551
+...
+valide? 1
+**************************************************
+inst10_2.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	78.0806
+Sol n°1 time: 	0.082103
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200
+Final objective: 70.0944
+Final gap: 	0.00267496
+...
+valide? 1
+**************************************************
+inst10_4.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	52.6964
+Sol n°1 time: 	0.0608101
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200
+Final objective: 50.0964
+Final gap: 	0.00414784
+...
+valide? 1
+**************************************************
+inst10_7.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	112.354
+Sol n°1 time: 	0.0565848
+Sol n°1 gap: 	1e+75
+Final status: 	Optimal en 6099.86
+Final objective: 82.9813
+Final gap: 	9.98044e-05
+...
+valide? 1
+**************************************************
+inst10_9.txt
+ Starting resolution with ER inequalities at root node
+ Starting resolution without ER inequalities
+Warning: Control callbacks may disable some MIP features.
+Sol n°1 obj: 	117
+Sol n°1 time: 	0.087029
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.01
+Final objective: 97.4444
+Final gap: 	0.0240913
 ...
 valide? 1
 **************************************************
@@ -437,49 +452,6 @@ inst60-1_25-0_2-0_2-10.dat
  Starting resolution with ER inequalities at root node
  Starting resolution without ER inequalities
 Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 52.5228
-Hurray!
-valide? 0
-**************************************************
-inst60-1_25-0_15-0_4-10.dat
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 49.8485
-Hurray!
-valide? 0
-**************************************************
-inst60-1_25-0_25-1_6-10.dat
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	3815
-Sol n°1 time: 	101.897
+Sol n°1 obj: 	1919.86
+Sol n°1 time: 	74.2849
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 101.954
-Final objective: 3815
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst60-2_5-0_2-3_2-10.dat
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-Sol n°1 obj: 	8040
-Sol n°1 time: 	335.973
-Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 383.521
-Final objective: 7556
-Final gap: 	0
-...
-valide? 1
-**************************************************
-inst60-5_0-0_15-0_1-1.dat
- Starting resolution with ER inequalities at root node
- Starting resolution without ER inequalities
-Warning: Control callbacks may disable some MIP features.
-status: Infeasible en 16.0986
-Hurray!
-valide? 0
-**************************************************
