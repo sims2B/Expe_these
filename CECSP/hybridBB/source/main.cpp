@@ -75,12 +75,11 @@ int main(int /*argc*/, char* argv[]){
   P.readFromFile(instance);
   instance.close();
 
-
   Solution<double,double> s(_nbTask,2*_nbTask);
   ptrVar<double> choiceVar;
   ptrTest<double> TotalTest;
  
-
+  std:: cout << flowTotalTest(P);
   if (atoi(argv[2])==1) choiceVar=chooseVar1;
   else if (atoi(argv[2])==2) choiceVar=chooseVar2;
   else if (atoi(argv[2])==3) choiceVar=chooseVar3;
