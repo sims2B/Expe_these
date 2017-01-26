@@ -33,34 +33,34 @@ struct cell{
 
 int main( int argc, char* argv[]){
   std::ifstream res_file(argv[1],std::ios::in);
-  std::ifstream res_file2(argv[2],std::ios::in);
+  //  std::ifstream res_file2(argv[2],std::ios::in);
   if (!res_file)  {    
     std::cout << "Ouverture res impossible" << std::endl;
     return 1;
   }
 
-  std::vector<cell> cell_vec;
+  /* std::vector<cell> cell_vec;
   cell_vec.resize(1000);
   int cpt=0;
-  while (!res_file2.eof()){
+   while (!res_file2.eof()){
     res_file2 >> cell_vec[cpt].name; 
     res_file2 >> cell_vec[cpt].best; 
     cpt++;
   }
   res_file2.close();
-
+  */
   std::string trash;
   char prout;
   std::vector<res> res_vec;
   while (!res_file.eof()){  
     string inst_name;
     res res_line;
-    getline(res_file, inst_name);
+    /*getline(res_file, inst_name);
     for (int i=0;i<cell_vec.size();++i)
       if (inst_name == cell_vec[i].name)
 	res_line.best_obj=cell_vec[i].best;
 
-    res_file.seekg(-inst_name.size()-1, res_file.cur);
+	res_file.seekg(-inst_name.size()-1, res_file.cur);*/
     res_file.ignore(4);
     res_file >> res_line.size;
     res_file.ignore(1000,'\n');
@@ -147,7 +147,7 @@ int main( int argc, char* argv[]){
 	}
 	if (res_vec[i].status==3) nb_opt++;
 	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	if (res_vec[i].status==0) res_line.time_end+= 7200;
       }
 
       if (j==1 && res_vec[i].size==20){
@@ -168,7 +168,7 @@ int main( int argc, char* argv[]){
 	}
 	if (res_vec[i].status==3) nb_opt++;
 	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	if (res_vec[i].status==0) res_line.time_end+= 7200;
       }
 
       if (j==2 && res_vec[i].size==25){
@@ -189,7 +189,7 @@ int main( int argc, char* argv[]){
 	}
 	if (res_vec[i].status==3) nb_opt++;
 	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	if (res_vec[i].status==0) res_line.time_end+= 7200;
       }
 
       if (j==3 && res_vec[i].size==30){
@@ -210,7 +210,7 @@ int main( int argc, char* argv[]){
 	}
 	if (res_vec[i].status==3) nb_opt++;
 	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	if (res_vec[i].status==0) res_line.time_end+= 7200;
       }
     }
     if (nb!=0) {
@@ -236,20 +236,21 @@ int main( int argc, char* argv[]){
     if (nb_sol==0 && j==2) res_line.size=25;
     if (nb_sol==0 && j==3) res_line.size=30;
     if (nb_sol==0 && j==4) res_line.size=60;
-    if (j!=0 && j!=4){
+    //  if (j!=0 && j!=4){
       std::cout << fixed << setprecision(2);
       std:: cout << "$"<<
-	// res_line.size << " $& $" <<    
-	res_line.root_gap << "$ & $" <<
-	res_line.time_first_sol << "$ & $" <<
-	res_line.gap_first_sol << "$ & $" <<
+        res_line.size << " $& $" <<    
+	//res_line.root_gap << "$ & $" <<
+	//res_line.time_first_sol << "$ & $" <<
+	//res_line.gap_first_sol << "$ & $" <<
 	res_line.time_end << "$ & $" <<
-	res_line.final_gap << "$ & $" <<
+	//res_line.final_gap << "$ & $" <<
 	100*nb_opt/nb<< "$ & $" <<
 	100*nb_sol/nb << "$ & $" <<
-	res_line.nb_node << "$ & $" <<
-	res_line.nb_cut<< " $ \\\\ \n";
-    }
+	//res_line.nb_node << "$ & $" <<
+	//res_line.nb_cut
+	100* nb_feas/nb << " $ \\\\ \n";
+      //  }
   }
   
   res_file.close();

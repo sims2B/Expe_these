@@ -312,15 +312,15 @@ int createConstraints(const Problem<double>& P,IloEnv& env,IloModel& model,
 		      IloNumVarMatrix& w){
   int i,t,tau;
   const int nbTaskInt=P.nbTask;	
-  
-  IloExpr expr(env);
+  /*
+   IloExpr expr(env);
   for (i=0;i<nbTaskInt;++i){
     for (t=0;t<=P.D;++t)
       expr += b[i][t];
   }
   model.add(IloMinimize(env,expr));
   expr.end();
-  
+  */
   // (sum x_it == 1) et (sum yit==1)
   for (i=0; i<nbTaskInt; i++) {
     IloExpr exprx(env);

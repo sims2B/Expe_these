@@ -16,6 +16,7 @@ int main(int,char *argv[]){
     std::cout << "Hurray!\n"; 
       else  
     std::cout << "...\n";
+  s.printSol();
   std::cout << "valide? " << s.isValid(P) << std::endl;
   std::cout << "**************************************************" <<std::endl;
 

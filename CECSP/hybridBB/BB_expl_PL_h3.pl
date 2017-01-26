@@ -25,15 +25,10 @@ sub handle_file {
     my $file = shift;
     my $name = basename($file);
     if ($file=~ /.*$/) {
- for my $i (1,3,4){
-	for my $j (10,5,2.5){
-	for my $k (1,3,4,5,6){
-	    system("echo '$name' >> $target\_h$k\_$i\_$j.txt");
-	    system("timeout --signal=9 7220s ./bin/hybridBB $file $k $i $j >> $target\_h$k\_$i\_$j.txt 2>&1 ");
+	    system("echo '$name' >> $target");
+	    system("timeout --signal=9 7220s ./bin/hybridBB $file 3 1 5 >> $target 2>&1 ");
 
-	    system("echo '     ***********************************************************************' >> $target\_h$k\_$i\_$j.txt");
-}}
-}
+	    system("echo '     ***********************************************************************' >> $target");
     }
 }
 

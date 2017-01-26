@@ -1,0 +1,203 @@
+inst20_1.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	109.083
+Sol n°1 time: 	0.376719
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.01
+Final objective: 99.7583
+Final gap: 	0.0941109
+...
+valide? 1
+**************************************************
+inst20_0.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	124.353
+Sol n°1 time: 	0.151215
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7224.69
+Final objective: 84.6306
+Final gap: 	0.0489223
+...
+valide? 1
+**************************************************
+inst25_2.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	150.361
+Sol n°1 time: 	0.301259
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7206.38
+Final objective: 132.36
+Final gap: 	0.104212
+...
+valide? 1
+**************************************************
+inst25_3.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	159.29
+Sol n°1 time: 	0.30788
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7258.98
+Final objective: 113.97
+Final gap: 	0.036101
+...
+valide? 1
+**************************************************
+inst25_4.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	114.621
+Sol n°1 time: 	0.297769
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.01
+Final objective: 106.074
+Final gap: 	0.0510846
+...
+valide? 1
+**************************************************
+inst25_6.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	187.81
+Sol n°1 time: 	0.308444
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7233.47
+Final objective: 104.791
+Final gap: 	0.0605673
+...
+valide? 1
+**************************************************
+inst25_7.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	159.69
+Sol n°1 time: 	0.254357
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7304.63
+Final objective: 97.5655
+Final gap: 	0.0729279
+...
+valide? 1
+**************************************************
+inst25_1.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	142.051
+Sol n°1 time: 	0.347798
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7272.23
+Final objective: 123.995
+Final gap: 	0.10774
+...
+valide? 1
+**************************************************
+inst30_2.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	211.719
+Sol n°1 time: 	0.446218
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7380.36
+Final objective: 180.791
+Final gap: 	0.167846
+...
+valide? 1
+**************************************************
+inst20_2.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	99.1
+Sol n°1 time: 	0.192735
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.02
+Final objective: 85.7333
+Final gap: 	0.0879684
+...
+valide? 1
+**************************************************
+inst20_3.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	139.869
+Sol n°1 time: 	0.427965
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.17
+Final objective: 117.703
+Final gap: 	0.0257709
+...
+valide? 1
+**************************************************
+inst20_4.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	116.908
+Sol n°1 time: 	0.204704
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7210.06
+Final objective: 103.797
+Final gap: 	0.0509379
+...
+valide? 1
+**************************************************
+inst20_5.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	124.792
+Sol n°1 time: 	0.16271
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.01
+Final objective: 93.7917
+Final gap: 	0.0648038
+...
+valide? 1
+**************************************************
+inst20_6.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	137.236
+Sol n°1 time: 	0.273562
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.34
+Final objective: 132.569
+Final gap: 	0.082021
+...
+valide? 1
+**************************************************
+inst20_7.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	135.408
+Sol n°1 time: 	0.145667
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7207.28
+Final objective: 104.325
+Final gap: 	0.0375303
+...
+valide? 1
+**************************************************
+inst20_8.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	146.738
+Sol n°1 time: 	0.272979
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200
+Final objective: 121.904
+Final gap: 	0.0604852
+...
+valide? 1
+**************************************************
+inst20_9.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	140.683
+Sol n°1 time: 	0.405563
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.19
+Final objective: 128.169
+Final gap: 	0.0255818
+...
+valide? 1
+**************************************************
+inst20_10.txt
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	178.411
+Sol n°1 time: 	0.253229
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 7200.17
+Final objective: 112.092
+Final gap: 	0.0177249
+...
+valide? 1
+**************************************************
+inst60-1_25-0_2-0_2-10.dat
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	1042.23
+Sol n°1 time: 	2.32487
+Sol n°1 gap: 	1e+75

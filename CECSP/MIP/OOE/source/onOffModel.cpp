@@ -415,18 +415,19 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
     }
     
     setCplexParam(cplex,env);
+    cplex.setParam(IloCplex::CutsFactor, 1);
     cplex.setParam(IloCplex::MIPDisplay, 2);
     start = cplex.getCplexTime();
-    //IloInt cpt=0;
-    //cplex.use(getFirstSolInfo(env,cpt,start));
+    IloInt cpt=0;
+    cplex.use(getFirstSolInfo(env,cpt,start));
     // solve !
     if (cplex.solve()) {	 
       time_exec=cplex.getCplexTime()-start;
       std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
 		<< time_exec << std::endl;
-      //std:: cout << "Final objective: " << cplex.getObjValue() 
-      //<<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
-      //<< std::endl;  
+      std:: cout << "Final objective: " << cplex.getObjValue() 
+      <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
+      << std::endl;  
       std:: cout << "Number of nodes: " << cplex.getNnodes()  
 		 << std::endl;   
       if (config[0]) std::cout << "number of preemp cuts: "
@@ -585,7 +586,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     assert(config[2]+config[3]<=1);
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
     std::vector<double> bd(2*P.nbTask,P.D);
-    //createObj(P,env,model,b);//objective min b_ie
+    createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrai sum zie>=1
     createConstraintNonPreemp(P,env,model,z);//non preemption
