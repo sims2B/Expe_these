@@ -61,7 +61,7 @@ int main( int argc, char* argv[]){
       res_file[cpt].ignore(4);
       res_file[cpt] >> res_line.size;
       res_file[cpt].ignore(1000,'\n');
-      res_file[cpt].ignore(1000,'\n');
+      //      res_file[cpt].ignore(1000,'\n');
       res_file[cpt].ignore(1000,'\n');
       res_file[cpt] >> trash;
       if (trash == "Sol"){

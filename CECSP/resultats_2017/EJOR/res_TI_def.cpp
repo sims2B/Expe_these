@@ -61,6 +61,7 @@ int main( int argc, char* argv[]){
     string inst_name;
     res res_line;
     getline(res_file, inst_name);
+    std::cout << inst_name << '\n';
     for (int i=0;i<cell_vec.size();++i)
       if (inst_name == cell_vec[i].name)
 	res_line.best_obj=cell_vec[i].best;
@@ -71,8 +72,8 @@ int main( int argc, char* argv[]){
     res_line.size=size;
     res_file.ignore(1000,'\n');
     res_file.ignore(1000,'\n');
-    res_file.ignore(1000,'\n');
     res_file >> trash;
+    std::cout << trash;
     if (trash == "status"){     
       res_file.ignore(1000,':');
       res_file >> trash;
@@ -116,16 +117,17 @@ int main( int argc, char* argv[]){
       else{
 	res_file.ignore(1000,':');
 	res_file >> trash;
+	std::cout << trash << '\n';
 	if (trash=="Feasible"){
 	  res_line.opt=0;
 	  res_line.trouve=1;
 	  res_line.solved=1;
 	  res_line.time_end=7200;
 	  res_file.ignore(1000,':');
+	  res_file.ignore(1000,':');
 	  res_file >> res_line.obj;
 	  res_file >> trash;
-	  res_file >> val;
-	}
+	  }
 	else{
 	  res_line.trouve=1;
 	  res_line.solved=1;
@@ -133,6 +135,7 @@ int main( int argc, char* argv[]){
 	  res_file >> trash;
 	  res_file >> val;
 	  res_line.time_end=min(7200.0,val);
+	  res_file.ignore(1000,':');
 	  res_file.ignore(1000,':');
 	  res_file >> res_line.obj;
 	}   
@@ -145,8 +148,8 @@ int main( int argc, char* argv[]){
     }
     res_file.ignore(10000,'*');
     res_file.ignore(1000,'\n');
-    res_vec.push_back(res_line);   
-    prout=res_file.get();  
+    res_vec.push_back(res_line);
+     prout=res_file.get();  
     if (res_file.eof()) break;
   }
 
@@ -289,7 +292,7 @@ int main( int argc, char* argv[]){
     if (nb_sol==0 && j==3) res_line.size=30;
     if (nb_sol==0 && j==4) res_line.size=60;
     
-    std:: cout << setprecision(2)<< "$"<<
+    std:: cout << /*setprecision(2)<<*/ "$"<<
       // res_line.size << "$ & $" <<
       // res_line.time_first_sol << "$ & $" <<
       // res_line.gap_first_sol <<"$ & $" << 

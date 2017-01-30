@@ -50,11 +50,11 @@ int main( int argc, char* argv[]){
   int size;
   double val;
   std::string trash;
-  char prout;
-   cpt=0;
+  char prout = 'g';
+  cpt=0;
   std::vector<res> res_vec;
   while (!res_file.eof()){   
-if (prout == 'i')
+    if (prout == 'i')
       res_file.seekg(-1, res_file.cur);
     string inst_name;
     res res_line;
@@ -67,10 +67,11 @@ if (prout == 'i')
     res_file.ignore(4);
     res_file >> size;
     res_line.size=size;
-     res_file.ignore(1000,'\n');
+    res_file.ignore(1000,'\n');
     res_file.ignore(1000,'\n');
     res_file.ignore(1000,'\n');
     prout = res_file.get();
+    std::cout << prout << '\n';
     if (prout == '*'){
       nbTO++;
       res_file.putback(prout);
@@ -78,7 +79,7 @@ if (prout == 'i')
       res_vec.push_back(res_line);
       continue;
     }
-    res_file.ignore(1000,'\n');
+    //   res_file.ignore(1000,'\n');
     res_file >> trash;
     if (trash == "status"){   
       res_file.ignore(1000,':');
@@ -100,6 +101,7 @@ if (prout == 'i')
     /*if (trash== "Sol")*/else {
       res_file.ignore(1000,':');
       res_file >> val;
+      std::cout << val<< '\n';
       res_line.obj_first=val;
       res_file.ignore(1000,':');
       res_file >> val;

@@ -69,7 +69,6 @@ int main( int argc, char* argv[]){
     res_line.size=size;
     res_file.ignore(1000,'\n');
     res_file.ignore(1000,'\n');
-    res_file.ignore(1000,'\n');
     res_file >> trash;
     if (trash == "status"){     
       res_file.ignore(1000,':');
@@ -121,8 +120,8 @@ int main( int argc, char* argv[]){
 	  res_line.solved=1;
 	  res_line.time_end=7200;
 	  res_file.ignore(1000,':');
-	  res_file >> val;
-	  res_line.obj=val;
+	  res_file.ignore(1000,':');
+	  res_file >> res_line.obj;
 	}
 	else{
 	  res_line.trouve=1;
@@ -131,6 +130,7 @@ int main( int argc, char* argv[]){
 	  res_file >> trash;
 	  res_file >> val;
 	  res_line.time_end=min(7200.0,val);
+	  res_file.ignore(1000,':');
 	  res_file.ignore(1000,':');
 	  res_file >> val;
 	  res_line.obj=val;
