@@ -41,55 +41,55 @@ template<> Task<int>::Task(int _nbPiece) ;
 template<> Task<int>::Task(int _ri,int _di,int _Wi,int _bmin,int _bmax,Function<int> _Fi) ;
 template<>Task<int>::Task(int _ri,int _di,int _Wi,int _bmin,int _bmax,int _a,int _c) ;
 template<> Task<int>::Task(int _ri,int _di,int _Wi,int _bmin,int _bmax,int _nbPieceInt);
-// template<typename type>
-// void  Task<type>::addPiecewiseFunction(){  
-//   srand(rdtsc());
-//   std::random_device rd;
-//   std::mt19937 gen(rd());
-//   std::uniform_int_distribution<> dis(bmin, bmax);
 
-//   int _nbPiece;
-//   type _c=0;
-//   if (bmax - bmin > POSITIVE_ZERO && bmax-bmin < NEGATIVE_ZERO) 
-//     _nbPiece = 1 + dis(gen)%(int)(bmax-bmin) ;
-//   else
-//     _nbPiece=1;
-//   type t1=bmin;
-//   type _a = _nbPiece + dis(gen)%(std::max(10,(int)bmax)-_nbPiece);
+template<typename type>
+void  Task<type>::addPiecewiseFunction(){  
+  //srand(rdtsc());
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dis(bmin, bmax);
 
-//   Fi.F.resize(_nbPiece);
-//   Fi.nbPiece=_nbPiece;
-//   if (_nbPiece==1){
-//     if (bmin > POSITIVE_ZERO && bmin < NEGATIVE_ZERO)
-//       _c= dis(gen)%10;
-//     type t2=bmax;
-//     Fi.F[0]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
-//   }
-//   else{
-//     if (bmin > POSITIVE_ZERO && bmin < NEGATIVE_ZERO)
-//       _c= dis(gen)%10;
-//     int t2=t1+(bmax-bmin)/_nbPiece;
-//     Fi.F[0]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
-//     for (int i=1;i<_nbPiece-1;++i) {
-//       t1=t2;
-//       t2=t1+(bmax-bmin)/_nbPiece;
-//       if ((_a-1)-_nbPiece+i > POSITIVE_ZERO && (_a-1)-_nbPiece+i < NEGATIVE_ZERO)
-// 	_a= _nbPiece-i+dis(gen)%((_a-1)-_nbPiece+i);
-//       else 
-// 	_a= _nbPiece-i;
-//       _c=Fi(t1)-_a*t1;
+  int _nbPiece;
+  type _c=0;
+  if (bmax - bmin > POSITIVE_ZERO || bmax-bmin < NEGATIVE_ZERO) 
+    _nbPiece = 1 + dis(gen)%(int)(bmax-bmin) ;
+  else
+    _nbPiece=1;
+  type t1=bmin;
+  type _a = _nbPiece + dis(gen)%(10-_nbPiece);
 
-//       Fi.F[i]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
-//     }
-//     if (_nbPiece!=1){
-//       t1=t2;
-//       _a= 1+dis(gen)%_a;
+  Fi.F.resize(_nbPiece);
+  Fi.nbPiece=_nbPiece;
+  if (_nbPiece==1){
+    if (bmin > POSITIVE_ZERO || bmin < NEGATIVE_ZERO)
+      _c= dis(gen)%10;
+    type t2=bmax;
+    Fi.F[0]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
+  }
+  else{
+    if (bmin > POSITIVE_ZERO || bmin < NEGATIVE_ZERO)
+      _c= dis(gen)%10;
+    int t2=t1+(bmax - bmin)/_nbPiece;
+    Fi.F[0]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
+    for (int i=1;i<_nbPiece-1;++i) {
+      t1=t2;
+      t2=t1+(bmax-bmin)/_nbPiece;
+      if ((_a-1)-_nbPiece+i > POSITIVE_ZERO || (_a-1)-_nbPiece+i < NEGATIVE_ZERO)
+ 	_a= _nbPiece-i+dis(gen)%(int)((_a-1)-_nbPiece+i);
+      else 
+ 	_a= _nbPiece-i;
+      _c=Fi(t1)-_a*t1;
 
-//       _c=Fi(t1)-_a*t1;
-//       Fi.F[_nbPiece-1]=Piece<type>(Interval<type>(t1,bmax),LinearFunction<type>(_a,_c));
-//     }
-//   }
-// }
+      Fi.F[i]=Piece<type>(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
+    }
+    if (_nbPiece!=1){
+      t1=t2;
+      _a= 1+dis(gen)%(int)_a;
+      _c=Fi(t1)-_a*t1;
+      Fi.F[_nbPiece-1]=Piece<type>(Interval<type>(t1,bmax),LinearFunction<type>(_a,_c));
+    }
+  }
+}
 
 template<typename type>
 void Task<type>::displayTask() const{
@@ -106,23 +106,23 @@ void Task<type>::displayTask() const{
 
    
 /*template<> inline void Task<int>::updateSMax() ;
-template<> inline void Task<int>::updateEMin() ;
-template<> inline void Task<int>::updateRi() ;
-template<> inline void Task<int>::updateDi() ;
-template<> inline int Task<int>::dataConsistency() const;
+  template<> inline void Task<int>::updateEMin() ;
+  template<> inline void Task<int>::updateRi() ;
+  template<> inline void Task<int>::updateDi() ;
+  template<> inline int Task<int>::dataConsistency() const;
 
 
-template<typename type>
-type Task<type>::leftShift_adjust(const Interval<type> &I) const{
+  template<typename type>
+  type Task<type>::leftShift_adjust(const Interval<type> &I) const{
   return std::min(leftShift(I),std::max(Fi(bmin)*(I.t2-std::max(I.t1,ri)),
-					Wi-Fi(bmax)*(std::max(I.t1-ri,0.0)+std::max(0.0,di-I.t2))));
-}
+  Wi-Fi(bmax)*(std::max(I.t1-ri,0.0)+std::max(0.0,di-I.t2))));
+  }
 
-template<typename type>
-type Task<type>::rightShift_adjust(const Interval<type> &I) const{
+  template<typename type>
+  type Task<type>::rightShift_adjust(const Interval<type> &I) const{
   return std::min(rightShift(I),std::max(Fi(bmin)*(std::min(I.t2,di)-I.t1),
-					 Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)+std::max(0.0,di-I.t2))));
-					 }*/
+  Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)+std::max(0.0,di-I.t2))));
+  }*/
 
 template<typename type>
 type Task<type>::leftShift(const Interval<type> &I) const{
@@ -166,9 +166,9 @@ type Task<type>::resourceConsumption(const Interval<type> &I) const{
 }
 
 /*template<> int Task<int>::resourceConversion(const int& energy,const Interval<int> &I) const; 
-template<> int Task<int>::rightShift(const Interval<int> &I) const;
-template<>int Task<int>::leftShift(const Interval<int> &I) const;
-template<> int Task<int>::leftShift_adjust(const Interval<int> &I) const;
-template<> int Task<int>::rightShift_adjust(const Interval<int> &I) const;*/
+  template<> int Task<int>::rightShift(const Interval<int> &I) const;
+  template<>int Task<int>::leftShift(const Interval<int> &I) const;
+  template<> int Task<int>::leftShift_adjust(const Interval<int> &I) const;
+  template<> int Task<int>::rightShift_adjust(const Interval<int> &I) const;*/
 
 

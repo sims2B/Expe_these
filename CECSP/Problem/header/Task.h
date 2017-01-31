@@ -48,6 +48,5 @@ void addPiecewiseFunction();
 };
 
 int rdtsc();
-
 #include "Task.tpp"
 #endif

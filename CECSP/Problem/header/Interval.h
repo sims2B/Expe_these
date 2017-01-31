@@ -27,6 +27,5 @@ template<>
 inline int sizeIntersection(const Interval<int>& I, const Interval<int>& J){
   return std::max(0,std::min(J.t2,I.t2) - std::max(I.t1,J.t1));
 }
-
 #include "Interval.tpp"
 #endif

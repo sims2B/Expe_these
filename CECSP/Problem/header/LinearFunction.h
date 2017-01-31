@@ -36,7 +36,6 @@ inline int isEqual(const type &a, const type &b) {
 
 template<typename type> const type LinearFunction<type>::max_a =10;
 template<typename type> const type LinearFunction<type>::max_c=100;
-
 #include "LinearFunction.tpp"
 #endif
 

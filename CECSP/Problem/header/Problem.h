@@ -54,6 +54,5 @@ struct Problem {
   type D;
   TaskList<type> A;
 };
-
 #include "Problem.tpp"
 #endif

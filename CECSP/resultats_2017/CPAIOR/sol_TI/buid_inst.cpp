@@ -10,7 +10,10 @@ using namespace std;
 struct cell{
   string name;
   Problem<double> P;
+  cell(const Problem<double>& p);
 };
+
+cell::cell(const Problem<double> &p): P(p){}
 
 int main( int argc, char* argv[]){
   std::ifstream* res_file=new ifstream[argc-2];
@@ -24,230 +27,95 @@ int main( int argc, char* argv[]){
   }
   
   std::vector<cell> cell_vec;
-  cell_vec.resize(50);
-  int cpt=argc-2;
+  int cpt=argc-3;
   while (cpt){
-    Problem<double> Q;
-    res_file2 >> cell_vec[cpt].name; 
+    std::string str= argv[cpt+2];
+    std::string str2;
+    std::size_t found = str.rfind("/");
+    if (found!=std::string::npos)
+      str=str.substr(found);
+    str=str.substr(1,str.size());
+    str2=str.substr(4,2);
+    Problem<double> Q(stoi(str2,nullptr));
+    res_file[cpt] >> Q.nbTask;
     Q.readFromFile(res_file[cpt]);
+    cell elmt(Q);
+    elmt.name=str;
+    cell_vec.push_back(elmt);
     res_file[cpt].close();
     cpt--;
   }
-
+  /*for (uint i =0;i <cell_vec.size();++i){ std::cout << "name " <<
+    cell_vec[i].name<<'\n'; std::cout << "size " <<
+    cell_vec[i].P.nbTask<<'\n';
+    }*/
+      char prout = 'g';
   while (!sol_file.eof()){
     string inst_name;
-    Solution s<double,double>;
-    
-    ofstream fichier("test.txt", ios::out | ios::trunc);  
-  /*
+    string trash;
+    int val=0;
+    if (prout == 'i')
+      sol_file.seekg(-1,sol_file.cur);
+    std::cout << "rrr    " << prout << '\n';
+    getline(sol_file, inst_name);
+    std::cout << "!!!!!!!!!!!!!!!!!!! d " << inst_name << " d !!!!!!!!!!!!!\n";
+    int size = stoi(inst_name.substr(4,2));
+    ofstream fichier(inst_name, ios::out | ios::trunc);
 
-  
-  std::string trash;
-  char prout;
-  std::vector<res> res_vec;
-  while (!res_file.eof()){  
-    string inst_name;
-    res res_line;
-    /*getline(res_file, inst_name);
-    for (int i=0;i<cell_vec.size();++i)
+    for (uint i=0;i<cell_vec.size();++i)
       if (inst_name == cell_vec[i].name)
-	res_line.best_obj=cell_vec[i].best;
-
-	res_file.seekg(-inst_name.size()-1, res_file.cur);*/
-    res_file.ignore(4);
-    res_file >> res_line.size;
-    res_file.ignore(1000,'\n');
-    prout=res_file.get();
-    if (prout != '*'){
-      res_file.ignore(1000,':');
-      res_file >> res_line.root_obj;
-      res_file >> trash;
-      if (trash!= "..."){
-	res_file.ignore(1000, ':');
-	res_file >> res_line.obj_first_sol;
-	res_file.ignore(1000,':');
-	res_file >> res_line.time_first_sol;
-	res_file.ignore(1000,':');
-	res_file >> trash ;
-	prout=res_file.get();  
-	prout=res_file.get();  
-	if (prout != '*'){
-	  res_file.ignore(1000,':');
-	  res_file >> trash ;
-	  if (trash == "Optimal")
-	    res_line.status=3;
-	  if (trash == "Feasible")
-	    res_line.status=2;
-	  res_file >> trash;
-	  res_file >> res_line.time_end;
-	  res_file.ignore(1000,':');
-	  res_file >> res_line.final_obj;
-	  res_file.ignore(1000,':');
-	  res_file >> res_line.final_gap;
-	  res_file.ignore(1000,':');
-	  res_file >> res_line.nb_node; 
-	  //	res_file.ignore(1000,'\n'); 
-	  res_file >> trash;
-	  if (trash == "number"){
-	    res_file.ignore(1000,':');
-	    res_file >> res_line.nb_cut; 
-	  }
+        val=i;
+    std::cout << size<< " dnelzDDDD " << cell_vec[val].P.D+1<<'\n';
+    Solution<double> s(size,cell_vec[val].P.D+1);
+    sol_file.ignore(1000,':');
+    sol_file.ignore(1000,':');
+    sol_file.ignore(1000,':');
+    sol_file.ignore(1000,':');
+    sol_file.ignore(1000,':');
+    sol_file >> trash;
+    if (trash=="Optimal"){
+      for (int j=0 ; j<cell_vec[val].P.nbTask;++j){
+	sol_file.ignore(1000,'=');
+	sol_file >> size;
+	s.st[j] = size ;
+	sol_file.ignore(1000,'=');
+	sol_file >> size;
+	s.ft[j] = size ;
+	sol_file.ignore(1000,'(');
+	for (uint t=0;t<cell_vec[val].P.D+1;++t){
+	  sol_file >> size;
+	  s.b[j][t] = size;
+	  sol_file.ignore(1000,',');
 	}
       }
-    }
-    res_file.ignore(10000,'*');
-    res_file.ignore(1000,'\n'); 
-    res_vec.push_back(res_line);  /*
-   std::cout << fixed << setprecision(2);
-   std:: cout << "$"<<inst_name<< " " << 
-	    res_line.size << " $& $" <<    
-	    res_line.root_gap << "$ & $" <<
-	    res_line.time_first_sol << "$ & $" <<
-	    res_line.gap_first_sol << "$ & $" <<
-	    res_line.time_end << "$ & $" <<
-	    res_line.final_gap << "$ & $" <<
-	    res_line.nb_node << "$ & $" <<
-	    res_line.nb_cut<< " $ \\\\ \n";*/
+      
+      sol_file.ignore(1000,'(');
+      for (int t=0;t<cell_vec[val].P.D+1 ;++t){
+	sol_file >> size;
+	s.event.push_back(size);
+	std::cout << s.event[t] << " gggg \n";
+	sol_file.ignore(1000,',');
+      }
 
-      prout=res_file.get(); 
-    if (res_file.eof()) break; 
-      else res_file.seekg(-1,res_file.cur);   
+      //generer fonction concave
+      //      cell_vec[val].P.addPiecewiseFunction();
+
+      //modifier WI
+      for (int j=0;j<cell_vec[val].P.nbTask;++j){
+	int nrj=0;
+	for (int t=0;t<cell_vec[val].P.D+1;++t)
+	  nrj+=cell_vec[val].P.A[j].Fi(s.b[j][t]);
+	cell_vec[val].P.A[j].Wi=nrj;
+      }
+      //ecrire l'instance dans le fichier
+      cell_vec[val].P.ecrire(fichier);
+
+      //aller à l'instance suivante
+    }
+    sol_file.ignore(10000,'*');
+    sol_file.ignore(1000,'\n');
+    prout = sol_file.get();
   }
-  
-  for (int j=0;j<4;++j){
-    res res_line;
-    res_line.time_end=0.0;
-    int nb=0;
-    int nb_sol=0;
-    int nb_opt=0;
-    int nb_feas=0;
-    for (uint i=0; i<res_vec.size()-1;++i){
-      if (j==0 && res_vec[i].size==10 ){
-	nb++;
-	res_line.size+=res_vec[i].size;
-	if (res_vec[i].status>=1){
-	  nb_sol++;
-	  res_line.time_end+= res_vec[i].time_end;
-	  res_line.nb_node+= res_vec[i].nb_node;
-	  res_line.nb_cut+= res_vec[i].nb_cut;
-	}
-	if (res_vec[i].status>=2){
-	  nb_feas++;
-	  res_line.root_gap+=100* (1 - res_vec[i].root_obj/res_vec[i].best_obj); 
-	  res_line.time_first_sol+=res_vec[i].time_first_sol;
-	  res_line.gap_first_sol+=100*( 1 - 
-					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
-	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 7200;
-      }
-
-      if (j==1 && res_vec[i].size==20){
-	nb++;
-	res_line.size+=res_vec[i].size;
-	if (res_vec[i].status>0){
-	  nb_sol++;
-	  res_line.time_end+= res_vec[i].time_end;
-	  res_line.nb_node+= res_vec[i].nb_node;
-	  res_line.nb_cut+= res_vec[i].nb_cut;
-	}
-	if (res_vec[i].status>1){
-	  nb_feas++;
-	  res_line.root_gap+=100* (1 - res_vec[i].root_obj/res_vec[i].best_obj ); 
-	  res_line.time_first_sol+=res_vec[i].time_first_sol;
-	  res_line.gap_first_sol+=100*( 1 - 
-					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
-	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 7200;
-      }
-
-      if (j==2 && res_vec[i].size==25){
-	nb++;
-	res_line.size+=res_vec[i].size;
-	if (res_vec[i].status>0){
-	  nb_sol++;
-	  res_line.time_end+= res_vec[i].time_end;
-	  res_line.nb_node+= res_vec[i].nb_node;
-	  res_line.nb_cut+= res_vec[i].nb_cut;
-	}
-	if (res_vec[i].status>1){
-	  nb_feas++;
-	  res_line.root_gap+=100* (1 - res_vec[i].root_obj/res_vec[i].best_obj ); 
-	  res_line.time_first_sol+=res_vec[i].time_first_sol;
-	  res_line.gap_first_sol+=100*( 1 - 
-					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
-	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 7200;
-      }
-
-      if (j==3 && res_vec[i].size==30){
-	nb++;
-	res_line.size+=res_vec[i].size;
-	if (res_vec[i].status>0){
-	  nb_sol++;
-	  res_line.time_end+= res_vec[i].time_end;
-	  res_line.nb_node+= res_vec[i].nb_node;
-	  res_line.nb_cut+= res_vec[i].nb_cut;
-	}
-	if (res_vec[i].status>1){
-	  nb_feas++;
-	  res_line.root_gap+=100* (1 - res_vec[i].root_obj/res_vec[i].best_obj ); 
-	  res_line.time_first_sol+=res_vec[i].time_first_sol;
-	  res_line.gap_first_sol+=100*( 1 - 
-					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
-	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 7200;
-      }
-    }
-    if (nb!=0) {
-      res_line.size=res_line.size/nb;
-      res_line.time_end= res_line.time_end/nb;
-    }    
-    if (nb_feas!=0){
-      res_line.root_gap= res_line.root_gap/nb_feas;
-      res_line.time_first_sol= res_line.time_first_sol/nb_feas;
-      res_line.gap_first_sol= res_line.gap_first_sol/nb_feas;
-    }
-    if (nb_opt!=nb_feas)
-      res_line.final_gap= 100*res_line.final_gap/(nb_feas-nb_opt);
-    else 
-      res_line.final_gap= 0;
-    if (nb_sol!=0){
-    res_line.nb_node= res_line.nb_node/nb_sol;
-    res_line.nb_cut=res_line.nb_cut/nb_sol;
-    }
-    
-    if (nb_sol==0 && j==0) res_line.size=10;
-    if (nb_sol==0 && j==1) res_line.size=20;
-    if (nb_sol==0 && j==2) res_line.size=25;
-    if (nb_sol==0 && j==3) res_line.size=30;
-    if (nb_sol==0 && j==4) res_line.size=60;
-    //  if (j!=0 && j!=4){
-      std::cout << fixed << setprecision(2);
-      std:: cout << "$"<<
-        res_line.size << " $& $" <<    
-	//res_line.root_gap << "$ & $" <<
-	//res_line.time_first_sol << "$ & $" <<
-	//res_line.gap_first_sol << "$ & $" <<
-	res_line.time_end << "$ & $" <<
-	//res_line.final_gap << "$ & $" <<
-	100*nb_opt/nb<< "$ & $" <<
-	100*nb_sol/nb << "$ & $" <<
-	//res_line.nb_node << "$ & $" <<
-	//res_line.nb_cut
-	100* nb_feas/nb << " $ \\\\ \n";
-      //  }
-  }
-  
-  res_file.close();
-  //res_file2.close();
-  */
+  sol_file.close();
   return 0;
 }

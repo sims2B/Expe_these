@@ -45,7 +45,6 @@ void Problem<type>::readFromFile(std::ifstream& instance){
   type _B;
   instance >> _B;
   B=_B;
- 
   for (i=0;i<nbTask;++i){
     type _ri,_di,_Wi,_bmin,_bmax,_a,_c;
     int _nbPiece;

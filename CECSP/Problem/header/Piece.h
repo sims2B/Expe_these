@@ -15,6 +15,5 @@ struct Piece{
   Interval<type> I;
   LinearFunction<type> f;
 };
-
 #include "Piece.tpp"
 #endif
