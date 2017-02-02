@@ -217,3 +217,14 @@ inst60-1_25-0_25-1_6-10.dat
 Sol n°1 obj: 	961.11
 Sol n°1 time: 	9.43905
 Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 441320
+Final objective: 960.11
+Final gap: 	0.0778561
+...
+valide? 1
+**************************************************
+inst60-2_5-0_2-3_2-10.dat
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	1550.59
+Sol n°1 time: 	216.302
+Sol n°1 gap: 	1e+75

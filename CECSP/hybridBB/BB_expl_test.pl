@@ -25,9 +25,9 @@ sub handle_file {
     my $file = shift;
     my $name = basename($file);
     if ($file=~ /.*$/) {
-	for my $i (1){
-	    for my $j (10,5){
-		for my $k (1,3,4){
+	for my $i (1,4){
+	    for my $j (5){
+		for my $k (3){
 		    system("echo '$name' >> $target\_h$k\_$i\_$j.txt");
 		    system("timeout --signal=9 7220s ./bin/hybridBB $file $k $i $j >> $target\_h$k\_$i\_$j.txt 2>&1 ");
 		    
