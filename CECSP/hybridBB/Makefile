@@ -15,7 +15,7 @@ DEBUG=0 #enable to provide debug infos
 ### FLAGS #############################################
 LDFLAGS= -L/home/mnattaf/Library/cplex_12_6/cplex/lib/x86-64_linux/static_pic -L/home/mnattaf/Library/cplex_12_6/concert/lib/x86-64_linux/static_pic
 LDLIBS= -lconcert -lilocplex -lcplex -lpthread
-CPPFLAGS= -I/home/mnattaf/Dev2016/CECSP/MIP/time_indexed/header/ -I./header/ -I/home/mnattaf/Dev2016/CECSP/MIP/OOE/header/  -I/home/mnattaf/Dev2016/CECSP/TTFlow/header/ -I/home/mnattaf/Dev2016/CECSP/Problem/source/ -I/home/mnattaf/Dev2016/CECSP/Problem/header/ -I/home/mnattaf/Dev2016/CECSP/ER/header/ -I/home/mnattaf/Library/cplex_12_6/cplex/include -I/home/mnattaf/Dev2016/CECSP/MIP/pre_proc/ -I/home/mnattaf/Library/cplex_12_6/concert/include -std=c++11 -O2 -m64 -fPIC -march=native -Wall  -DIL_STD -W 
+CPPFLAGS= -I/home/mnattaf/Dev2016/CECSP/MIP/time_indexed/header/ -I./header/ -I/home/mnattaf/Dev2016/CECSP/MIP/OOE/header/  -I/home/mnattaf/Dev2016/CECSP/TTFlow/header/ -I/home/mnattaf/Dev2016/CECSP/Problem/source/ -I/home/mnattaf/Dev2016/CECSP/TTDR/header/ -I/home/mnattaf/Dev2016/CECSP/Problem/header/ -I/home/mnattaf/Dev2016/CECSP/ER/header/ -I/home/mnattaf/Library/cplex_12_6/cplex/include -I/home/mnattaf/Dev2016/CECSP/MIP/pre_proc/ -I/home/mnattaf/Library/cplex_12_6/concert/include -std=c++11 -O2 -m64 -fPIC -march=native -Wall  -DIL_STD -W 
 
 DEBUG_FLAGS= -W  -Wall -gstabs
 

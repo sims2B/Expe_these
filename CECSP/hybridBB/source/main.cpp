@@ -4,6 +4,7 @@
 #include <fstream>
 #include "hybridBB.h"
 #include "flot_model.h"
+#include "ttdr.h"
 #include <sys/time.h>
 
 
@@ -81,7 +82,7 @@ int main(int /*argc*/, char* argv[]){
  
   std:: cout << flowTotalTest(P);
   if (atoi(argv[2])==1) choiceVar=chooseVar1;
-  else if (atoi(argv[2])==2) choiceVar=chooseVar2;
+  //else if (atoi(argv[2])==2) choiceVar=chooseVar2;
   else if (atoi(argv[2])==3) choiceVar=chooseVar3;
   else if (atoi(argv[2])==4) choiceVar=chooseVar4;
   else if (atoi(argv[2])==5) choiceVar=chooseVar5;
@@ -92,7 +93,7 @@ int main(int /*argc*/, char* argv[]){
   }
 
   if (atoi(argv[3])==1) TotalTest=intervalTotalTest;
-  // else if (atoi(argv[3])==2) TotalTest=TTDR;
+  else if (atoi(argv[3])==2) TotalTest=TTDR;
   else if (atoi(argv[3])==3) TotalTest= flowTotalTest;
   else if (atoi(argv[3])==4) TotalTest= flowERTotalTest;
   else {
