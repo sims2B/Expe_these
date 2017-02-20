@@ -11,16 +11,16 @@
 //OUBLIE PAS LE PARAMETRE TEU-BÊ!!!!!
 int main(int /*argc*/, char* argv[]){
 
-  /*int nbTask;
+  int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
-  std::ofstream instance_PL(argv[2],std::ios::out);
-  std::ofstream instance_L(argv[3],std::ios::out);
+  std::ofstream instance_L(argv[2],std::ios::out);
+  //std::ofstream instance_L(argv[3],std::ios::out);
   instance >> nbTask ;
   Problem<double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
  
-  for (int i=0;i<nbTask;++i){
+  /*for (int i=0;i<nbTask;++i){
     if (P.bmin(i)==0.0){      
       P.A[i].bmin =  P.bmax(i)/2;
     }
@@ -40,7 +40,7 @@ int main(int /*argc*/, char* argv[]){
   }
   std::cout << "valide? " << s.isValid(P) << std::endl;
   P.ecrire(instance_PL);
-
+  */
   for (int i=0;i<P.nbTask;++i){
     int a,c;
     if (P.bmin(i)==P.bmax(i))
@@ -56,9 +56,9 @@ int main(int /*argc*/, char* argv[]){
 
   
   return 0;
-  */
+  /*
 
-  struct timeval tim;
+    //struct timeval tim;
   //  std::cout << argc;
   
   
@@ -109,5 +109,5 @@ int main(int /*argc*/, char* argv[]){
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
   std::cout << " valide ?" << s.isValid(P) << std::endl;
 
-  return 0;
+  return 0;*/
 }

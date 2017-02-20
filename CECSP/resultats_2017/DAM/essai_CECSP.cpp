@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <math.h>
 #include <string>
 #include <stdlib.h>
 #include <iomanip>
@@ -16,6 +17,7 @@ struct res{
   double time_end;
   double final_obj;
   double final_gap;
+  double best_LB;
   double best_obj;
   int nb_node;
   int nb_cut;
@@ -24,17 +26,19 @@ struct res{
 
 res::res() : size(0), root_obj(0.0) , root_gap(0.0), obj_first_sol (0.0), 
 	     time_first_sol (0.0), gap_first_sol (0.0), status(0),time_end (0.0), 
-	     final_obj (0.0), final_gap (0.0), nb_node(0), nb_cut(0){}
+	     final_obj (0.0), final_gap (0.0), best_LB(0.0),nb_node(0), nb_cut(0){}
 
 struct cell{
   string name;
-  double best;
+  double best_obj;
+  double best_LB;
 };
 
 int main( int argc, char* argv[]){
   std::ifstream res_file(argv[1],std::ios::in);
   std::ifstream res_file2(argv[2],std::ios::in);
-  if (!res_file)  {    
+  std::ifstream res_file3(argv[3],std::ios::in);
+  if (!res_file || !res_file2 || !res_file3)  {    
     std::cout << "Ouverture res impossible" << std::endl;
     return 1;
   }
@@ -44,12 +48,20 @@ int main( int argc, char* argv[]){
   int cpt=0;
   while (!res_file2.eof()){
     res_file2 >> cell_vec[cpt].name; 
-    res_file2 >> cell_vec[cpt].best; 
+    res_file2 >> cell_vec[cpt].best_obj; 
     cpt++;
   }
   res_file2.close();
-
+  
   std::string trash;
+  while (!res_file3.eof()){
+    res_file3 >> trash;
+    for (int i=0;i<cell_vec.size();++i)
+      if (trash == cell_vec[i].name){
+	res_file3 >> cell_vec[i].best_LB;
+      }
+  }
+  res_file3.close();
   char prout;
   std::vector<res> res_vec;
   while (!res_file.eof()){  
@@ -57,9 +69,10 @@ int main( int argc, char* argv[]){
     res res_line;
     getline(res_file, inst_name);
     for (int i=0;i<cell_vec.size();++i)
-      if (inst_name == cell_vec[i].name)
-	res_line.best_obj=cell_vec[i].best;
-
+      if (inst_name == cell_vec[i].name){
+	res_line.best_obj=cell_vec[i].best_obj;
+	res_line.best_LB=cell_vec[i].best_LB;
+      }
     res_file.seekg(-inst_name.size()-1, res_file.cur);
     res_file.ignore(4);
     res_file >> res_line.size;
@@ -128,6 +141,8 @@ int main( int argc, char* argv[]){
     int nb_sol=0;
     int nb_opt=0;
     int nb_feas=0;
+    int nb_LB=0;
+    int nb_UB=0;
     for (uint i=0; i<res_vec.size()-1;++i){
       if (j==0 && res_vec[i].size==10 ){
 	nb++;
@@ -145,8 +160,18 @@ int main( int argc, char* argv[]){
 	  res_line.gap_first_sol+=100*( 1 - 
 					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
 	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
+	if (res_vec[i].status==3) {
+	  nb_opt++;
+	  nb_LB++;
+	  nb_UB++;
+	}
+	if (res_vec[i].status==2){
+	  res_line.final_gap+=res_vec[i].final_gap;
+	  if (res_vec[i].final_obj == res_vec[i].best_obj)
+	    nb_UB++;
+	    double v=res_vec[i].final_obj  - res_vec[i].final_gap*( 1*pow(10,-10) + res_vec[i].final_obj  );
+	  if (v -res_vec[i].best_LB <0.0001 && v -res_vec[i].best_LB>-0.0001) nb_LB++;
+	}
 	if (res_vec[i].status==0) res_line.time_end+= 1000;
       }
 
@@ -166,9 +191,20 @@ int main( int argc, char* argv[]){
 	  res_line.gap_first_sol+=100*( 1 - 
 					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
 	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+
+	if (res_vec[i].status==3) {
+	  nb_opt++;
+	  nb_LB++;
+	  nb_UB++;
+	}
+	if (res_vec[i].status==2){
+	  res_line.final_gap+=res_vec[i].final_gap;
+	  if (res_vec[i].final_obj == res_vec[i].best_obj)
+	    nb_UB++;
+	    double v=res_vec[i].final_obj  - res_vec[i].final_gap*( 1*pow(10,-10) + res_vec[i].final_obj  );
+	  if (v -res_vec[i].best_LB <0.0001 && v -res_vec[i].best_LB>-0.0001) nb_LB++;
+	}
+	  if (res_vec[i].status==0) res_line.time_end+= 1000;
       }
 
       if (j==2 && res_vec[i].size==25){
@@ -187,9 +223,20 @@ int main( int argc, char* argv[]){
 	  res_line.gap_first_sol+=100*( 1 - 
 					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
 	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	
+	if (res_vec[i].status==3) {
+	  nb_opt++;
+	  nb_LB++;
+	  nb_UB++;
+	}
+	if (res_vec[i].status==2){
+	  res_line.final_gap+=res_vec[i].final_gap;
+	  if (res_vec[i].final_obj == res_vec[i].best_obj)
+	    nb_UB++;
+		    double v=res_vec[i].final_obj  - res_vec[i].final_gap*( 1*pow(10,-10) + res_vec[i].final_obj  );
+	  if (v -res_vec[i].best_LB <0.0001 && v -res_vec[i].best_LB>-0.0001) nb_LB++;
+	}
+	  if (res_vec[i].status==0) res_line.time_end+= 1000;
       }
 
       if (j==3 && res_vec[i].size==30){
@@ -208,9 +255,20 @@ int main( int argc, char* argv[]){
 	  res_line.gap_first_sol+=100*( 1 - 
 					res_vec[i].best_obj/res_vec[i].obj_first_sol); 
 	}
-	if (res_vec[i].status==3) nb_opt++;
-	if (res_vec[i].status==2) res_line.final_gap+=res_vec[i].final_gap;
-	if (res_vec[i].status==0) res_line.time_end+= 1000;
+	
+	if (res_vec[i].status==3) {
+	  nb_opt++;
+	  nb_LB++;
+	  nb_UB++;
+	}
+	if (res_vec[i].status==2){
+	  res_line.final_gap+=res_vec[i].final_gap;
+	  if (res_vec[i].final_obj == res_vec[i].best_obj)
+	    nb_UB++;
+	    double v=res_vec[i].final_obj  - res_vec[i].final_gap*( 1*pow(10,-10) + res_vec[i].final_obj  );
+	  if (v -res_vec[i].best_LB <0.0001 && v -res_vec[i].best_LB>-0.0001) nb_LB++;
+	}
+	  if (res_vec[i].status==0) res_line.time_end+= 1000;
       }
     }
     if (nb!=0) {
@@ -240,7 +298,7 @@ int main( int argc, char* argv[]){
       std::cout << fixed << setprecision(2);
       std:: cout << "$"<<
 	// res_line.size << " $& $" <<    
-	res_line.root_gap << "$ & $" <<
+	/*	res_line.root_gap << "$ & $" <<
 	res_line.time_first_sol << "$ & $" <<
 	res_line.gap_first_sol << "$ & $" <<
 	res_line.time_end << "$ & $" <<
@@ -248,7 +306,10 @@ int main( int argc, char* argv[]){
 	100*nb_opt/nb<< "$ & $" <<
 	100*nb_sol/nb << "$ & $" <<
 	res_line.nb_node << "$ & $" <<
-	res_line.nb_cut<< " $ \\\\ \n";
+	res_line.nb_cut*/
+	nb_UB << "/" << nb <<"$ & $" <<
+	nb_LB << "/" << nb 
+		 << " $  \n";
     }
   }
   
