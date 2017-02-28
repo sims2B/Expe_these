@@ -181,14 +181,14 @@ type Problem<type>::totalResourceConsumption(const Interval<type> &I) const{
 template<typename type>
 int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
   int performed=0;
-    if (I.t2 > d(i)){
-  const type capacity=B*(I.t2-I.t1);
-  type  SL,LS,LSboth; 
-  SL=capacity-total+A[i].resourceConsumption(I);
-  LS=A[i].resourceConversion(A[i].leftShift(I),I);
-  LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
-  if (SL+POSITIVE_ZERO < LS) {
-    type temp=emin(i);
+  if (I.t2 < d(i)){
+    const type capacity=B*(I.t2-I.t1);
+    type  SL,LS,LSboth; 
+    SL=capacity-total+A[i].resourceConsumption(I);
+    LS=A[i].resourceConversion(A[i].leftShift(I),I);
+    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
+    if (SL+POSITIVE_ZERO < LS) {
+      type temp=emin(i);
     // A[i].displayTask();
     //I.displayInterval();
     //   std::cout << "LSB o = " << LSboth << " ; SL =  "<< SL << " emin = " << emin(i) << '\n';
@@ -211,7 +211,7 @@ int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
 template<typename type> 
 int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
   int performed=0;
-  if (I.t1 < r(i)){
+  if (I.t1 > r(i)){
   const type capacity=B*(I.t2-I.t1);
   type SL,RS,RSboth;  
   SL=capacity-total+A[i].resourceConsumption(I);
