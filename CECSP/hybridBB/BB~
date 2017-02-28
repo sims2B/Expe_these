@@ -1,0 +1,6 @@
+perl -w BB_expl_PL_h4_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;
+perl -w BB_expl_PL_h3_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;
+perl -w BB_expl_PL_h5_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;
+perl -w BB_expl_L_h4_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;
+perl -w BB_expl_L_h3_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;
+perl -w BB_expl_L_h5_5.pl ~/instance_CECSP/CP/solvable/piecewise_linear/inst10/;

@@ -60,13 +60,15 @@ int intervalTotalTest(Problem<type>& P){
   int adjust=0;
   for (uint i=0; i<listInt.size();++i){
     total=P.totalResourceConsumption(listInt[i]);
+    //listInt[i].displayInterval(); 
     if (!P.energeticReasonning(listInt[i],total))
       return 0;
     else for (int j=0;j<P.nbTask;++j){
-	if (P.adjustmentLS(listInt[i],j,total))
-	  ++adjust;
-	if (P.adjustmentRS(listInt[i],j,total))
-	  ++adjust;
+	// std::cout << "test ok, adjust \n"; 
+    if (P.adjustmentLS(listInt[i],j,total))
+      ++adjust;
+    if (P.adjustmentRS(listInt[i],j,total))
+    ++adjust;
       }
   } 
   for (int i=0;i<P.nbTask;++i){
@@ -81,8 +83,9 @@ int intervalTotalTest(Problem<type>& P){
     for (uint j=0; j<RA.size();++j){
       if (P.adjustmentRS(RA[j],i,P.totalResourceConsumption(RA[j])))
 	++adjust;  
-    }
-  }
+	}
+	}
+  //  std::cout << "  " <<adjust << '\n';
   return (adjust+1);
 }
 
