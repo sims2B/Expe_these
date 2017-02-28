@@ -228,3 +228,8 @@ inst60-2_5-0_2-3_2-10.dat
 Sol n°1 obj: 	1550.59
 Sol n°1 time: 	216.302
 Sol n°1 gap: 	1e+75
+inst60-5_0-0_15-0_1-1.dat
+ Starting resolution with ER inequalities in tree < 10
+Sol n°1 obj: 	507.229
+Sol n°1 time: 	0.557557
+Sol n°1 gap: 	1e+75
