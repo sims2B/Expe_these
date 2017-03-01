@@ -187,12 +187,12 @@ int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
     SL=capacity-total+A[i].resourceConsumption(I);
     LS=A[i].resourceConversion(A[i].leftShift(I),I);
     LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
-    if (SL+POSITIVE_ZERO < LS) {
+    if (SL+POSITIVE_ZERO < LSboth) {
       type temp=emin(i);
     // A[i].displayTask();
     //I.displayInterval();
     //   std::cout << "LSB o = " << LSboth << " ; SL =  "<< SL << " emin = " << emin(i) << '\n';
-    A[i].emin=std::max(emin(i),I.t2+(LS-SL)/bmax(i));
+    A[i].emin=std::max(emin(i),I.t2+(LSboth-SL)/bmax(i));
     // std::cout <<" emin after= " << emin(i) << '\n';
     if (A[i].emin != temp)
     performed=1;
@@ -217,9 +217,9 @@ int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
   SL=capacity-total+A[i].resourceConsumption(I);
   RS=A[i].resourceConversion(A[i].rightShift(I),I);
   RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
-  if (SL- RS< NEGATIVE_ZERO) {
+  if (SL- RSboth< NEGATIVE_ZERO) {
     type temp=smax(i);
-    A[i].smax=std::min(smax(i),I.t1-(RS-SL)/bmax(i));
+    A[i].smax=std::min(smax(i),I.t1-(RSboth-SL)/bmax(i));
     if ( A[i].smax != temp)
       performed=1;
   }
