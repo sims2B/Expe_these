@@ -183,27 +183,23 @@ int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
   int performed=0;
   if (I.t2 < d(i)){
     const type capacity=B*(I.t2-I.t1);
-    type  SL,LS,LSboth; 
+    type  SL,LS/*,LSboth*/; 
     SL=capacity-total+A[i].resourceConsumption(I);
     LS=A[i].resourceConversion(A[i].leftShift(I),I);
-    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
-    if (SL+POSITIVE_ZERO < LSboth) {
+    //    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
+    if (SL+POSITIVE_ZERO < LS) {
       type temp=emin(i);
-    // A[i].displayTask();
-    //I.displayInterval();
-    //   std::cout << "LSB o = " << LSboth << " ; SL =  "<< SL << " emin = " << emin(i) << '\n';
-    A[i].emin=std::max(emin(i),I.t2+(LSboth-SL)/bmax(i));
-    // std::cout <<" emin after= " << emin(i) << '\n';
-    if (A[i].emin != temp)
-    performed=1;
+      A[i].emin=std::max(emin(i),I.t2+(LS-SL)/bmax(i));
+      if (A[i].emin != temp)
+	performed=1;
     }
-    if (SL + POSITIVE_ZERO < LSboth && bmin(i)!=0.0) {
-    type temp=r(i);
-    A[i].ri=std::max(r(i),I.t2-SL/bmin(i));  
-    if (A[i].ri != temp)
-      performed=1;
+    if (SL + POSITIVE_ZERO < LS && bmin(i)!=0.0) {
+      type temp=r(i);
+      A[i].ri=std::max(r(i),I.t2-SL/bmin(i));  
+      if (A[i].ri != temp)
+	performed=1;
+    }
   }
-   }
   return performed;
 }
 
@@ -212,23 +208,23 @@ template<typename type>
 int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
   int performed=0;
   if (I.t1 > r(i)){
-  const type capacity=B*(I.t2-I.t1);
-  type SL,RS,RSboth;  
-  SL=capacity-total+A[i].resourceConsumption(I);
-  RS=A[i].resourceConversion(A[i].rightShift(I),I);
-  RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
-  if (SL- RSboth< NEGATIVE_ZERO) {
-    type temp=smax(i);
-    A[i].smax=std::min(smax(i),I.t1-(RSboth-SL)/bmax(i));
-    if ( A[i].smax != temp)
-      performed=1;
-  }
-  if (bmin(i)!=0.0 && SL-RSboth < NEGATIVE_ZERO) {
-    type temp=d(i);
-    A[i].di=std::min(d(i),I.t1+SL/bmin(i)); 
-    if (A[i].di != temp)
-      performed=1;
-  }
+    const type capacity=B*(I.t2-I.t1);
+    type SL,RS/*,RSboth*/;  
+    SL=capacity-total+A[i].resourceConsumption(I);
+    RS=A[i].resourceConversion(A[i].rightShift(I),I);
+    //RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
+    if (SL- RS< NEGATIVE_ZERO) {
+      type temp=smax(i);
+      A[i].smax=std::min(smax(i),I.t1-(RS-SL)/bmax(i));
+      if ( A[i].smax != temp)
+	performed=1;
+    }
+    if (bmin(i)!=0.0 && SL-RS < NEGATIVE_ZERO) {
+      type temp=d(i);
+      A[i].di=std::min(d(i),I.t1+SL/bmin(i)); 
+      if (A[i].di != temp)
+	performed=1;
+    }
   }
   return performed;
 }

@@ -126,12 +126,31 @@ void Task<type>::displayTask() const{
 
 template<typename type>
 type Task<type>::leftShift(const Interval<type> &I) const{
-  return std::max(0.0,Wi-Fi(bmax)*(std::max(0.0,I.t1-ri)));
+  type nrj=0.0;
+  if (I.t1 < emin && I.t2 > ri)
+    if (I.t2  >= di)
+      if (I.t1 <= ri) nrj=Wi;
+      else nrj = Wi-Fi(bmax)*(I.t1-ri);
+    else if (I.t1 <= ri)
+      nrj=std::max(Wi-Fi(bmax)*(di-I.t2),Fi(bmin)*(I.t2-ri));
+    else nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
+				 Fi(bmin)*(I.t2-I.t1))
+			,Wi-Fi(bmax)*(I.t1-ri));
+  return nrj;
 }
-
 template<typename type>
 type Task<type>::rightShift(const Interval<type> &I) const{
-  return std::max(0.0,Wi-Fi(bmax)*(std::max(0.0,di-I.t2)));
+  type nrj=0.0;
+  if (I.t2 > smax && I.t1 < di)
+    if (I.t1 <= ri)
+      if (I.t2 >= di) nrj=Wi;
+      else nrj = Wi-Fi(bmax)*(di-I.t2);
+    else if (I.t2 >= di)
+      nrj=std::max(Wi-Fi(bmax)*(I.t1-ri),Fi(bmin)*(di-I.t1));
+    else nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
+				 Fi(bmin)*(I.t2-I.t1))
+			,Wi-Fi(bmax)*(di-I.t2));
+  return nrj;
 }
 
 template<typename type>
@@ -142,7 +161,7 @@ type Task<type>::bothShift(const Interval<type> &I) const{
 
 template<typename type>
 type Task<type>::energyConsumption(const Interval<type>& I) const{
-  return std::min(std::min(leftShift(I),rightShift(I)), bothShift(I));
+  return std::min(std::min(leftShift(I),rightShift(I))/*, bothShift(I)*/);
 }
 
 template<typename type>
