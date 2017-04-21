@@ -97,7 +97,7 @@ int main( int argc, char* argv[]){
     res_file[i].ignore(10000,'*');
     res_file[i].ignore(1000,'\n');
     res_vec.push_back(res_line);   
-    /*  std:: cout << "$"<<
+    /*      std:: cout << "$"<<
 	res_line.size << "$ & $" <<
 	res_line.total_time<< "$ & $" <<
 	res_line.MIP_time<< "$ & $" <<

@@ -93,7 +93,7 @@ int main(int argc, char* argv[]){
   }
 
   if (atoi(argv[3])==1) TotalTest=intervalTotalTest;
-  else if (atoi(argv[3])==2) TotalTest=TTDR;
+  else if (atoi(argv[3])==2) TotalTest=TTDR; 
   else if (atoi(argv[3])==3) TotalTest= flowTotalTest;
   else if (atoi(argv[3])==4) TotalTest= flowERTotalTest;
   else {

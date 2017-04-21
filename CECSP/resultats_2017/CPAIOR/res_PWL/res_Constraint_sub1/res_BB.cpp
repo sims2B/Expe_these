@@ -37,7 +37,10 @@ int main( int argc, char* argv[]){
     i--;
     while (!res_file[i].eof()){
       res res_line;
-    res_file[i].ignore(4);
+      if (prout=='i')
+	res_file[i].ignore(3);
+      else
+	res_file[i].ignore(4);
     res_file[i] >> size;
     res_line.size=size;
     res_file[i].ignore(1000,'\n');
@@ -96,19 +99,20 @@ int main( int argc, char* argv[]){
     }
     res_file[i].ignore(10000,'*');
     res_file[i].ignore(1000,'\n');
+    prout=res_file[i].get();
     res_vec.push_back(res_line);   
-     std:: cout << "$"<<
-	res_line.size << "$ & $" <<
-	res_line.total_time<< "$ & $" <<
-	res_line.MIP_time<< "$ & $" <<
-	res_line.tree_time<< "$ & $" <<
-	res_line.solved<< "$ & $" <<
-	res_line.nb_node<< "$ & $" <<
-	res_line.nb_MIP<< "$ & $" <<
-	res_line.nb_checkER<< "$ & $" <<
-	res_line.nb_adjust<< "$ \\\\ \n";
+    std:: cout << "prout $"<<
+      res_line.size << "$ & $" <<
+      res_line.total_time<< "$ & $" <<
+      res_line.MIP_time<< "$ & $" <<
+      res_line.tree_time<< "$ & $" <<
+      res_line.solved<< "$ & $" <<
+      res_line.nb_node<< "$ & $" <<
+      res_line.nb_MIP<< "$ & $" <<
+      res_line.nb_checkER<< "$ & $" <<
+      res_line.nb_adjust<< "$ \\\\ \n";
     if (res_file[i].eof()) break;
-  }
+    }
   }
   std:: cout << "\\begin{center}\n";
   std:: cout << "	\\begin{tabular}{|c|cccc"/*cccc*/<<"|}\n";
@@ -192,23 +196,20 @@ int main( int argc, char* argv[]){
 	res_line.feas+=res_vec[i].feas;
       }
     }
-   
-    if (nb){
-      res_line.size=res_line.size/nb;
-      res_line.total_time=res_line.total_time/nb;
-      res_line.solved=100*res_line.solved/nb;    
-    }
-    if (res_line.feas) {
+      if (res_line.feas) {
       res_line.tree_time=res_line.tree_time/res_line.solved;
       res_line.MIP_time=res_line.MIP_time/res_line.solved;
-      res_line.nb_node=res_line.nb_node/res_line.solved;
-      res_line.nb_MIP+=res_line.nb_MIP/res_line.solved;
+      res_line.nb_node=res_line.nb_node/res_line.solved; 
+      res_line.nb_MIP=res_line.nb_MIP/res_line.solved;
       res_line.nb_adjust=res_line.nb_adjust/res_line.solved;
       res_line.nb_checkER=res_line.nb_checkER/res_line.solved;
     }
     
-   
-	
+    if (nb){
+      res_line.size=res_line.size/nb;
+      res_line.total_time=res_line.total_time/nb;
+      res_line.solved=100*res_line.solved/nb;    
+    }	
     if (nb){
       std:: cout << "$"<<
 	//res_line.size << "$ & $" <<
