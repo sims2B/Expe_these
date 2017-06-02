@@ -593,6 +593,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
     createConstraintMinDur(P,model,t,z);//durée minimale
     createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
+    createConstraintEnergyNul( P,  env,  model,   w,  z);
     createConstraintBmax(P,model,t,b);//contrainte bmax
     createConstraintNonConsump(P,model,z,b,config[4]);//bie=0 si zie=0
     
@@ -761,6 +762,22 @@ int createConstraintMinDur(const Problem<double>& P, IloModel& model, IloNumVarA
   return 0;    
 }
 
+
+int createConstraintEnergyNul(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& w, IloNumVarMatrix& z)
+{
+
+	for (int i = 0; i < P.nbTask; ++i)
+	{
+		for (int e = 0; e < 2 * P.nbTask - 1; ++e)
+		{
+			model.add( w[i][e] <=  P.W(i)*z[i][e] );
+		}
+	}
+
+
+	return 0;
+}
+
 int createConstraintEnergy(const Problem<double>& P, IloEnv& env, IloModel& model, 
 			   IloNumVarArray& t, 
 			   IloNumVarMatrix& b, IloNumVarMatrix& w){
@@ -775,6 +792,7 @@ int createConstraintEnergy(const Problem<double>& P, IloEnv& env, IloModel& mode
     model.add(expr == P.W(i));
     expr.end();
   }
+
   return 0;
 }
 

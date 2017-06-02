@@ -10,7 +10,7 @@ typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 
 
 #ifndef time_limit
-#define time_limit 1000
+#define time_limit 60
 #endif
 #ifndef DBL_MAX
 #define DBL_MAX std::numeric_limits<double>::max()
@@ -104,6 +104,7 @@ IloNumVarMatrix& , IloNumVarMatrix&, int);
 int createConstraintTimeW(const Problem<double>&,IloModel&, IloNumVarArray&, IloNumVarMatrix&);
 int createConstraintBmin(const Problem<double>&P, IloModel&,
 IloNumVarArray&,IloNumVarMatrix&, IloNumVarMatrix&,const int&);
+int createConstraintEnergyNul(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& w, IloNumVarMatrix& z);
 
 
 //***********************************************

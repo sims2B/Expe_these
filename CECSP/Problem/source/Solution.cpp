@@ -28,7 +28,8 @@ int Solution<int,double>::isValid(const Problem<int> &P) const{
 	   b[i][e]-P.bmax(i)>POSITIVE_ZERO) && 
 	  event[e+1]-event[e]<0)
 	return 0;
-      energy+=(P.A[i].Fi.F[0].f.a*b[i][e]+P.A[i].Fi.F[0].f.c)*(event[e+1]-event[e]);
+      if (b[i][e]!= 0 ) 
+	energy+=(P.A[i].Fi.F[0].f.a*b[i][e]+P.A[i].Fi.F[0].f.c)*(event[e+1]-event[e]);
     }	
     if (energy-P.W(i)<NEGATIVE_ZERO) return 0;	 
   }

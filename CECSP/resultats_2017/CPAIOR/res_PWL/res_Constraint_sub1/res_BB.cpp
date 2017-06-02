@@ -9,16 +9,17 @@ struct res{
   double total_time;
   double tree_time;
   double MIP_time;
-  int nb_node;
-  int nb_MIP;
+  double nb_node;
+  double nb_MIP;
   int nb_checkER;
   int nb_adjust;
-  int solved;
-  int feas;
+  double solved;
+  double kill;
+  double feas;
   //constructeur par defaut, cas unsolved?
   res();
 };
-res::res() : size(0),total_time(0.0), tree_time(0.0),MIP_time(0.0),nb_node(0),nb_MIP(0), nb_checkER(0),nb_adjust(0),solved(0),feas(0){}
+res::res() : size(0),total_time(0.0), tree_time(0.0),MIP_time(0.0),nb_node(0),nb_MIP(0), nb_checkER(0),nb_adjust(0),solved(0),feas(0),kill (0.0){}
 
 int main( int argc, char* argv[]){
   std::ifstream* res_file=new ifstream[argc-1];
@@ -49,14 +50,16 @@ int main( int argc, char* argv[]){
     if (prout == '*'){
       res_line.solved=0;
       res_line.feas=0;
+      res_line.kill=1;
       res_line.total_time=7200;
       res_file[i].ignore(1000,'\n');
       continue;
     }   
-    else if (prout == 'K'){
+    else if (prout == 'K' ){
       res_line.solved=0;
       res_line.feas=0;
       res_line.total_time=7200;
+      res_line.kill=1;
     }
     else if (prout == 'I' || prout=='1'){
       res_file[i] >> trash;
@@ -68,10 +71,10 @@ int main( int argc, char* argv[]){
 	res_file[i] >> res_line.total_time;
 	res_file[i].ignore(1000, ':');
 	res_file[i] >> val;
-	res_line.tree_time = 100 * val / res_line.total_time; 
+	res_line.tree_time = res_line.total_time; 
 	res_file[i].ignore(1000, ':');
 	res_file[i] >> val;
-	res_line.MIP_time = 100 * val / res_line.total_time;  
+	res_line.MIP_time = res_line.total_time;  
 	res_file[i].ignore(1000, ':');
 	res_file[i] >> res_line.nb_node;
 	res_file[i].ignore(1000, ':');
@@ -82,13 +85,13 @@ int main( int argc, char* argv[]){
 	res_file[i] >> res_line.nb_adjust;
       }
       else {
-	res_line.feas=0;
+	res_line.feas=1;
 	res_line.solved=0;
 	res_file[i].ignore(1000, ':');
-        res_line.nb_node=0;
+	//res_file[i] >> res_line.nb_node;
 	res_file[i].ignore(1000, ':');
-	res_line.nb_MIP=0;
-	res_file[i].ignore(1000, ':');
+	//res_file[i] >> res_line.nb_MIP;
+	//res_file[i].ignore(1000, ':');
         res_line.nb_checkER=0;
 	res_file[i].ignore(1000, ':');
 	res_line.nb_adjust=0;
@@ -101,7 +104,7 @@ int main( int argc, char* argv[]){
     res_file[i].ignore(1000,'\n');
     prout=res_file[i].get();
     res_vec.push_back(res_line);   
-    std:: cout << "prout $"<<
+    std:: cout << 
       res_line.size << "$ & $" <<
       res_line.total_time<< "$ & $" <<
       res_line.MIP_time<< "$ & $" <<
@@ -122,7 +125,7 @@ int main( int argc, char* argv[]){
   std:: cout << "	\\hline \n";
   std:: cout << "	\\multicolumn{5}{|l|}{Famille 2}\\\\ \n ";
   std:: cout << "	\\hline \n";
-  std:: cout << "  & Tps total(s) & "/*\\%Tps CPLEX & \\%Tps arbre &*/<<" \\%solv.  & \\#n\\oe ud & \\#PLNE "/*& \\#fail. & \\#adj.*/<<" \\\\ \n";
+  std:: cout << "  & Tps total(s) & "/*\\%Tps CPLEX & \\%Tps arbre &*/<<" \\%solv.  & \\#PLNE & \\#n\\oe ud "/*& \\#fail. & \\#adj.*/<<" \\\\ \n";
   std:: cout << " \\hline \n";
 
 
@@ -141,6 +144,7 @@ int main( int argc, char* argv[]){
 	res_line.nb_adjust+=res_vec[i].nb_adjust;
 	res_line.nb_checkER+=res_vec[i].nb_checkER;
 	res_line.solved+=res_vec[i].solved;
+	res_line.kill+=res_vec[i].kill;
 	res_line.feas+=res_vec[i].feas;
       }
       if (j==1 && res_vec[i].size==20){
@@ -151,6 +155,7 @@ int main( int argc, char* argv[]){
 	res_line.MIP_time+=res_vec[i].MIP_time;
 	res_line.nb_node+=res_vec[i].nb_node;
 	res_line.nb_MIP+=res_vec[i].nb_MIP;
+	res_line.kill+=res_vec[i].kill;
 	res_line.nb_adjust+=res_vec[i].nb_adjust;
 	res_line.nb_checkER+=res_vec[i].nb_checkER;
 	res_line.solved+=res_vec[i].solved;
@@ -165,6 +170,7 @@ int main( int argc, char* argv[]){
 	res_line.nb_node+=res_vec[i].nb_node;
 	res_line.nb_MIP+=res_vec[i].nb_MIP;
 	res_line.nb_adjust+=res_vec[i].nb_adjust;
+	res_line.kill+=res_vec[i].kill;
 	res_line.nb_checkER+=res_vec[i].nb_checkER;
 	res_line.solved+=res_vec[i].solved;
 	res_line.feas+=res_vec[i].feas;
@@ -179,6 +185,7 @@ int main( int argc, char* argv[]){
 	res_line.nb_MIP+=res_vec[i].nb_MIP;
 	res_line.nb_adjust+=res_vec[i].nb_adjust;
 	res_line.nb_checkER+=res_vec[i].nb_checkER;
+	res_line.kill+=res_vec[i].kill;
 	res_line.solved+=res_vec[i].solved;
 	res_line.feas+=res_vec[i].feas;
       }
@@ -192,11 +199,12 @@ int main( int argc, char* argv[]){
 	res_line.nb_MIP+=res_vec[i].nb_MIP;
 	res_line.nb_adjust+=res_vec[i].nb_adjust;
 	res_line.nb_checkER+=res_vec[i].nb_checkER;
+	res_line.kill+=res_vec[i].kill;
 	res_line.solved+=res_vec[i].solved;
 	res_line.feas+=res_vec[i].feas;
       }
     }
-      if (res_line.feas) {
+      if (res_line.solved) {
       res_line.tree_time=res_line.tree_time/res_line.solved;
       res_line.MIP_time=res_line.MIP_time/res_line.solved;
       res_line.nb_node=res_line.nb_node/res_line.solved; 
@@ -208,17 +216,19 @@ int main( int argc, char* argv[]){
     if (nb){
       res_line.size=res_line.size/nb;
       res_line.total_time=res_line.total_time/nb;
-      res_line.solved=100*res_line.solved/nb;    
+      res_line.solved=100*res_line.solved/nb;   
+      res_line.kill=100*res_line.kill/nb; 
     }	
     if (nb){
       std:: cout << "$"<<
-	//res_line.size << "$ & $" <<
+	/*res_line.size << "$ & $" <<
 	res_line.total_time<< "$ & $" <<
-	//res_line.MIP_time<< "$ & $" <<
-	res_line.tree_time<< "$ & $" <<
+	res_line.MIP_time<< "$ & $" <<
+	res_line.tree_time<< "$ & $" <<*/
 	res_line.solved<< "$ & $" <<
 	res_line.nb_MIP<< "$ & $" <<
-	res_line.nb_node/*<< "$ & $" <<
+	res_line.nb_node << "$ & $" <<
+	res_line.kill/*<< "$ & $" <<
 	res_line.nb_checkER<< "$ & $" <<
 	res_line.nb_adjust*/<< "$ \\\\ \n";
     }

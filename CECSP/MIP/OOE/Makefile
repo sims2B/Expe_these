@@ -19,7 +19,7 @@ CPPFLAGS= -I/home/mnattaf/Dev2016/CECSP/Problem/header -I/home/mnattaf/Dev2016/C
 DEBUG_FLAGS= -W  -Werror -Wall -g
 
 ### PROPERTIES ########################################
-PROJECTNAME=bin/modelOO_esclarmonde
+PROJECTNAME=bin/modelOO
 SRCS=	~/Dev2016/CECSP/Problem/source/LinearFunction.cpp \
 ~/Dev2016/CECSP/Problem/source/Interval.cpp \
 ~/Dev2016/CECSP/Problem/source/Piece.cpp \

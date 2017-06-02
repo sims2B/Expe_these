@@ -15,9 +15,11 @@ int main(int argc,char *argv[]){
   std::vector<int> config(9,0);
   for (int i=2;i<11 && i<argc;++i)
     config[i-2]=atoi(argv[i]);
-  if (!LPsolveOO(P,config))
-    if (!solveOO(P,s,config))  
+   if (!LPsolveOO(P,config))
+    if (!solveOO(P,s,config))  {
       std::cout << "Hurray!\n";
+      std::cout << "...\n";
+      std::cout << "valide? " << s.isValid(P) << std::endl;}
     else{
       std::cout << "...\n";
       std::cout << "valide? " << s.isValid(P) << std::endl;
