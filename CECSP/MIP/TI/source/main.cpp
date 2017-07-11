@@ -1,4 +1,4 @@
-#include "timeModel.h"
+#include "timeModel.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -7,19 +7,20 @@ int main(int,char *argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
   instance >> nbTask ;
-  Problem<double> P(nbTask);
+  Problem<int> P(nbTask);
   P.readFromFile(instance);
   instance.close();
+  //P.displayProblem();
   
-  Solution<double,double> s(nbTask,P.D+1);  
-  timeModel<double,double> model; 
-  if (model.Solve(P,s,atof(argv[2]),atoi(argv[3])))
+  Solution<int,double> s(nbTask,P.D);  
+  if (!Solve<int,double>(P,s)){
     std::cout << "Hurray!\n"; 
-      else  
+    std::cout << "valide? " << s.isValid(P) << std::endl;
+  }
+  else  
     std::cout << "...\n";
-  std::cout << "valide? " << s.isValid(P) << std::endl;
   std::cout << "**************************************************" <<std::endl;
-
+  
   return 0;
 }
 

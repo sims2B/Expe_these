@@ -20,11 +20,7 @@ DEBUG_FLAGS= -W  -Wall -Werror -g
 
 ### PROPERTIES ########################################
 PROJECTNAME=bin/le_nom
-SRCS=~/Dev2016/CECSP/Problem/source/LinearFunction.cpp \
-	~/Dev2016/CECSP/Problem/source/Interval.cpp \
-	~/Dev2016/CECSP/Problem/source/Piece.cpp \
-	~/Dev2016/CECSP/Problem/source/Task.cpp \
-	~/Dev2016/CECSP/Problem/source/Problem.cpp \
+SRCS=~/Dev2016/CECSP/Problem/source/Task.cpp \
 	~/Dev2016/CECSP/Problem/source/Solution.cpp \
 	./source/main.cpp
 
