@@ -26,8 +26,10 @@ struct Solution{
   void reAlloc(int,int);
 
   void displaySolution();
+  //write the instance of Solution in a file
+  void writeInFile(std::ofstream& new_inst) const;
   //check the validity of the solution
-  int isValid(const Problem<type> &) const;
+  int isValid(const Problem<type,type2> &) const;
 	
   std::vector<type> st;
   std::vector<type> ft;
@@ -94,35 +96,56 @@ void Solution<type,type2>::displaySolution(){
   std::cout <<  std::endl;
 }
 
+template<typename type,typename type2>
+void Solution<type,type2>::writeInFile(std::ofstream& output) const{
+   output << "sol vaut : " << std::endl;
+  for (uint i=0;i<st.size();++i){
+    output << "st["<<i<<"]="<<st[i]<< std::endl;
+      output << "ft["<<i<<"]="<<ft[i]<< std::endl;
+      output << "b["<<i<<"] =(";
+      for(unsigned int t=0;t<b[i].size();++t){
+	output << b[i][t] << "," ;
+      }
+      output <<")"<< std::endl;
+  }
+  output << "event= ";
+    for (unsigned int i=0;i<event.size();++i)
+    output <<event[i]<< ", ";
+  
+  output <<  std::endl;
+}
+
 
 template<typename type,typename type2> 
-int Solution<type,type2>::isValid(const Problem<type> &P) const{
+int Solution<type,type2>::isValid(const Problem<type,type2> &P) const{
   const int nbTask=P.nbTask;
   const int E=event.size();
   int e,i;
-  type sum=0.0;
-  type energy=0.0;
-  //time window constraints
+  type2 sum=0.0;
+  type2 energy=0.0;
+  std::cout << "time window constraints ";
   for (i=0;i<nbTask;++i) {
     if (st[i] < P.r(i) + NEGATIVE_ZERO) return 0;
     if (ft[i] > P.d(i) + POSITIVE_ZERO) return 0;
   }
 
-  // b_ie = 0 if the task is not in process
+  std::cout << "b_ie = 0 if the task is not in process ";
   for (i=0;i<nbTask;++i) {
     for (e=0;e<E-1;++e){
-      if (event[e] < st[i] + NEGATIVE_ZERO || event[e] >= ft[i] + POSITIVE_ZERO){
+      if (event[e] < st[i] + POSITIVE_ZERO || event[e] >= ft[i] + POSITIVE_ZERO){
+	std :: cout << event[e] << " " << st[i] << " " << ft[i] << " " << b[i][e] << std::endl;
 	if (b[i][e] > POSITIVE_ZERO && P.bmin(i)!=0.0) return 0;
       }
     }
   }
 
-  //energy and max/min consumption
+  std::cout << "energy and max/min consumption ";
   for (i=0;i<nbTask;++i) {
     energy=0.0; 
     for (e=0;e<E-1;++e){
-      //max/min consumption
+      std::cout << "max/min consumption " ;
       if (!isEqual(event[e+1],event[e]) && 
+	  event[e] > st[i] && event[e] < ft[i] &&
 	  (b[i][e] < P.bmin(i) + NEGATIVE_ZERO || 
 	   b[i][e] > P.bmax(i) + POSITIVE_ZERO))
 	return 0;
@@ -144,9 +167,9 @@ int Solution<type,type2>::isValid(const Problem<type> &P) const{
 }
 
 
-template<> int Solution<int,double>::isValid(const Problem<int> &P) const;
+template<> int Solution<int,double>::isValid(const Problem<int,double> &P) const;
 
-template<> int Solution<int,int>::isValid(const Problem<int> &P) const;
+template<> int Solution<int,int>::isValid(const Problem<int,int> &P) const;
 
 
 #endif

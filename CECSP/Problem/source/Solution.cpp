@@ -3,7 +3,7 @@
 
 
 template<>  
-int Solution<int,double>::isValid(const Problem<int> &P) const{
+int Solution<int,double>::isValid(const Problem<int,double> &P) const{
   const int nbTask=st.size();
   const int E=event.size();
   int e,i;
@@ -35,7 +35,6 @@ int Solution<int,double>::isValid(const Problem<int> &P) const{
     }	
     if (energy < P.W(i) + NEGATIVE_ZERO) return 0;	 
   }
-
   for (e=0;e<E-1;++e) {
     sum=0.0;
     for (i=0;i<nbTask;++i)
@@ -46,7 +45,7 @@ int Solution<int,double>::isValid(const Problem<int> &P) const{
 }
 
 template<>  
-int Solution<int,int>::isValid(const Problem<int> &P) const{
+int Solution<int,int>::isValid(const Problem<int,int> &P) const{
   const int nbTask=P.nbTask;
   const int E=event.size();
   int e,i;

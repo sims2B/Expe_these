@@ -16,21 +16,21 @@
 /////////////////////////// DEFINITION ////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
-template<typename type>
-using TaskList=std::vector<Task<type>>;
+template<typename type,typename type2 =type>
+using TaskList=std::vector<Task<type,type2>>;
 
 //structure defining a Problem as a number of task, a vector of task (Tasklist), 
 //a resource capacity and an upper and lower bound on  the time horizon
-template<typename type>
+template<typename type,typename type2 =type>
 struct Problem {
-  //giving a number of task, construct an instanc eof type problem, with B=R=D=0
+  //giving a number of task, construct an instance of type problem, with B=R=D=0
   //and reserve a vector of size nbtask
   Problem(int);
   //same as Problem(int) with the capacity of the resource
-  Problem(int,type);
+  Problem(int,type2);
   //giving a number of task, a resouce capacity and a list of task, construct the
   //associated instance of Problem
-  Problem(int,type,TaskList<type>);
+  Problem(int,type2,TaskList<type,type2>);
   //copy constructor
   Problem(const Problem&);
 
@@ -52,14 +52,14 @@ struct Problem {
 
   inline type r(int i) const {return A[i].ri;}
   inline type d(int i) const {return A[i].di;}
-  inline type bmin(int i) const {return A[i].bmin;}
-  inline type bmax(int i) const {return A[i].bmax;}
+  inline type2 bmin(int i) const {return A[i].bmin;}
+  inline type2 bmax(int i) const {return A[i].bmax;}
   inline type emin(int i) const {return A[i].emin;}
   inline type smax(int i) const {return A[i].smax;}
-  inline type W(int i) const {return A[i].Wi;}
-  inline Function<type> f(int i) const {return A[i].Fi;}
+  inline type2 W(int i) const {return A[i].Wi;}
+  inline Function<type2> f(int i) const {return A[i].Fi;}
 
-  Problem<type>& operator=(const Problem<type>& P);
+  Problem<type,type2>& operator=(const Problem<type,type2>& P);
 
   void displayProblem() const;
 
@@ -69,41 +69,41 @@ struct Problem {
 
   //giving an interval I, compute the some of all task mandatory energy 
   //consumption inside I
-  type totalEnergyConsumption(const Interval<type>&) const;
+  type2 totalEnergyConsumption(const Interval<type2>&) const;
   //giving an interval I, compute the some of all task mandatory energy 
   //consumption inside I
-  type totalResourceConsumption(const Interval<type>&) const;
-  inline int energeticReasonning(const Interval<type>& I,type total) const
+  type2 totalResourceConsumption(const Interval<type2>&) const;
+  inline int energeticReasonning(const Interval<type2>& I,type2 total) const
   {return (B*(I.t2-I.t1) - total>= NEGATIVE_ZERO);}
 
   //vérifier ajustement !!!
-  int adjustmentLS(const Interval<type>&,int,type);
-  int adjustmentRS(const Interval<type>&,int,type);
-  int totalTest(const Interval<type>&);
+  int adjustmentLS(const Interval<type2>&,int,type2);
+  int adjustmentRS(const Interval<type2>&,int,type2);
+  int totalTest(const Interval<type2>&);
 
   int nbTask;
-  type B;
+  type2 B;
   type R;
   type D;
-  TaskList<type> A;
+  TaskList<type,type2> A;
 };
 
 
 ///////////////////////////////////////////////////////////////////
 //////////////////////// IMPLEMENTATION ///////////////////////////
 ///////////////////////////////////////////////////////////////////
-template<typename type>
-Problem<type>::Problem(int _nbTask) : nbTask(_nbTask) {
+template<typename type,typename type2>
+Problem<type,type2>::Problem(int _nbTask) : nbTask(_nbTask) {
   A.reserve(nbTask);
 }
 
-template<typename type>
-Problem<type>::Problem(int _nbTask,type _B) : nbTask(_nbTask), B(_B) {
+template<typename type,typename type2>
+Problem<type,type2>::Problem(int _nbTask,type2 _B) : nbTask(_nbTask), B(_B) {
   A.reserve(nbTask);
 }
 
-template<typename type>
-Problem<type>::Problem(int _nbTask, type _B, TaskList<type> _A) : nbTask(_nbTask) , B(_B) , A(_A) {
+template<typename type,typename type2>
+Problem<type,type2>::Problem(int _nbTask, type2 _B, TaskList<type,type2> _A) : nbTask(_nbTask) , B(_B) , A(_A) {
   R=r(0);
   D=d(0);
   for (int i=1;i<nbTask;++i){
@@ -113,11 +113,11 @@ Problem<type>::Problem(int _nbTask, type _B, TaskList<type> _A) : nbTask(_nbTask
 }
 
 
-template<typename type>
-Problem<type>::Problem(const Problem<type> &P)  : nbTask(P.nbTask) , B(P.B) , R(P.R) , D(P.D), A(P.A)  {}
+template<typename type,typename type2>
+Problem<type,type2>::Problem(const Problem<type,type2> &P)  : nbTask(P.nbTask) , B(P.B) , R(P.R) , D(P.D), A(P.A)  {}
 
-template<typename type>
-void Problem<type>::updateHorizon(){
+template<typename type,typename type2>
+void Problem<type,type2>::updateHorizon(){
   R=r(0);
   D=d(0);
   for (int i=1;i<nbTask;++i){
@@ -126,10 +126,11 @@ void Problem<type>::updateHorizon(){
   }
 }
 
-template<typename type>
-void Problem<type>::readFromFile(std::ifstream& instance){
+template<typename type,typename type2>
+void Problem<type,type2>::readFromFile(std::ifstream& instance){
   int i,_nbPiece;
-  type _B,_ri,_di,_Wi,_bmin,_bmax,_a,_c,t1,t2;
+  type2 _B,_Wi,_bmin,_bmax,_a,_c,t1,t2;
+  type _ri,_di;
   instance >> _B;
   B=_B;
   for (i=0;i<nbTask;++i){
@@ -140,30 +141,30 @@ void Problem<type>::readFromFile(std::ifstream& instance){
       t2=_bmax;
     else
       instance >> t2;	
-    Piece<type> _P1(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
-    PieceList<type> P(1,_P1);
+    Piece<type2> _P1(Interval<type2>(t1,t2),LinearFunction<type2>(_a,_c));
+    PieceList<type2> P(1,_P1);
     t1=t2;
     for (int q=1;q<_nbPiece-1;++q) {
       instance >> _a >> _c >> t2;
-      Piece<type> _P(Interval<type>(t1,t2),LinearFunction<type>(_a,_c));
+      Piece<type2> _P(Interval<type2>(t1,t2),LinearFunction<type2>(_a,_c));
       P.push_back(_P);
       t1=t2;
     }
     if (_nbPiece!=1){
     instance >> _a >> _c;
-    Piece<type> _P(Interval<type>(t1,_bmax),LinearFunction<type>(_a,_c));
+    Piece<type2> _P(Interval<type2>(t1,_bmax),LinearFunction<type2>(_a,_c));
     P.push_back(_P);
     }
-    Function<type> _F(P);
-    Task<type> T(_ri,_di,_Wi,_bmin,_bmax,_F);
+    Function<type2> _F(P);
+    Task<type,type2> T(_ri,_di,_Wi,_bmin,_bmax,_F);
     A.push_back(T);	
     
   }
   this->updateHorizon();
 }
 
-template<typename type>
-void Problem<type>::addConcavePiecewiseFunction(){  
+template<typename type,typename type2>
+void Problem<type,type2>::addConcavePiecewiseFunction(){  
   int min;
   int max;
   srand(rdtsc());
@@ -177,8 +178,8 @@ void Problem<type>::addConcavePiecewiseFunction(){
       A[i].Wi=min;
   }
 }
-template<typename type>
-void Problem<type>::addConvexPiecewiseFunction(){  
+template<typename type,typename type2>
+void Problem<type,type2>::addConvexPiecewiseFunction(){  
   int min;
   int max;
   srand(rdtsc());
@@ -195,8 +196,8 @@ void Problem<type>::addConvexPiecewiseFunction(){
 
 
 
-template<typename type>
-void Problem<type>::writeInFile(std::ofstream& new_inst) const{
+template<typename type,typename type2>
+void Problem<type,type2>::writeInFile(std::ofstream& new_inst) const{
   new_inst << nbTask << " " << B << std::endl;
   for (int i=0;i<nbTask;++i) {
     int P=A[i].Fi.nbPiece;
@@ -224,16 +225,16 @@ void Problem<type>::writeInFile(std::ofstream& new_inst) const{
   }
 }
 
-template<typename type>
-Problem<type>& Problem<type>::operator=(const Problem<type>& P){
+template<typename type,typename type2>
+Problem<type,type2>& Problem<type,type2>::operator=(const Problem<type,type2>& P){
   nbTask=P.nbTask;
   B=P.B;
   A=P.A;
   return *this;
 }
 
-template<typename type>
-void Problem<type>::displayProblem() const{
+template<typename type,typename type2>
+void Problem<type,type2>::displayProblem() const{
   if (nbTask >0){
     std::cout << "L'instance est composée de " << nbTask 
 	      << " tâches et la ressource est de capacité " << B << std::endl;
@@ -248,8 +249,8 @@ void Problem<type>::displayProblem() const{
   else std::cout << "l'instance est vide";
 }
 
-template<typename type> 
-int Problem<type>::dataConsistency() const{
+template<typename type,typename type2> 
+int Problem<type,type2>::dataConsistency() const{
   for (int i=0;i<nbTask;++i)
     if (!A[i].dataConsistency())
       return 0;
@@ -257,42 +258,42 @@ int Problem<type>::dataConsistency() const{
 }
 
 
-template<typename type> 
-type Problem<type>::totalEnergyConsumption(const Interval<type> &I) const{
-  type conso=0.0;
+template<typename type,typename type2> 
+type2 Problem<type,type2>::totalEnergyConsumption(const Interval<type2> &I) const{
+  type2 conso=0.0;
   for (int i=0;i<nbTask;++i)
     conso+=A[i].energyConsumption(I);
   return conso;
 }
 
 
-template<typename type>
-type Problem<type>::totalResourceConsumption(const Interval<type> &I) const{
-  type conso=0.0;
+template<typename type,typename type2>
+type2 Problem<type,type2>::totalResourceConsumption(const Interval<type2> &I) const{
+  type2 conso=0.0;
   for (int i=0;i<nbTask;++i)
     conso+=A[i].resourceConsumption(I); 
   return conso;
 }
 
-
-template<typename type>
-int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
+//attention au floor/ceil pour le cas entier
+template<typename type,typename type2>
+int Problem<type,type2>::adjustmentLS(const Interval<type2> &I,int i,type2 total){
   int performed=0;
   if (I.t2 < d(i)){
-    const type capacity=B*(I.t2-I.t1);
-    type  SL,LS/*,LSboth*/; 
+    const type2 capacity=B*(I.t2-I.t1);
+    type2  SL,LS/*,LSboth*/; 
     SL=capacity-total+A[i].resourceConsumption(I);
     LS=A[i].resourceConversion(A[i].leftShift(I),I);
     //    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
     if (SL+POSITIVE_ZERO < LS) {
       type temp=emin(i);
-      A[i].emin=std::max(emin(i),I.t2+(LS-SL)/bmax(i));
+      A[i].emin=std::max(emin(i),(type)I.t2+(LS-SL)/bmax(i));
       if (A[i].emin != temp)
 	performed=1;
     }
     if (SL + POSITIVE_ZERO < LS && bmin(i)!=0.0) {
       type temp=r(i);
-      A[i].ri=std::max(r(i),I.t2-SL/bmin(i));  
+      A[i].ri=std::max(r(i),(type)I.t2-SL/bmin(i));  
       if (A[i].ri != temp)
 	performed=1;
     }
@@ -301,24 +302,24 @@ int Problem<type>::adjustmentLS(const Interval<type> &I,int i,type total){
 }
 
 
-template<typename type> 
-int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
+template<typename type,typename type2> 
+int Problem<type,type2>::adjustmentRS(const Interval<type2> &I,int i,type2 total){
   int performed=0;
   if (I.t1 > r(i)){
-    const type capacity=B*(I.t2-I.t1);
-    type SL,RS/*,RSboth*/;  
+    const type2 capacity=B*(I.t2-I.t1);
+    type2 SL,RS/*,RSboth*/;  
     SL=capacity-total+A[i].resourceConsumption(I);
     RS=A[i].resourceConversion(A[i].rightShift(I),I);
     //RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
     if (SL- RS< NEGATIVE_ZERO) {
       type temp=smax(i);
-      A[i].smax=std::min(smax(i),I.t1-(RS-SL)/bmax(i));
+      A[i].smax=std::min(smax(i),(type)I.t1-(RS-SL)/bmax(i));
       if ( A[i].smax != temp)
 	performed=1;
     }
     if (bmin(i)!=0.0 && SL-RS < NEGATIVE_ZERO) {
       type temp=d(i);
-      A[i].di=std::min(d(i),I.t1+SL/bmin(i)); 
+      A[i].di=std::min(d(i),(type)I.t1+SL/bmin(i)); 
       if (A[i].di != temp)
 	performed=1;
     }
@@ -328,9 +329,9 @@ int Problem<type>::adjustmentRS(const Interval<type> &I,int i,type total){
 
 
 
-template<typename type>
-int Problem<type>::totalTest(const Interval<type>& current){
-  const type total=totalResourceConsumption(current);
+template<typename type,typename type2>
+int Problem<type,type2>::totalTest(const Interval<type2>& current){
+  const type2 total=totalResourceConsumption(current);
   if (!energeticReasonning(current,total))
     return 0;
   else {

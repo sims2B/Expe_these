@@ -1,10 +1,11 @@
-#ifndef TIMEMODEL_H
-#define TIMEMODEL_H
+#ifndef TIMEMODEL_HPP
+#define TIMEMODEL_HPP
 
 #include <ilcplex/ilocplex.h>
 #include <ilcplex/ilocplexi.h>
 #include <iostream>
 #include "Solution.hpp"
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////// DEFINITION /////////////////////////////////////
@@ -18,55 +19,183 @@ typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 
 //********************* SOLVE FUNCTION ************************
 
-template<typename type, typename type2>
-int Solve(const Problem<type>& P,Solution<type,type2> &s);
+template<typename type, typename type2=type>
+int SolveConcave(const Problem<type,type2>& P,Solution<type,type2> &s);
+template<typename type, typename type2=type>
+int SolveConvex(const Problem<type,type2>& P,Solution<type,type2> &s);
 
-template<>
-int Solve<int,int>(const Problem<int>& P,Solution<int,int> &s);
+template<typename type, typename type2=type>
+int LPsolveConcave(const Problem<type,type2>& P);
+template<typename type, typename type2=type>
+int LPsolveConvex(const Problem<type,type2>& P);
 
 //**************** CPLEX SOL -> STRUCT SOL ******************
 
-template<typename type, typename type2>
-int modelToSol(const Problem<type>&,Solution<type,type2>&,IloCplex&,
-IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&);
+template<typename type, typename type2=type>
+int modelToSol(const Problem<type,type2>&,Solution<type,type2>&,IloCplex&,
+	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&);
 
 template<>
-int modelToSol<int,int>(const Problem<int> &, Solution<int,int> &,IloCplex&,
-	       IloNumVarMatrix&,IloNumVarMatrix&, IloNumVarMatrix&);
+int modelToSol<int,int>(const Problem<int,int> &, Solution<int,int> &,IloCplex&,
+			IloNumVarMatrix&,IloNumVarMatrix&, IloNumVarMatrix&);
 
 //********************* MODEL CREATION ************************
-template<typename type>
-int createModel(const Problem<type>&,IloEnv&,IloModel&,
-IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
-		IloNumVarMatrix&);
+template<typename type,typename type2=type>
+int createConcaveModel(const Problem<type,type2>&,IloEnv&,IloModel&,
+		       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
+		       IloNumVarMatrix&);
 
-
-template<typename type>
-int createVars(const Problem<type>&,IloEnv&,
-	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
-	       IloNumVarMatrix&);
-
-template<typename type>
-int createConstraints(const Problem<type>&,IloEnv&,IloModel&,
+template<typename type,typename type2=type>
+int createConvexModel(const Problem<type,type2>&,IloEnv&,IloModel&,
 		      IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
 		      IloNumVarMatrix&);
 
+template<typename type,typename type2=type>
+int createVars(const Problem<type,type2>&,IloEnv&,
+	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
+	       IloNumVarMatrix&);
+
+template<>
+int createVars(const Problem<int,int>&,IloEnv&,
+	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
+	       IloNumVarMatrix&);
+
+template<typename type, typename type2=type>
+int createConcaveConstraints(const Problem<type,type2 >&,IloEnv&,IloModel&,
+			     IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
+			     IloNumVarMatrix&);
+
+template<typename type, typename type2=type>
+int createConvexConstraints(const Problem<type,type2 >&,IloEnv&,IloModel&,
+			    IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
+			    IloNumVarMatrix&);
+
+//TODO _b ou véritable expression (cf. manuscrit)
+template<typename type, typename type2=type>
+int addERinequalities(const Problem<type>&, IloEnv&, IloModel&, 
+		      IloNumVarMatrix&,IloNumVarMatrix&);
 
 //************************** CALLBACK ****************************
-/*IloCplex::Callback getFirstSolInfo(IloEnv , IloInt& , IloNum );
-IloCplex::Callback depth(IloEnv, IloInt& );
-IloCplex::Callback energyCuts(IloEnv , const Problem<double>& ,
-			      IloNumVarMatrix& , IloNumVarMatrix& ,IloNum , 
-			      IloInt& ,  IloInt& , IloInt& );*/
-			      
+IloCplex::Callback getFirstSolInfo(IloEnv , IloInt& , IloNum );
+/*IloCplex::Callback depth(IloEnv, IloInt& );
+  IloCplex::Callback energyCuts(IloEnv , const Problem<double>& ,
+  IloNumVarMatrix& , IloNumVarMatrix& ,IloNum , 
+  IloInt& ,  IloInt& , IloInt& );
+*/
 			      
 
-///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //////////////////////// IMPLEMENTATION ///////////////////////////
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
-template<typename type, typename type2>
-int Solve(const Problem<type>& P,Solution<type,type2> &s) {
+template<typename type,typename type2>
+int LPsolveConcave(const Problem<type,type2>& P){
+  try  {
+    IloNum start,time_exec;
+    const int n = P.nbTask;
+    
+    // create cplex model  
+    IloEnv env;
+    IloModel model(env);
+    IloNumVarMatrix x(env,n);
+    IloNumVarMatrix y(env,n);
+    IloNumVarMatrix b(env,n);
+    IloNumVarMatrix w(env,n);
+    
+    createConcaveModel(P,env,model,x,y,b,w);
+    IloCplex cplex(model);
+    for (int i=0;i<n;++i)
+      for (int t=0;t<P.D;++t){
+	model.add(IloConversion(env,x[i][t],ILOFLOAT));
+	model.add(IloConversion(env,y[i][t],ILOFLOAT));
+      }
+
+    cplex.setParam(IloCplex::TiLim, time_limit);
+    cplex.setParam(IloCplex::Threads,2);
+    cplex.setOut(env.getNullStream());
+    start= cplex.getCplexTime();
+    
+    // solve !
+    if (cplex.solve()) {	 
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "Root objective: \t"<< cplex.getObjValue() << std::endl;   
+      env.end();
+      return 0;
+    }
+    else if (cplex.getStatus()==IloAlgorithm::Infeasible){
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "status: "<< cplex.getStatus() << " at root node en " << time_exec << std::endl;
+    }
+    env.end();
+    return 1;
+  }
+  catch (IloException &e) {
+    std::cout << "Iloexception in solve" << e << std::endl;
+    e.end();
+    return 1;
+  } 
+  catch (...){
+    std::cout << "Error unknown\n";
+    return 1;
+  }
+}
+
+
+template<typename type,typename type2>
+int LPsolveConvex(const Problem<type,type2>& P){
+  try  {
+    IloNum start,time_exec;
+    const int n = P.nbTask;
+    
+    // create cplex model  
+    IloEnv env;
+    IloModel model(env);
+    IloNumVarMatrix x(env,n);
+    IloNumVarMatrix y(env,n);
+    IloNumVarMatrix b(env,n);
+    IloNumVarMatrix w(env,n);
+    
+    createConvexModel(P,env,model,x,y,b,w);
+    IloCplex cplex(model);
+    for (int i=0;i<n;++i)
+      for (int t=0;t<P.D;++t){
+	model.add(IloConversion(env,x[i][t],ILOFLOAT));
+	model.add(IloConversion(env,y[i][t],ILOFLOAT));
+      }
+
+    cplex.setParam(IloCplex::TiLim, time_limit);
+    cplex.setParam(IloCplex::Threads,2);
+    cplex.setOut(env.getNullStream());
+    start= cplex.getCplexTime();
+    
+    // solve !
+    if (cplex.solve()) {	 
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "Root objective: \t"<< cplex.getObjValue() << std::endl;   
+      env.end();
+      return 0;
+    }
+    else if (cplex.getStatus()==IloAlgorithm::Infeasible){
+      time_exec=cplex.getCplexTime()-start;
+      std::cout << "status: "<< cplex.getStatus() << " at root node en " << time_exec << std::endl;
+    }
+    env.end();
+    return 1;
+  }
+  catch (IloException &e) {
+    std::cout << "Iloexception in solve" << e << std::endl;
+    e.end();
+    return 1;
+  } 
+  catch (...){
+    std::cout << "Error unknown\n";
+    return 1;
+  }
+}
+
+
+template<typename type, typename type2=type>
+int SolveConcave(const Problem<type,type2>& P,Solution<type,type2> &s) {
   IloNum start,time_exec;
   const int n= P.nbTask;
   
@@ -78,15 +207,15 @@ int Solve(const Problem<type>& P,Solution<type,type2> &s) {
   IloNumVarMatrix b(env,n);
   IloNumVarMatrix w(env,n);
 
-  createModel(P,env,model,x,y,b,w);
+  createConcaveModel(P,env,model,x,y,b,w);
   IloCplex cplex(model);
   
   cplex.setParam(IloCplex::TiLim, time_limit);
   cplex.setParam(IloCplex::Threads,2);
   cplex.setOut(env.getNullStream());
   start= cplex.getCplexTime();
-  //IloInt cpt=0;
-  //cplex.use(getFirstSolInfo(env,cpt,start));
+  IloInt cpt=0;
+  cplex.use(getFirstSolInfo(env,cpt,start));
   
   // solve !
   if (cplex.solve()) {	 
@@ -105,15 +234,63 @@ int Solve(const Problem<type>& P,Solution<type,type2> &s) {
     std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
 	      << time_exec << std::endl;
     env.end();
+    return 1;
+  }
+  env.end();
+  return 1;
+}
+
+
+template<typename type, typename type2=type>
+int SolveConvex(const Problem<type,type2>& P,Solution<type,type2> &s) {
+  IloNum start,time_exec;
+  const int n= P.nbTask;
+  
+  IloEnv env;
+  IloModel model(env);
+  		
+  IloNumVarMatrix x(env,n);
+  IloNumVarMatrix y(env,n);
+  IloNumVarMatrix b(env,n);
+  IloNumVarMatrix w(env,n);
+
+  createConvexModel(P,env,model,x,y,b,w);
+  IloCplex cplex(model);
+  
+  cplex.setParam(IloCplex::TiLim, time_limit);
+  cplex.setParam(IloCplex::Threads,2);
+  cplex.setOut(env.getNullStream());
+  start= cplex.getCplexTime();
+  IloInt cpt=0;
+  cplex.use(getFirstSolInfo(env,cpt,start));
+  
+  // solve !
+  if (cplex.solve()) {	 
+    time_exec=cplex.getCplexTime()-start; 
+    std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
+	      << time_exec << std::endl;
+    std:: cout << "Final objective: " << cplex.getObjValue() 
+	       <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
+	       << std::endl;   
+
+    modelToSol(P,s,cplex,x,y,b);
+    env.end();
     return 0;
-    }
+  }
+  else if (cplex.getStatus()==IloAlgorithm::Infeasible){
+    time_exec=cplex.getCplexTime()-start;
+    std::cout << "Final status: \t"<< cplex.getStatus() << " en " 
+	      << time_exec << std::endl;
+    env.end();
+    return 1;
+  }
   env.end();
   return 1;
 }
 
 
 template<typename type,typename type2>
-int modelToSol(const Problem<type> &P, Solution<type,type2> &s,
+int modelToSol(const Problem<type,type2> &P, Solution<type,type2> &s,
 	       IloCplex& cplex, IloNumVarMatrix& x,IloNumVarMatrix& y, 
 	       IloNumVarMatrix& b){
   int i, t; 
@@ -127,22 +304,27 @@ int modelToSol(const Problem<type> &P, Solution<type,type2> &s,
 	s.ft[i]=t+1;
     }
     for (t=P.r(i);t<P.d(i);++t)
-	s.b[i][t]=cplex.getValue(b[i][t]);    
-    }
+      s.b[i][t]=cplex.getValue(b[i][t]);    
+  }
   for (i=0;i<P.D+1;++i)
     s.event.push_back(i);
   return 0;
 }
 
 
-template<typename type>
-int createModel(const Problem<type>& P, IloEnv& env, IloModel& m, IloNumVarMatrix& x, IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
-  return createVars(P,env,x,y,b,w) || createConstraints(P,env,m,x,y,b,w);
+template<typename type,typename type2>
+int createConcaveModel(const Problem<type,type2>& P, IloEnv& env, IloModel& m, IloNumVarMatrix& x, IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
+  return createVars(P,env,x,y,b,w) || createConcaveConstraints(P,env,m,x,y,b,w);
 }
 
-template<typename type>
-int createVars(const Problem<type>& P, IloEnv& env, IloNumVarMatrix& x, 
-	   IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
+template<typename type,typename type2>
+int createConvexModel(const Problem<type,type2>& P, IloEnv& env, IloModel& m, IloNumVarMatrix& x, IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
+  return createVars(P,env,x,y,b,w) || createConvexConstraints(P,env,m,x,y,b,w);
+}
+
+template<typename type,typename type2>
+int createVars(const Problem<type,type2>& P, IloEnv& env, IloNumVarMatrix& x, 
+	       IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
   IloInt i,j;
   const int n=P.nbTask;
   
@@ -172,10 +354,10 @@ int createVars(const Problem<type>& P, IloEnv& env, IloNumVarMatrix& x,
 }
 
 
-template<typename type>
-int createConstraints(const Problem<type>& P, IloEnv& env, IloModel& model, 
-		      IloNumVarMatrix& x, IloNumVarMatrix& y, IloNumVarMatrix& b, 
-		      IloNumVarMatrix& w) {	
+template<typename type,typename type2>
+int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env, 
+			     IloModel& model,  IloNumVarMatrix& x, IloNumVarMatrix& y, 
+			     IloNumVarMatrix& b, IloNumVarMatrix& w) {	
   int i,t,tau;
   const int nbTask=P.nbTask;	
   
@@ -263,126 +445,192 @@ int createConstraints(const Problem<type>& P, IloEnv& env, IloModel& model,
   return 0;
 }
 
-/*
-
-ILOINCUMBENTCALLBACK2(getFirstSolInfo, IloInt&, cpt, IloNum, startTime){
-  if (cpt <1){
-    std::cout << "Sol n°" << cpt+1 << " obj: \t" << getObjValue() << std::endl;
-    std::cout << "Sol n°" << cpt+1 << " time: \t" << getCplexTime()-startTime << std::endl;
-    std::cout << "Sol n°" << cpt+1 << " gap: \t" << getMIPRelativeGap() << std::endl;
-    cpt=cpt+1;
-  }
-    
-}
-
-ILONODECALLBACK1(depth, IloInt& , nodeDepth) {
-  nodeDepth=getDepth(0);
-}
-
-
-
-
-#define USERCUTLIMIT 500
-
-
-//template???? A refaire dans tous les cas.
-ILOUSERCUTCALLBACK6(energyCuts, const Problem<double>&, P,  
-		    IloNumVarMatrix&, x, IloNumVarMatrix&,  y, IloNum, eps, 
-		    IloInt&, nodeDepth, IloInt& , depthMax) {
+template<typename type,typename type2>
+int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env, 
+			    IloModel& model,  IloNumVarMatrix& x, IloNumVarMatrix& y, 
+			    IloNumVarMatrix& b, IloNumVarMatrix& w) {	
   try{
-    if ( !isAfterCutLoop() )
-      return;
+    int i,t,tau,q;
+    const int nbTask=P.nbTask;	
   
-    if ( nodeDepth >= 1 && nodeDepth <= depthMax ) {    
-      int t, i;
-      IntervalList<double> L;
-      computeCheckInterval(L,P);
-      double _b;
-      for (uint l=0;l<L.size();++l){
-	double _B=P.totalResourceConsumption(L[l]) ;
-	if (L[l].t1 < L[l].t2){
-	  for (i=0;i<P.nbTask;++i){
-	    double val = 0.0;
-	    IloExpr expr(getEnv());	  
-	    IloRange cut;
-	    _B= _B - P.A[i].resourceConsumption(L[l]);
-	    _b=P.A[i].resourceConversion(P.W(i),L[l]);
-	    for (t=0;t<std::min(L[l].t1,P.D+1);++t)
-	      val -= getValue(x[i][t]);
-	    for (t=std::max(P.r(i)+1,L[l].t2+1);t<=P.D;++t)
-	      val -= getValue(y[i][t]);
+    //objective
+    IloExpr expr(env);
+    for (i=0;i<nbTask;++i){
+      for (t=0;t<P.D;++t)
+	expr += b[i][t];
+    }
+    model.add(IloMinimize(env,expr));
+    expr.end();
+  
+    // (sum x_it == 1) et (sum yit==1)
+    for (i=0; i<nbTask; i++) {
+      IloExpr exprx(env);
+      for (t=P.A[i].ri; t<=P.A[i].smax;t++)
+	exprx+=x[i][t];
+      model.add(exprx == 1);
+      exprx.end();
+      
+      IloExpr expry(env);
+      for (t=P.A[i].emin-1; t<P.A[i].di;t++)
+	expry+=y[i][t];
+      model.add(expry == 1);
+      expry.end();
+    }
 
-	    IloNum rhs = P.B * (L[l].t2 - L[l].t1);
-	    if ((1+val * _b + _B <= rhs)){
-	      for (t=0;t<std::min(L[l].t1,P.D+1);++t)
-		expr -= x[i][t];
-	      for (t=std::max(0,(int)L[l].t2+1);t<=P.D;++t)
-		expr -= y[i][t];
+    //contrainte bmin
+    for (i=0;i<nbTask;i++) {
+      for (t=P.A[i].ri;t<P.A[i].di;t++){
+	IloExpr expr(env);
+	for (tau=P.A[i].ri;tau<=t;tau++)
+	  expr+=x[i][tau];
+	for (tau=P.A[i].ri;tau<t;tau++)
+	  expr+=-y[i][tau];
+	model.add(expr*P.A[i].bmin<=b[i][t]);
+	expr.end();
+      }
+    }
 
-	      cut= ( (1 + expr) * _b + _B  <= rhs);
-	      add(cut);
-	      cut.end();	
-	      
-	      expr.end();
-	    }
-	  
-	    _b=P.A[i].resourceConversion(std::max(0.0,P.W(i)-P.A[i].Fi(P.bmax(i))*(std::max(0.0,L[l].t1-P.r(i)) +std::max(0.0, P.d(i) - L[l].t2))),L[l]);
-	    if ((getValue(x[i][P.A[i].ri])+ getValue(y[i][P.A[i].di]-1))*_b+_B <= P.B*(L[l].t2 - L[l].t1))
-	      add((x[i][P.A[i].ri]+ y[i][P.A[i].di]-1)*_b+_B <= P.B*(L[l].t2 - L[l].t1));
-	       
-	    val =0.0;
-	    _b=P.A[i].resourceConversion(P.A[i].leftShift(L[l]),L[l]);
-	    for (t=std::max(0,(int)L[l].t1+1);t<=std::min(P.D,L[l].t2-1);++t)
-	      val +=getValue(y[i][t]);
-	    if ((val+getValue(x[i][P.A[i].ri])-1)*_b + _B <= P.B*(L[l].t2 - L[l].t1)){
-	      for (t=std::max(0,(int)L[l].t1+1);t<=std::min(P.D,L[l].t2-1);++t) 
-		expr+=y[i][t];
-	      add((expr+x[i][P.A[i].ri]-1)*_b + _B <= P.B*(L[l].t2 - L[l].t1));
-	      expr.end();
-	    }
-	    
-	    val=0.0;
-	    _b=P.A[i].resourceConversion(P.A[i].rightShift(L[l]),L[l]);	
-	    for (t=std::max(0,(int)L[l].t1);t<std::min(P.D+1,L[l].t2);++t)
-	      val += getValue(x[i][t]);
-	    if ((val+ getValue(y[i][P.A[i].di-1]))*_b + _B <= P.B*(L[l].t2 - L[l].t1)){
-	      for (t=std::max(0,(int)L[l].t1);t<std::min(P.D+1,L[l].t2);++t)
-		expr+=x[i][t];
-	      add((expr+ y[i][P.A[i].di-1])*_b + _B <= P.B*(L[l].t2 - L[l].t1));
-	      expr.end();}
-	      
-	    _b=P.bmin(i)*(L[l].t2 - L[l].t1);       
-	    val =0.0;
-	    for (t= 0;t<=std::min(P.D,L[l].t1);++t)
-	      val+=getValue(x[i][t]);
-	    for (t=std::max((int)L[l].t2,0);t<=P.D;++t)
-	      val+=getValue(y[i][t]);
-	    if ((val-1)*_b +_B <= P.B*(L[l].t2 - L[l].t1)){
-	      for (t=0;t<=std::min(P.D,L[l].t1);++t)
-		expr+=x[i][t];
-	      for (t=std::max((int)L[l].t2,0);t<=P.D;++t)
-		expr+=y[i][t];
-	      add( (expr-1)*_b +_B <= P.B*(L[l].t2 - L[l].t1));
-	      expr.end();
-	    }
-	    _B = _B + P.A[i].resourceConsumption(L[l]);
-	  }
+    //contrainte bmax
+    for (i=0;i<nbTask;i++)  {
+      for (t=P.r(i);t<P.d(i);t++){
+	IloExpr expr(env);
+	for (tau=P.A[i].ri;tau<=t;tau++)
+	  expr+=x[i][tau];
+	for (tau=P.A[i].ri;tau<t;tau++)
+	  expr+=-y[i][tau];
+	model.add(expr*P.bmax(i) >= b[i][t]);
+	expr.end();
+      }
+    }
+
+
+    //contrainte ressource
+    for (t=0;t<P.D;t++) {
+      IloExpr expr(env);
+      for (i=0;i<nbTask;i++)
+	expr+=b[i][t];
+      model.add(expr <= P.B);
+      expr.end();
+    }
+   
+    //Contraintes Wi
+    for (i=0;i< nbTask; i++){
+      IloExpr expr(env);
+      for (t=P.A[i].ri;t<P.A[i].di;t++)
+	expr+=w[i][t];
+      model.add(expr >= P.A[i].Wi);
+      expr.end();
+    }
+  
+  
+  
+    for (i=0;i<nbTask;++i) {
+      if (P.A[i].Fi.nbPiece > 1){
+	IloNumArray bp(env,P.A[i].Fi.nbPiece-2); 
+	IloNumArray slope(env,P.A[i].Fi.nbPiece);
+	for (q=0;q<P.A[i].Fi.nbPiece;++q)
+	  slope[q]=P.A[i].Fi.F[q].f.a;
+	for (q=0;q<P.A[i].Fi.nbPiece-2;++q)
+	  bp[q]=P.A[i].Fi.F[q+1].I.t1;
+
+	for (t=P.r(i);t<P.d(i);t++)
+	  model.add(w[i][t]<=
+		    IloPiecewiseLinear(b[i][t],bp,slope,P.bmin(i),P.A[i].Fi(P.bmin(i))));
+    
+	// wit = 0 if task not in process
+	for (t=P.r(i);t<P.d(i);t++){
+	  IloExpr expr(env);
+	  for (tau=P.A[i].ri;tau<=t;tau++)
+	    expr+=x[i][tau];
+	  for (tau=P.A[i].ri;tau<t;tau++)
+	    expr+=-y[i][tau];
+	  model.add(expr*P.A[i].Wi >= w[i][t]);
+	  expr.end();
+	}
+      }
+      else{
+	for (t=P.r(i);t<P.d(i);t++){
+	  IloExpr expr(env);
+	  for (tau=P.A[i].ri;tau<=t;tau++)
+	    expr+=x[i][tau];
+	  for (tau=P.A[i].ri;tau<t;tau++)
+	    expr+=-y[i][tau];
+	  for (int q=0;q<P.A[i].Fi.nbPiece;++q)
+	    model.add(P.A[i].Fi.F[q].f.a*b[i][t]+P.A[i].Fi.F[q].f.c*(expr)==w[i][t]);
+	  expr.end();
 	}
       }
     }
-  }
-  catch (IloCplex::InvalidCutException &e) {
-    std::cout << "Iloexception in energy cuts : " << e.getCut() << std::endl;
-    std:: cout << e.getCut() << std::endl;
-    e.end();
-    throw;
+    return 0;  
   }
   catch (IloException &e) {
-    std::cout << "Iloexception in energy cuts : " << e << std::endl;
+    std::cout << "Iloexception in solve" << e << std::endl;
     e.end();
-    throw;
+    return 1;
+  } 
+  catch (...){
+    std::cout << "Error unknown\n";
+    return 1;
   }
 }
-*/
+
+
+
+  template<typename type,typename type2>
+    int addERinequalities(const Problem<type,type2>& P, IloEnv& env,
+			  IloModel &model,IloNumVarMatrix& x, IloNumVarMatrix&  y) {
+    /*  int t, i;
+	IntervalList<type> list;
+	computeCheckInterval(list,P);
+	Interval<type> current;
+	type2 _b;
+	for (uint I=0;I<list.size();++I){
+	current=list[I];
+	if (current.t1 < current.t2){
+	type _B=P.totalResourceConsumption(current) ;
+	for (i=0;i<P.nbTask;++i){
+	_B= _B - P.A[i].resourceConsumption(current);
+	_b=P.A[i].resourceConversion(P.W(i),current);
+	IloExpr expr(env),expr2(env),expr3(env),expr4(env),expr5(env);
+	for (t=0;t<=current.t1;++t)
+	expr-=x[i][t];
+	for (t=current.t2+1;t<=P.D;++t)
+	expr-=y[i][t];
+	model.add((1+expr)*_b + _B <= P.B*(current.t2 - current.t1));
+	
+	_b=P.A[i].resourceConversion(std::max(0.0,P.W(i)-P.A[i].Fi(P.bmax(i))*(std::max(0.0,current.t1-P.r(i)) +std::max(0.0, P.d(i) - current.t2))),current);
+	model.add((x[i][P.A[i].ri]+ y[i][P.A[i].di]-1)*_b+_B <= P.B*(current.t2 - current.t1));
+	
+	_b=P.A[i].resourceConversion(P.A[i].leftShift(current),current);
+	for (t=current.t1+1;t<current.t2;++t)
+	expr3+=y[i][t];
+	model.add((expr3+x[i][P.A[i].ri]-1)*_b + _B <= P.B*(current.t2 - current.t1));
+	expr3.end();
+	
+	_b=P.A[i].resourceConversion(P.A[i].rightShift(current),current);	
+	for (t=current.t1;t<current.t2;++t)
+	expr4+=x[i][t];
+	model.add((expr4+ y[i][P.A[i].di-1])*_b + _B <= P.B*(current.t2 - current.t1));
+	expr4.end();
+	
+	_b=P.bmin(i)*(current.t2 - current.t1);	
+	for (t=0;t<=current.t1;++t)
+	expr5+=x[i][t];
+	for (t=current.t1; t <std::min(P.D,current.t2+1);++t)
+	//		  expr2+=b[i][t];
+	for (t=current.t2;t<=P.D;++t)
+	expr5+=y[i][t];
+	model.add( (expr5-1)*_b +_B <= P.B*(current.t2 - current.t1));
+	expr5.end();
+	expr2.end();
+	_B = _B + P.A[i].resourceConsumption(current);
+	}
+	}
+	} */
+    return 0;
+  }
+
+
+
 
 #endif

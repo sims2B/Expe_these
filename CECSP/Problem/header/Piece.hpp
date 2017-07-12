@@ -11,13 +11,14 @@
 
 //struct that represent a piece of a piecewise linear function
 //define by a linear function and an interval
-template<typename type> struct Piece{
+template<typename type> 
+struct Piece{
 
   //given I=[t1,t2], construct ( f(x)=x on I )
   Piece(Interval<type>);
   
   //given I=[t1,t2] and a and c, construct ( f(x)= ax + c on I )
-  Piece(Interval<type>,LinearFunction<type>);
+  Piece(Interval<type>, LinearFunction<type>);
 
   void displayPiece() const;
 
@@ -31,7 +32,7 @@ template<typename type> struct Piece{
 ///////////////////////////////////////////////////////////////////
 
 
-template<typename type>
+template<typename type >
 Piece<type>::Piece(Interval<type> _I) : I(_I) {}
 
 template<typename type>

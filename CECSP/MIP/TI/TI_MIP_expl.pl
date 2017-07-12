@@ -24,11 +24,11 @@ sub explore {
 sub handle_file {
 	my $file = shift;
 	my $name = basename($file);
+	$name =~ s/(.+)\.[^.]+/$1/;
 	if ($file =~ /.*$/) {
-	for my $i (2){
-	system(" echo $name >> $target$i");
-	system("./bin/modelTI $file 7200 $i >> $target$i ");
-		}
+		system("echo $name >> $target");
+		system("./bin/modelTI $file >> $target 2>&1");
+		
 }
 }
 

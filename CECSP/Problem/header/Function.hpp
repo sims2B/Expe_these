@@ -121,12 +121,12 @@ void Function<type>::displayFunction() const{
 
 template<typename type>
 type Function<type>::operator()(type x) const{
-  if ( x < F[0].I.t1 || x > F[nbPiece-1].I.t2)
+  if ( x < F[0].I.t1 + NEGATIVE_ZERO || x > F[nbPiece-1].I.t2 + POSITIVE_ZERO)
     return std::numeric_limits<type>::min();
   else{
     int i=0;
     while (i < nbPiece){
-      if (F[i].I.t1 <= x && F[i].I.t2 >= x)
+      if (F[i].I.t1 + NEGATIVE_ZERO <= x && F[i].I.t2 + POSITIVE_ZERO >= x)
 	return F[i].f(x);
       else ++i;
     }
