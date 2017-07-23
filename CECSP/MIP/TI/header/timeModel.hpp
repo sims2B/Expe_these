@@ -18,9 +18,10 @@
 typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 
 //********************* SOLVE FUNCTION ************************
-
+//§§§ No obj
 template<typename type, typename type2=type>
 int SolveConcave(const Problem<type,type2>& P,Solution<type,type2> &s);
+//§§§ No obj
 template<typename type, typename type2=type>
 int SolveConvex(const Problem<type,type2>& P,Solution<type,type2> &s);
 
@@ -35,8 +36,9 @@ template<typename type, typename type2=type>
 int modelToSol(const Problem<type,type2>&,Solution<type,type2>&,IloCplex&,
 	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&);
 
-template<>
-int modelToSol<int,int>(const Problem<int,int> &, Solution<int,int> &,IloCplex&,
+int modelToSol(const Problem<int,int> &, Solution<int,int> &,IloCplex&,
+			IloNumVarMatrix&,IloNumVarMatrix&, IloNumVarMatrix&);
+int modelToSol(const Problem<int,double> &, Solution<int,double> &,IloCplex&,
 			IloNumVarMatrix&,IloNumVarMatrix&, IloNumVarMatrix&);
 
 //********************* MODEL CREATION ************************
@@ -55,7 +57,6 @@ int createVars(const Problem<type,type2>&,IloEnv&,
 	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
 	       IloNumVarMatrix&);
 
-template<>
 int createVars(const Problem<int,int>&,IloEnv&,
 	       IloNumVarMatrix&,IloNumVarMatrix&,IloNumVarMatrix&,
 	       IloNumVarMatrix&);
@@ -225,6 +226,7 @@ int SolveConcave(const Problem<type,type2>& P,Solution<type,type2> &s) {
     std:: cout << "Final objective: " << cplex.getObjValue() 
 	       <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
 	       << std::endl;   
+
     modelToSol(P,s,cplex,x,y,b);
     env.end();
     return 0;
@@ -272,7 +274,6 @@ int SolveConvex(const Problem<type,type2>& P,Solution<type,type2> &s) {
     std:: cout << "Final objective: " << cplex.getObjValue() 
 	       <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
 	       << std::endl;   
-
     modelToSol(P,s,cplex,x,y,b);
     env.end();
     return 0;
@@ -362,7 +363,7 @@ int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env,
   const int nbTask=P.nbTask;	
   
   //objective
-  IloExpr expr(env);
+   IloExpr expr(env);
   for (i=0;i<nbTask;++i){
     for (t=0;t<P.D;++t)
       expr += b[i][t];
@@ -391,9 +392,9 @@ int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env,
       IloExpr expr(env);
       for (tau=P.A[i].ri;tau<=t;tau++)
 	expr+=x[i][tau];
-      for (tau=P.A[i].ri;tau<t;tau++)
+      for (tau=P.A[i].ri+1;tau<t;tau++)
 	expr+=-y[i][tau];
-      model.add(expr*P.A[i].bmin<=b[i][t]);
+      model.add(expr*P.A[i].bmin <= b[i][t]);
       expr.end();
     }
   }
@@ -402,7 +403,7 @@ int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env,
   for (i=0;i<nbTask;i++)  {
     for (t=P.r(i);t<P.d(i);t++){
       IloExpr expr(env);
-      for (tau=P.A[i].ri;tau<=t;tau++)
+      for (tau=P.A[i].ri+1;tau<=t;tau++)
 	expr+=x[i][tau];
       for (tau=P.A[i].ri;tau<t;tau++)
 	expr+=-y[i][tau];
@@ -424,12 +425,24 @@ int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env,
   for (i=0;i< nbTask; i++){
     IloExpr expr(env);
     for (t=P.A[i].ri;t<P.A[i].di;t++)
-      expr+=w[i][t];
+      expr+= w[i][t];
     model.add(expr >= P.A[i].Wi);
     expr.end();
   }
-
   
+  // wit = 0 if task not in process
+  for (i=0;i< nbTask; i++){
+    for (t=0;t<P.D;t++){
+      IloExpr expr(env);
+      for (tau=P.A[i].ri;tau<=t;tau++)
+	expr+=x[i][tau];
+      for (tau=P.A[i].ri;tau<t;tau++)
+	expr+=-y[i][tau];
+      model.add(expr*P.A[i].Wi >= w[i][t]);
+      expr.end();
+    }
+  }
+
   for (i=0;i<nbTask;++i) {
     for (t=P.r(i);t<P.d(i);t++){
       IloExpr expr(env);
@@ -441,7 +454,23 @@ int createConcaveConstraints(const Problem<type,type2>& P, IloEnv& env,
 	model.add(P.A[i].Fi.F[q].f.a*b[i][t]+P.A[i].Fi.F[q].f.c*(expr)>=w[i][t]);
       expr.end();
     }
-  }
+  }   for (i=0; i<nbTask; i++) {
+      IloExpr exprx(env);
+      for (t=0; t<P.A[i].ri;t++)
+	exprx+=x[i][t];
+      for (t=P.smax(i)+1; t<P.D;t++)
+	exprx+=x[i][t];
+      model.add(exprx == 0);
+      exprx.end();
+      
+      IloExpr expry(env);
+      for (t=0; t<P.A[i].emin-1;t++)
+	expry+=y[i][t];
+      for (t=P.d(i); t<P.D;t++)
+	expry+=y[i][t];
+      model.add(expry == 0);
+      expry.end();
+    }
   return 0;
 }
 
@@ -452,16 +481,16 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
   try{
     int i,t,tau,q;
     const int nbTask=P.nbTask;	
-  
+    
     //objective
-    IloExpr expr(env);
+    /*   IloExpr expr(env);
     for (i=0;i<nbTask;++i){
       for (t=0;t<P.D;++t)
 	expr += b[i][t];
     }
     model.add(IloMinimize(env,expr));
     expr.end();
-  
+    */
     // (sum x_it == 1) et (sum yit==1)
     for (i=0; i<nbTask; i++) {
       IloExpr exprx(env);
@@ -483,7 +512,7 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
 	IloExpr expr(env);
 	for (tau=P.A[i].ri;tau<=t;tau++)
 	  expr+=x[i][tau];
-	for (tau=P.A[i].ri;tau<t;tau++)
+	for (tau=P.A[i].ri+1;tau<t;tau++)
 	  expr+=-y[i][tau];
 	model.add(expr*P.A[i].bmin<=b[i][t]);
 	expr.end();
@@ -526,11 +555,11 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
   
     for (i=0;i<nbTask;++i) {
       if (P.A[i].Fi.nbPiece > 1){
-	IloNumArray bp(env,P.A[i].Fi.nbPiece-2); 
+	IloNumArray bp(env,P.A[i].Fi.nbPiece-1); 
 	IloNumArray slope(env,P.A[i].Fi.nbPiece);
 	for (q=0;q<P.A[i].Fi.nbPiece;++q)
 	  slope[q]=P.A[i].Fi.F[q].f.a;
-	for (q=0;q<P.A[i].Fi.nbPiece-2;++q)
+	for (q=0;q<P.A[i].Fi.nbPiece-1;++q)
 	  bp[q]=P.A[i].Fi.F[q+1].I.t1;
 
 	for (t=P.r(i);t<P.d(i);t++)
@@ -560,6 +589,23 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
 	  expr.end();
 	}
       }
+    }
+    for (i=0; i<nbTask; i++) {
+      IloExpr exprx(env);
+      for (t=0; t<P.A[i].ri;t++)
+	exprx+=x[i][t];
+      for (t=P.smax(i)+1; t<P.D;t++)
+	exprx+=x[i][t];
+      model.add(exprx == 0);
+      exprx.end();
+      
+      IloExpr expry(env);
+      for (t=0; t<P.A[i].emin-1;t++)
+	expry+=y[i][t];
+      for (t=P.d(i); t<P.D;t++)
+	expry+=y[i][t];
+      model.add(expry == 0);
+      expry.end();
     }
     return 0;  
   }

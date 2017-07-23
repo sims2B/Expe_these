@@ -56,84 +56,128 @@ void Task<int,double>::updateSMax()
 }
 
 
-
-
 template<>
-int Task<int>::leftShift(const Interval<int> &I) const{
-int nrj=0;
-  if (I.t1 < ri + (int)ceil((double)Wi/(double)Fi(bmax)) ){
-    if (I.t2  >= di ){
-      if (I.t1 >= ri ) nrj=Wi-Fi(bmax)*(I.t1-ri);
-      else nrj = Wi;
-    }
-    else if (I.t1 <= ri ){
-      nrj=std::max(Wi-Fi(bmax)*(di-I.t2),Fi(bmin)*(I.t2-ri));
-    }
-    else {
-      nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
-			      Fi(bmin)*(I.t2-I.t1))
-		     ,Wi-Fi(bmax)*(I.t1-ri));
-    }
+int Task<int,int>::resourceConversionConcave(const int& energy,const Interval<int> &I) const{  const int J(sizeIntersection(I,Interval<int>(ri,di)));
+  if ( bmin!=0.0 && energy <= Fi(bmin) * J) 
+    return bmin* (int)ceil((double)energy/(double)Fi(bmin));
+  else {  
+    int max=0.0;
+    for (int q=0;q<Fi.nbPiece;++q) 
+      max= std::max((int)ceil((double)(energy - J *Fi.F[q].f.c)/(double)Fi.F[q].f.a),
+		    max);
+    return max;
   }
-  return nrj;
 }
 
 template<>
-double Task<int,double>::leftShift(const Interval<double> &I) const{
-double nrj=0;
-  if (I.t1 < ri + ceil((double)Wi/(double)Fi(bmax)) ){
-    if (I.t2  >= di ){
-      if (I.t1 >= ri ) nrj=Wi-Fi(bmax)*(I.t1-ri);
-      else nrj = Wi;
-    }
-    else if (I.t1 <= ri ){
-      nrj=std::max(Wi-Fi(bmax)*(di-I.t2),Fi(bmin)*(I.t2-ri));
-    }
-    else {
-      nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
-			      Fi(bmin)*(I.t2-I.t1))
-		     ,Wi-Fi(bmax)*(I.t1-ri));
-    }
+double Task<int,double>::resourceConversionConcave(const double& energy,const Interval<int> &I) const{ 
+  // std::cout << "ri = " << ri << " et di = "<< di << std::endl;
+  const int J(sizeIntersection(I,Interval<int>(ri,di)));
+  if ( bmin!=0.0 && energy <= Fi(bmin) * J) 
+    return bmin* (int)ceil((double)energy/(double)Fi(bmin));
+  else {  
+    double max=0.0;
+    for (int q=0;q<Fi.nbPiece;++q) 
+      max= std::max((energy - J *Fi.F[q].f.c)/Fi.F[q].f.a,
+		    max);
+    return max;
   }
-  return nrj;
 }
 
-//attention aux arrondi et aux smax et emin
 template<>
-int Task<int>::rightShift(const Interval<int> &I) const{
-  int nrj=0;
-  if (I.t2 > di - (int)ceil((double)Wi/(double)Fi(bmax)) ){
-    if (I.t1 <= ri  ){
-      if (I.t2 <= di) nrj=Wi-Fi(bmax)*(di-I.t2);
-      else nrj = Wi;
+int Task<int,int>::resourceConversionConvex(const int& energy,const Interval<int> &I) const{ const int J(sizeIntersection(I,Interval<int>(ri,di)));
+  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) 
+    return bmin* (int)ceil((double)energy/(double)Fi(bmin));
+  else {  
+    IloEnv env;
+    IloModel model(env);
+    const int Q= Fi.nbPiece;
+    int q;
+    IloNumVarArray lambda(env,Q+1,0,J,ILOINT);
+  
+    IloExpr expr(env);
+    for (q=0 ; q < Q ; ++q){
+      expr += lambda[q] * Fi.F[q].I.t1;
     }
-    else if (I.t2 >= di ){
-      nrj=std::max(Wi-Fi(bmax)*(I.t1-ri),Fi(bmin)*(di-I.t1));
+    expr += lambda[Q] * Fi.F[Q-1].I.t2;
+    model.add(IloMinimize(env,expr));
+    expr.end();
+
+    IloExpr expr2(env);
+    for (q=0 ; q<Q ; ++q){
+      expr2 += lambda[q] * Fi(Fi.F[q].I.t1);
     }
+    expr2 += lambda[Q] * Fi(Fi.F[Q-1].I.t2);
+    model.add(expr2 >= energy);
+    expr2.end();
+ 
+    IloExpr expr3(env);
+    for (q=0 ; q<Q+1 ; ++q){
+      expr3 += lambda[q];
+    }
+    model.add(expr3 <= J);
+    expr3.end();
+    
+    IloCplex cplex(model);
+    cplex.setOut(env.getNullStream());
+    if (cplex.solve())
+      return cplex.getObjValue();
     else {
-      nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
-			      Fi(bmin)*(I.t2-I.t1))
-		     ,Wi-Fi(bmax)*(di-I.t2));
+      std::cout << " houston nous avons un problèmeuh " << std::endl;
+      return std::numeric_limits<int>::min();
     }
   }
-  return nrj;
 }
+
 template<>
-double Task<int,double>::rightShift(const Interval<double> &I) const{
-  double nrj=0;
-  if (I.t2 > di - ceil((double)Wi/(double)Fi(bmax)) ){
-    if (I.t1 <= ri  ){
-      if (I.t2 <= di) nrj=Wi-Fi(bmax)*(di-I.t2);
-      else nrj = Wi;
-    }
-    else if (I.t2 >= di ){
-      nrj=std::max(Wi-Fi(bmax)*(I.t1-ri),Fi(bmin)*(di-I.t1));
+double Task<int,double>::resourceConversionConvex(const double& energy,const Interval<int> &I) const {
+  /*  std:: cout << "*********début calcul conversion resource*****\n";
+  displayTask();
+  I.displayInterval();
+  std::cout << "energy " << energy << std::endl;
+  std:: cout << "size J " << J << std::endl;*/
+  const int J=sizeIntersection(I,Interval<int>(ri,di));
+  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) 
+    return bmin*(int)ceil((double)energy/(double)Fi(bmin));
+  else {  
+    IloEnv env;
+    IloModel model(env);
+    int t;
+    IloNumVarArray bi(env, J,bmin,bmax,ILOFLOAT);
+    IloNumVarArray wi(env,J,Fi(bmin),Fi(bmax),ILOFLOAT);
+    
+    IloExpr expr(env);
+    for (t=0 ; t < J ; ++t)
+      expr += bi[t] ;
+    model.add(IloMinimize(env,expr));
+    expr.end();
+
+    IloNumArray bp(env,Fi.nbPiece-1); 
+    IloNumArray slope(env,Fi.nbPiece);
+    for (t=0;t<Fi.nbPiece;++t)
+      slope[t]=Fi.F[t].f.a;
+    for (t=0;t<Fi.nbPiece-1;++t)
+      bp[t]=Fi.F[t+1].I.t1;
+    for (t=0 ; t < J ; ++t)
+      model.add(wi[t]==
+		IloPiecewiseLinear(bi[t],bp,slope,bmin,Fi(bmin)));
+    IloExpr expr2(env);
+    for (t=0 ; t < J ; ++t)
+      expr2 +=  wi[t];
+    model.add(expr2 >= energy);
+    expr2.end();
+    
+    IloCplex cplex(model);
+    cplex.setOut(env.getNullStream());
+
+    if (cplex.solve()){
+      //   std:: cout << "*********fin calcul conversion resource*****\n";
+      return cplex.getObjValue();    
     }
     else {
-      nrj = std::min(std::max(Wi-Fi(bmax)*(di-I.t2+I.t1-ri),
-			      Fi(bmin)*(I.t2-I.t1))
-		     ,Wi-Fi(bmax)*(di-I.t2));
+      std::cout << " houston nous avons un problèmeeeeeeeeuuuh " << std::endl;
+      //std:: cout << "*********fin calcul conversion resource*****\n";
+      return std::numeric_limits<int>::min();
     }
   }
-  return nrj;
 }

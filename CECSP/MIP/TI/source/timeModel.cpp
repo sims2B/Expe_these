@@ -1,7 +1,5 @@
 #include "timeModel.hpp"
 
-
-template<>
 int createVars(const Problem<int, int>& P, IloEnv& env, IloNumVarMatrix& x, 
 	   IloNumVarMatrix& y, IloNumVarMatrix& b, IloNumVarMatrix& w) {
   IloInt i,j;
@@ -32,8 +30,7 @@ int createVars(const Problem<int, int>& P, IloEnv& env, IloNumVarMatrix& x,
   return 0;
 }
 
-template<>
-int modelToSol<int,int>(const Problem<int> &P, Solution<int,int> &s,IloCplex& 
+int modelToSol(const Problem<int,int> &P, Solution<int,int> &s,IloCplex& 
 			cplex,IloNumVarMatrix& x,IloNumVarMatrix& y, IloNumVarMatrix& b){
   int i,t;
   std::cout << "!!!!ATTETNTION !!!! peut etre une erreur d'arondi\n";
@@ -52,7 +49,27 @@ int modelToSol<int,int>(const Problem<int> &P, Solution<int,int> &s,IloCplex&
   return 0;
 }
 
-
+int modelToSol(const Problem<int,double> &P, Solution<int,double> &s,IloCplex& 
+	       cplex,IloNumVarMatrix& x,IloNumVarMatrix& y, IloNumVarMatrix& b){
+  int i,t;
+  std::cout << "!!!!ATTETNTION !!!! peut etre une erreur d'arondi\n"; 
+  for (i=0;i<P.nbTask;++i){
+    for (t=P.r(i);t<=P.smax(i);++t){   
+      if (cplex.getValue(x[i][t])==1)
+	s.st[i]=t;
+    }
+    for (t=P.emin(i)-1;t<P.d(i);++t) {    
+      if (cplex.getValue(y[i][t])==1)
+	s.ft[i]=t+1;
+	
+    }
+    for (t=P.r(i);t<P.d(i);++t)
+      s.b[i][t]=cplex.getValue(b[i][t]);
+  }
+  for (i=0;i<P.D+1;++i)
+    s.event.push_back(i);
+  return 0;
+}
 
 
 ILOINCUMBENTCALLBACK2(getFirstSolInfo, IloInt&, cpt, IloNum, startTime){

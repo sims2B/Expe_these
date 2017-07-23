@@ -6,30 +6,32 @@ int main(int,char* argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
   instance >> nbTask ;
-  Problem<int> P(nbTask);
+  Problem<int,double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
-  // P.displayProblem();
+  P.displayProblem();
 
   
-  Task<int> T= P.A[0];
+  Task<int,double> T= P.A[9];
+  T.Wi=200;
   std:: cout << "Energetic reasonning return " << 
-    P.energeticReasonning(Interval<int>(0,2),
-			  P.totalResourceConsumption(Interval<int>(0,2))) 
+    P.energeticReasonning(Interval<int>(4,6),
+			  P.totalResourceConsumption(Interval<int>(4,6))) 
 	     << std::endl;
   T.displayTask();
   std::cout << std::endl;
-  std::cout << "left.shift = " << T.leftShift(Interval<int>(0,2))<< std::endl;
-  std::cout << "right.shift = " << T.rightShift(Interval<int>(0,2))<< std::endl;
+  std::cout << "left.shift = " << T.leftShift(Interval<int>(12,18))<< std::endl;
+  std::cout << "right.shift = " << T.rightShift(Interval<int>(12,18))<< std::endl;
+  std::cout << "both.shift = " << T.bothShift(Interval<int>(12,18))<< std::endl;
 
   std::cout << "energy requirement= " 
-	    << T.energyConsumption(Interval<int>(0,2))<< std:: endl;
+	    << T.energyConsumption(Interval<int>(12,18))<< std:: endl;
   std::cout << "resource consumption= " 
-  << T.resourceConsumption(Interval<int>(0,2))<< std:: endl;
-
+  << T.resourceConsumption(Interval<int>(12,18))<< std:: endl;
+  /*
    std::cout << " \n ////////////////////TEST LINEAR FUNCTION/////////////////////// \n";
 
-   /* LinearFunction<int> fint;
+    LinearFunction<int> fint;
   LinearFunction<int> gint(2,3);
   LinearFunction<double> f;
   LinearFunction<double> g(2.0,3.0);
@@ -112,25 +114,29 @@ int main(int,char* argv[]){
  
   std::cout << " \n //////////////////////////////TEST TASK//////////////////////////////// \n";
   
-  Task<double> un(0,3,8,2,3,Fdoub);
-  Task<double> deux(1,6,8,1,2,Gdoub);
-  Task<double> trois(2,8,4,1,1,Hdoub);
-  Task<double> quatre(2,8,7,1,2,Gdoub);
+  Task<int,double> un(0,3,6,2,3,Fdoub);
+  Task<int,double> deux(1,6,8,1,2,Gdoub);
+  Task<int,double> trois(2,8,4,1,1,Hdoub);
+  Task<int,double> quatre(2,8,7,1,2,Gdoub);
   un.displayTask();
   std::cout << std::endl;
-  std::cout << "energy Cons of 1 in [0,0.2]=> 0 \t obtenu: " <<un.energyConsumption(Interval<double>(0,0.2))<< std::endl;
-  std::cout << "energy Cons of 1 in [0,2]=> 5 \t obtenu: " <<un.energyConsumption(Interval<double>(0,2))<< std::endl;
-  std::cout << "energy Cons of 1 in [2.8,3]=> 0 \t obtenu: " <<un.energyConsumption(Interval<double>(2.8,3))<< std::endl;
-  std::cout << "energy Cons of 1 in [1,3]=> 5 \t obtenu: " <<un.energyConsumption(Interval<double>(1,3))<< std::endl;
-  std::cout << "energy Cons of 1 in [0,4]=> 8 \t obtenu: " <<un.energyConsumption(Interval<double>(0,4))<< std::endl;
-  std::cout << "energy Cons of 1 in [0,0.5]=> 0.5 \t obtenu: " <<un.energyConsumption(Interval<double>(0,0.5))<< std::endl;
-  std::cout << "energy Cons of 1 in [2.5,3]=> 0.5 \t obtenu: " <<un.energyConsumption(Interval<double>(2.5,3))<< std::endl;
-  std::cout << "energy Cons of 1 in [1,2]=> 2 \t obtenu: " <<un.energyConsumption(Interval<double>(1,2))<< std::endl;
-  std::cout << "energy Cons of 1 in [0.5,2]=> 3.5 \t obtenu: " <<un.energyConsumption(Interval<double>(0.5,2))<< std::endl;
-  std::cout << "left of 1 in [1,3]=> 2 \t obtenu: " <<un.leftShift(Interval<double>(1,3))<< std::endl;
-  std::cout << "right of 1 in [1,3]=> 5 \t obtenu: " <<un.rightShift(Interval<double>(1,3))<< std::endl;
-  std::cout << "both of 1 in [1,3]=> 2 \t obtenu: " <<un.bothShift(Interval<double>(1,3))<< std::endl;*/
+  std::cout << "          Work with Wi= 6 et ri = 0 et di = 3\n";
+  std::cout << "energy Cons of 1 in [0,1]=> 0 \t obtenu: " <<un.energyConsumption(Interval<int>(0,1))<< std::endl;
+  std::cout << "energy Cons of 1 in [0,2]=> 3 \t obtenu: " <<un.energyConsumption(Interval<int>(0,2))<< std::endl;
+  std::cout << "energy Cons of 1 in [2,3]=> 0 \t obtenu: " <<un.energyConsumption(Interval<int>(2,3))<< std::endl;
+  std::cout << "energy Cons of 1 in [1,3]=> 3 \t obtenu: " <<un.energyConsumption(Interval<int>(1,3))<< std::endl;
+  std::cout << "energy Cons of 1 in [0,4]=> 6 \t obtenu: " <<un.energyConsumption(Interval<int>(0,4))<< std::endl;
 
+  std::cout << "          Work with Wi= 11 et ri = 0 et di = 5\n";
+  std::cout << "energy Cons of 1 in [0,3]=> 5 \t obtenu: " <<un.energyConsumption(Interval<int>(0,3))<< std::endl;
+  std::cout << "energy Cons of 1 in [2,5]=> 5 \t obtenu: " <<un.energyConsumption(Interval<int>(2,5))<< std::endl;
+  std::cout << "energy Cons of 1 in [1,4]=> 6 \t obtenu: " <<un.energyConsumption(Interval<int>(1,4))<< std::endl;
+  std::cout << "         Work with Wi= 13 et ri = 0 et di = 5\n";
+  std::cout << "energy Cons of 1 in [1,4]=> 7 \t obtenu: " <<un.energyConsumption(Interval<int>(1,4))<< std::endl;
+  std::cout << "left of 1 in [1,3]=> 2 \t obtenu: " <<un.leftShift(Interval<int>(1,3))<< std::endl;
+  std::cout << "right of 1 in [1,3]=> 5 \t obtenu: " <<un.rightShift(Interval<int>(1,3))<< std::endl;
+  std::cout << "both of 1 in [1,3]=> 2 \t obtenu: " <<un.bothShift(Interval<int>(1,3))<< std::endl;
+*/
    return 0;
  
 }

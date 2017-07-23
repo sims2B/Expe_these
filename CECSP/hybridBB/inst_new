@@ -1,0 +1,140 @@
+L'instance est composée de 10 tâches et la ressource est de capacité 10
+************************************************
+La tâche 1 possède les attributs suivants :
+ri= 8
+di= 14
+eimin= 9
+simax= 13
+bi_min= 1
+bi_max= 9
+Wi= 23
+ b -> 4b + 3 , if b in [1,2]
+ b -> 5b + 1 , if b in [2,3]
+ b -> 6b + -2 , if b in [3,4]
+ b -> 7b + -6 , if b in [4,5]
+ b -> 8b + -11 , if b in [5,6]
+ b -> 9b + -17 , if b in [6,7]
+ b -> 10b + -24 , if b in [7,9]
+
+*************************************************
+La tâche 2 possède les attributs suivants :
+ri= 1
+di= 4
+eimin= 2
+simax= 3
+bi_min= 3
+bi_max= 9
+Wi= 52
+ b -> 2b + 4 , if b in [3,4]
+ b -> 6b + -12 , if b in [4,5]
+ b -> 7b + -17 , if b in [5,6]
+ b -> 8b + -23 , if b in [6,7]
+ b -> 9b + -30 , if b in [7,8]
+ b -> 10b + -38 , if b in [8,9]
+
+*************************************************
+La tâche 3 possède les attributs suivants :
+ri= 0
+di= 16
+eimin= 2
+simax= 14
+bi_min= 1
+bi_max= 9
+Wi= 174
+ b -> 10b + 8 , if b in [1,9]
+
+*************************************************
+La tâche 4 possède les attributs suivants :
+ri= 1
+di= 11
+eimin= 4
+simax= 8
+bi_min= 5
+bi_max= 9
+Wi= 200
+ b -> 8b + 4 , if b in [5,9]
+
+*************************************************
+La tâche 5 possède les attributs suivants :
+ri= 9
+di= 16
+eimin= 11
+simax= 14
+bi_min= 3
+bi_max= 9
+Wi= 84
+ b -> 5b + 9 , if b in [3,4]
+ b -> 7b + 1 , if b in [4,5]
+ b -> 8b + -4 , if b in [5,6]
+ b -> 9b + -10 , if b in [6,7]
+ b -> 10b + -17 , if b in [7,9]
+
+*************************************************
+La tâche 6 possède les attributs suivants :
+ri= 0
+di= 8
+eimin= 2
+simax= 6
+bi_min= 5
+bi_max= 10
+Wi= 134
+ b -> 8b + 3 , if b in [5,10]
+
+*************************************************
+La tâche 7 possède les attributs suivants :
+ri= 3
+di= 14
+eimin= 4
+simax= 13
+bi_min= 2
+bi_max= 9
+Wi= 32
+ b -> 6b + 1 , if b in [2,4]
+ b -> 7b + -3 , if b in [4,6]
+ b -> 8b + -9 , if b in [6,9]
+
+*************************************************
+La tâche 8 possède les attributs suivants :
+ri= 6
+di= 16
+eimin= 7
+simax= 15
+bi_min= 1
+bi_max= 10
+Wi= 7
+ b -> 2b + 5 , if b in [1,2]
+ b -> 3b + 3 , if b in [2,3]
+ b -> 4b , if b in [3,4]
+ b -> 5b + -4 , if b in [4,5]
+ b -> 6b + -9 , if b in [5,6]
+ b -> 7b + -15 , if b in [6,7]
+ b -> 8b + -22 , if b in [7,8]
+ b -> 9b + -30 , if b in [8,9]
+ b -> 10b + -39 , if b in [9,10]
+
+*************************************************
+La tâche 9 possède les attributs suivants :
+ri= 5
+di= 16
+eimin= 6
+simax= 15
+bi_min= 1
+bi_max= 10
+Wi= 16
+ b -> 7b + 2 , if b in [1,10]
+
+*************************************************
+La tâche 10 possède les attributs suivants :
+ri= 1
+di= 16
+eimin= 2
+simax= 15
+bi_min= 2
+bi_max= 10
+Wi= 29
+ b -> 2b + 8 , if b in [2,4]
+ b -> 3b + 4 , if b in [4,6]
+ b -> 7b + -20 , if b in [6,8]
+ b -> 10b + -44 , if b in [8,10]
+
+*************************************************

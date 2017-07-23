@@ -6,19 +6,23 @@
 int main(int,char *argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
+ 
   instance >> nbTask ;
   Problem<int,double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
   
   Solution<int,double> s(nbTask,P.D);  
+   if (!LPsolveConvex(P)){
   if (!SolveConvex(P,s)){
     std::cout << "Hurray!\n"; 
-    std::cout << "valide? " << s.isValid(P) << std::endl;
+    std::cout << "valide? " << s.isValid(P) << std::endl; 
+ 
   }
   else  
     std::cout << "...\n";
   std::cout << "**************************************************" <<std::endl;
+  }
   return 0;
 }
 

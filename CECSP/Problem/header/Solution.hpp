@@ -45,7 +45,7 @@ template<typename type,typename type2>
 Solution<type,type2>::Solution(int nbTask,int nbSlot){
   st.resize(nbTask);
   ft.resize(nbTask);
-  event.reserve(nbSlot);
+  event.reserve(nbSlot+1);
   b.resize(nbTask);
   for (int i=0;i<nbTask;++i)
     b[i].resize(nbSlot,0);
@@ -123,27 +123,22 @@ int Solution<type,type2>::isValid(const Problem<type,type2> &P) const{
   int e,i;
   type2 sum=0.0;
   type2 energy=0.0;
-  std::cout << "time window constraints ";
   for (i=0;i<nbTask;++i) {
     if (st[i] < P.r(i) + NEGATIVE_ZERO) return 0;
     if (ft[i] > P.d(i) + POSITIVE_ZERO) return 0;
   }
 
-  std::cout << "b_ie = 0 if the task is not in process ";
   for (i=0;i<nbTask;++i) {
     for (e=0;e<E-1;++e){
       if (event[e] < st[i] + POSITIVE_ZERO || event[e] >= ft[i] + POSITIVE_ZERO){
-	std :: cout << event[e] << " " << st[i] << " " << ft[i] << " " << b[i][e] << std::endl;
 	if (b[i][e] > POSITIVE_ZERO && P.bmin(i)!=0.0) return 0;
       }
     }
   }
 
-  std::cout << "energy and max/min consumption ";
   for (i=0;i<nbTask;++i) {
     energy=0.0; 
     for (e=0;e<E-1;++e){
-      std::cout << "max/min consumption " ;
       if (!isEqual(event[e+1],event[e]) && 
 	  event[e] > st[i] && event[e] < ft[i] &&
 	  (b[i][e] < P.bmin(i) + NEGATIVE_ZERO || 
@@ -151,7 +146,7 @@ int Solution<type,type2>::isValid(const Problem<type,type2> &P) const{
 	return 0;
       //energy 
       if (!isEqual(b[i][e],0.0))
-	energy+=(P.A[i].Fi.F[0].f.a*b[i][e]+P.A[i].Fi.F[0].f.c)*(event[e+1]-event[e]);
+	energy+=(P.A[i].Fi(b[i][e]))*(event[e+1]-event[e]);
     }
     if (energy < P.W(i) + NEGATIVE_ZERO) return 0;	 
   }

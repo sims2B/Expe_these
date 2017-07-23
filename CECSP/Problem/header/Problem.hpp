@@ -69,17 +69,20 @@ struct Problem {
 
   //giving an interval I, compute the some of all task mandatory energy 
   //consumption inside I
-  type2 totalEnergyConsumption(const Interval<type2>&) const;
+  type2 totalEnergyConsumption(const Interval<type>&) const;
   //giving an interval I, compute the some of all task mandatory energy 
   //consumption inside I
-  type2 totalResourceConsumption(const Interval<type2>&) const;
-  inline int energeticReasonning(const Interval<type2>& I,type2 total) const
+  type2 totalResourceConsumption(const Interval<type>&) const;
+  //return 0 if the ER in interval I fails
+  inline int energeticReasonning(const Interval<type>& I,type2 total) const
   {return (B*(I.t2-I.t1) - total>= NEGATIVE_ZERO);}
 
   //vérifier ajustement !!!
-  int adjustmentLS(const Interval<type2>&,int,type2);
-  int adjustmentRS(const Interval<type2>&,int,type2);
-  int totalTest(const Interval<type2>&);
+  int adjustmentEmin(const Interval<type>&,int,type2);
+  int adjustmentRi(const Interval<type>&,int,type2);
+  int adjustmentSmax(const Interval<type>&,int,type2);
+  int adjustmentDi(const Interval<type>&,int,type2);
+  int totalTest(const Interval<type>&);
 
   int nbTask;
   type2 B;
@@ -259,7 +262,7 @@ int Problem<type,type2>::dataConsistency() const{
 
 
 template<typename type,typename type2> 
-type2 Problem<type,type2>::totalEnergyConsumption(const Interval<type2> &I) const{
+type2 Problem<type,type2>::totalEnergyConsumption(const Interval<type> &I) const{
   type2 conso=0.0;
   for (int i=0;i<nbTask;++i)
     conso+=A[i].energyConsumption(I);
@@ -268,69 +271,112 @@ type2 Problem<type,type2>::totalEnergyConsumption(const Interval<type2> &I) cons
 
 
 template<typename type,typename type2>
-type2 Problem<type,type2>::totalResourceConsumption(const Interval<type2> &I) const{
+type2 Problem<type,type2>::totalResourceConsumption(const Interval<type> &I) const{
+  // std:: cout << "***************début calcul total conso resource***********\n";
   type2 conso=0.0;
   for (int i=0;i<nbTask;++i)
     conso+=A[i].resourceConsumption(I); 
+  //  std:: cout << "***************fin calcul total conso resource***********\n";
   return conso;
 }
 
 //attention au floor/ceil pour le cas entier
 template<typename type,typename type2>
-int Problem<type,type2>::adjustmentLS(const Interval<type2> &I,int i,type2 total){
-  int performed=0;
-  if (I.t2 < d(i)){
-    const type2 capacity=B*(I.t2-I.t1);
-    type2  SL,LS/*,LSboth*/; 
-    SL=capacity-total+A[i].resourceConsumption(I);
-    LS=A[i].resourceConversion(A[i].leftShift(I),I);
-    //    LSboth=std::min(LS,A[i].resourceConversion(A[i].bothShift(I),I));
-    if (SL+POSITIVE_ZERO < LS) {
+int Problem<type,type2>::adjustmentEmin(const Interval<type> &I,int i,type2 total){
+  if (I.t2 < d(i)+ NEGATIVE_ZERO && I.t2 > emin(i) + POSITIVE_ZERO){
+    int performed=0;
+    const type2 LS = A[i].resourceConversion(A[i].leftShift(I),I);
+    const type2 SL = B*(I.t2-I.t1) - total + A[i].resourceConsumption(I);
+    if (SL + POSITIVE_ZERO < LS) {
       type temp=emin(i);
-      A[i].emin=std::max(emin(i),(type)I.t2+(LS-SL)/bmax(i));
-      if (A[i].emin != temp)
+      A[i].emin=std::max(emin(i) , (type) I.t2 + ( LS - SL) /bmax(i));
+      if (!isEqual(A[i].emin,temp))
 	performed=1;
     }
-    if (SL + POSITIVE_ZERO < LS && bmin(i)!=0.0) {
-      type temp=r(i);
-      A[i].ri=std::max(r(i),(type)I.t2-SL/bmin(i));  
-      if (A[i].ri != temp)
-	performed=1;
-    }
+    return performed; 
   }
-  return performed;
+  else return 0;
 }
 
+template<>
+int Problem<int>::adjustmentEmin(const Interval<int> &I,int i,int total);
 
-template<typename type,typename type2> 
-int Problem<type,type2>::adjustmentRS(const Interval<type2> &I,int i,type2 total){
-  int performed=0;
-  if (I.t1 > r(i)){
-    const type2 capacity=B*(I.t2-I.t1);
-    type2 SL,RS/*,RSboth*/;  
-    SL=capacity-total+A[i].resourceConsumption(I);
-    RS=A[i].resourceConversion(A[i].rightShift(I),I);
-    //RSboth=std::min(RS,A[i].resourceConversion(A[i].bothShift(I),I));
-    if (SL- RS< NEGATIVE_ZERO) {
-      type temp=smax(i);
-      A[i].smax=std::min(smax(i),(type)I.t1-(RS-SL)/bmax(i));
-      if ( A[i].smax != temp)
-	performed=1;
-    }
-    if (bmin(i)!=0.0 && SL-RS < NEGATIVE_ZERO) {
-      type temp=d(i);
-      A[i].di=std::min(d(i),(type)I.t1+SL/bmin(i)); 
-      if (A[i].di != temp)
-	performed=1;
-    }
-  }
-  return performed;
-}
-
-
+template<>
+int Problem<int,double>::adjustmentEmin(const Interval<int> &I,int i,double total);
 
 template<typename type,typename type2>
-int Problem<type,type2>::totalTest(const Interval<type2>& current){
+int Problem<type,type2>::adjustmentRi(const Interval<type> &I,int i,type2 total){
+  if (I.t1 > r(i) + POSITIVE_ZERO  && I.t1 < d(i) + NEGATIVE_ZERO){
+    int performed=0;
+    const type2 LSboth = A[i].resourceConversion(std::min(A[i].leftShift(I),
+							  A[i].bothShift(I)),I);
+    const type2 SL = B*(I.t2-I.t1) - total + A[i].resourceConsumption(I);
+    if (SL + POSITIVE_ZERO < LSboth && bmin(i)!=0.0) {
+      type temp=r(i);
+      A[i].ri=std::max(r(i),(type)I.t2-SL/bmin(i));  
+      if (!isEqual(A[i].ri,temp))
+	performed=1;
+    }
+    return performed;
+  }
+  else return 0;
+}
+
+template<>
+int Problem<int>::adjustmentRi(const Interval<int> &I,int i,int total);
+
+template<>
+int Problem<int,double>::adjustmentRi(const Interval<int> &I,int i,double total);
+
+template<typename type,typename type2> 
+int Problem<type,type2>::adjustmentSmax(const Interval<type> &I,int i,type2 total){
+  if (I.t1 > r(i) + POSITIVE_ZERO  && I.t1 < smax(i) + NEGATIVE_ZERO){
+    int performed=0;
+    const type2 SL=B*(I.t2-I.t1) -total+A[i].resourceConsumption(I);
+    const type2 RS=A[i].resourceConversion(A[i].rightShift(I),I);
+    if (SL + POSITIVE_ZERO < RS) {
+      type temp=smax(i);
+      A[i].smax=std::min(smax(i),(type) I.t1 - (RS-SL)/bmax(i));
+      if (!isEqual(A[i].smax,temp))
+	performed=1;
+    }
+    return performed;
+  }
+  else return 0;
+}
+
+template<>
+int Problem<int>::adjustmentSmax(const Interval<int> &I,int i,int total);
+
+template<>
+int Problem<int,double>::adjustmentSmax(const Interval<int> &I,int i,double total);
+
+template<typename type,typename type2> 
+int Problem<type,type2>::adjustmentDi(const Interval<type> &I,int i,type2 total){
+  if (I.t2 < d(i) + NEGATIVE_ZERO && I.t2 > r(i) + POSITIVE_ZERO){
+    int performed=0;
+    const type2 SL=B*(I.t2-I.t1)-total+A[i].resourceConsumption(I);
+    const type2 RSboth=A[i].resourceConversion(std::min(A[i].rightShift(I),
+							  A[i].bothShift(I)),I);
+    if (SL + POSITIVE_ZERO < RSboth && bmin(i)!=0.0) {
+      type temp=d(i);
+      A[i].di=std::min(d(i),(type)I.t1 + SL/bmin(i)); 
+      if (!isEqual(A[i].di,temp))
+	performed=1;
+    }
+    return performed;
+  }
+  else return 0;
+}
+
+template<>
+int Problem<int>::adjustmentDi(const Interval<int> &I,int i,int total);
+
+template<>
+int Problem<int,double>::adjustmentDi(const Interval<int> &I,int i,double total);
+
+template<typename type,typename type2>
+int Problem<type,type2>::totalTest(const Interval<type>& current){
   const type2 total=totalResourceConsumption(current);
   if (!energeticReasonning(current,total))
     return 0;

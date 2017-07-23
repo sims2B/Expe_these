@@ -10,7 +10,7 @@ RM=@rm
 CP=@cp
 
 RELEASE_DIR=${HOME}/local
-DEBUG=1#enable to provide debug infos
+DEBUG=0#enable to provide debug infos
 
 ### FLAGS #############################################
 LDFLAGS= -L/home/mnattaf/Library/cplex_12_6/cplex/lib/x86-64_linux/static_pic -L/home/mnattaf/Library/cplex_12_6/concert/lib/x86-64_linux/static_pic
@@ -21,7 +21,7 @@ DEBUG_FLAGS= -W  -Werror -Wall -gstabs
 
 
 ### PROPERTIES ########################################
-PROJECTNAME=bin/modelTI
+PROJECTNAME=bin/modelTI_debug
 SRCS=~/Dev2016/CECSP/Problem/source/Task.cpp \
       ~/Dev2016/CECSP/Problem/source/Solution.cpp \
 	./source/timeModel.cpp \

@@ -1,14 +1,69 @@
-#include "hybridBB.h"
-//#include "timeModel.h"
-#include "onOffModel.h"
+#ifndef DEF_HYBRIDBB
+#define DEF_HYBRIDBB
+
+#include "Satisfiability.hpp"
+#include "Solution.hpp"
+#include "timeModel.hpp"
+//#include "onOffModel.h"
+//#include "ttdr.h"
+#include <stack>
 #include <limits>
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <sys/time.h>
 
-template<typename type>
-int chooseVar1(const Problem<type>& P, type epsilon){
+
+///////////////////////////////////////////////////////////////////
+/////////////////////////// DEFINITION ////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+template<typename type,typename type2 =type>
+using ptrTest=int(*)(Problem<type,type2>&);
+template<typename type,typename type2 =type>
+using ptrVar=int(*)(const Problem<type,type2>&,type);
+
+////////////////////////////////////////////
+///////////variable choice///////////////////
+///////////////////////////////////////////
+
+
+//lexicographic order
+template<typename type,typename type2 =type>
+int chooseVar1(const Problem<type,type2>&,type);
+//random
+template<typename type,typename type2 =type>
+int chooseVar2(const Problem<type,type2>&,type);
+//min domain (min=numericlimits::max)
+template<typename type,typename type2 =type>
+int chooseVar3(const Problem<type,type2>&,type);
+//max domain (max=numericlimits::min)
+template<typename type,typename type2 =type>
+int chooseVar4(const Problem<type,type2>&,type);
+//fi(bmax)(di-ri)-wi min
+template<typename type,typename type2 =type>
+int chooseVar5(const Problem<type,type2>&,type);
+//fi(bmax)(di-ri)-wi max
+template<typename type,typename type2 =type>
+int chooseVar6(const Problem<type,type2>&,type);
+
+///////////////////////////////////////
+
+//le dernier parametre permet de regler l'endroit ou l'on coupe l'intervalle (0.5 on coupe a la moitié, 0.33 au 2eme tiers...)
+template<typename type,typename type2 =type> 
+void createBranch(Problem<type,type2>&,int,std::stack<Problem<type,type2>>&,double);
+
+template<typename type,typename type2= type>
+int BranchBound(Problem<type,type2>&, Solution<type,type2>&, ptrVar<type,type2>, ptrTest<type,type2>,type,double parameter=0.5);
+
+
+
+///////////////////////////////////////////////////////////////////
+//////////////////////// IMPLEMENTATION ///////////////////////////
+///////////////////////////////////////////////////////////////////
+
+
+template<typename type,typename type2>
+int chooseVar1(const Problem<type,type2>& P, type epsilon){
   int i=0;
   while (i<P.nbTask){
     if (P.smax(i) - P.r(i) > epsilon) return i;
@@ -19,8 +74,8 @@ int chooseVar1(const Problem<type>& P, type epsilon){
 }
 
 
-template<typename type>
-int chooseVar2(const Problem<type>& P,type epsilon){
+template<typename type,typename type2>
+int chooseVar2(const Problem<type,type2>& P,type epsilon){
   const uint n = P.nbTask;
   int real_size = 0;
   uint i;
@@ -43,9 +98,9 @@ int chooseVar2(const Problem<type>& P,type epsilon){
   return j;
 }
 
-template<typename type>
-int chooseVar3(const Problem<type>& P,type epsilon){
-  type min=std::numeric_limits<double>::max();
+template<typename type,typename type2>
+int chooseVar3(const Problem<type,type2>& P,type epsilon){
+  type min=std::numeric_limits<type>::max();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
@@ -62,9 +117,9 @@ int chooseVar3(const Problem<type>& P,type epsilon){
   return j;
 }
 
-template<typename type>
-int chooseVar4(const Problem<type>& P, type epsilon){  
-  type max=std::numeric_limits<double>::min();
+template<typename type,typename type2>
+int chooseVar4(const Problem<type,type2>& P, type epsilon){  
+  type max=std::numeric_limits<type>::min();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
@@ -81,28 +136,28 @@ int chooseVar4(const Problem<type>& P, type epsilon){
   return j;
 }
 
-template<typename type>
-int chooseVar5(const Problem<type>& P,type epsilon){
-  type min=std::numeric_limits<double>::max();
+template<typename type,typename type2>
+int chooseVar5(const Problem<type,type2>& P,type epsilon){
+  type2 min=std::numeric_limits<type2>::max();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
-    if ((P.smax(i)-P.r(i))/(P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i))<=min && P.smax(i) - P.r(i)>epsilon){
-	  j=i;
-	  min=(P.smax(i)-P.r(i))/(P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i));
-	}
-      if ((P.d(i)-P.emin(i))/(P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i)) <min && P.d(i) - P.emin(i)>epsilon){ 
-	  j=i+P.nbTask;
-	  min=(P.emin(i)-P.d(i))/(P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i));
-	}
-      ++i;
+    if (P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i)<=min && P.smax(i) - P.r(i)>epsilon) {
+      j=i;
+      min=P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i);
     }
+    if (P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i)<min && P.d(i)-P.emin(i)>epsilon){ 
+      j=i+P.nbTask;
+      min=P.A[i].Fi(P.bmax(i))*(P.d(i)-P.r(i))-P.W(i);
+    }
+    ++i;
+  }
   return j;
 }
 
-template<typename type>
-int chooseVar6(const Problem<type>& P,type epsilon){
-  type max=std::numeric_limits<double>::min();
+template<typename type,typename type2>
+int chooseVar6(const Problem<type,type2>& P,type epsilon){
+  type2 max=std::numeric_limits<type2>::min();
   int j=-1;
   int i=0;
   while (i<P.nbTask){
@@ -119,17 +174,10 @@ int chooseVar6(const Problem<type>& P,type epsilon){
   return j;
 }
 
-template<typename type>
-int testFlow(const Problem<type>& /*P*/,Solution<type,type> &/*s*/){     
-  return 0;
-}
 
-template<>
-void createBranch(Problem<int>& P,int x,std::stack<Problem<int>>& explore, double param);
-
-template<typename type>
-void createBranch(Problem<type>& P,int x,std::stack<Problem<type>>& explore, double param){
-  Problem<type> Q(P);
+template<typename type,typename type2>
+void createBranch(Problem<type,type2>& P,int x,std::stack<Problem<type,type2>>& explore, double param){
+  Problem<type,type2> Q(P);
   if (x < P.nbTask){
     P.A[x].smax-=(P.smax(x)-P.r(x))*(1.0-param);
     explore.push(P);
@@ -146,8 +194,14 @@ void createBranch(Problem<type>& P,int x,std::stack<Problem<type>>& explore, dou
   }
 }
 
+
+template<>
+void createBranch(Problem<int,int>& P,int x,std::stack<Problem<int,int>>& explore, double param);
+template<>
+void createBranch(Problem<int,double>& P,int x,std::stack<Problem<int,double>>& explore, double param);
+
 template<typename type,typename type2= type>
-int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar, ptrTest<type> TotalTest,  type epsilon, double param){
+int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2> choiceVar, ptrTest<type,type2> TotalTest,  type epsilon, double param){
   struct timeval tim;
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
@@ -159,8 +213,8 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
   int nbNode=0;
   int x=0;
   int test=0;
-  Problem<type> P1(P);
-  std::stack<Problem<type>> explore;
+  Problem<type,type2> P1(P);
+  std::stack<Problem<type,type2>> explore;
   explore.push(P);
   
   while (!explore.empty() && t2-t1<=7200.0) { 
@@ -177,7 +231,7 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
 	else {
 	  ++cptMIP;
 	  P1.updateHorizon();
-	  if (!solveOO(P1,s,timeMIP)){
+	  if (!SolveConvex(P1,s)){
 	    gettimeofday(&tim,NULL);
 	    t2=tim.tv_sec+(tim.tv_usec/1000000.0);
 	    std::cout << "Instance résolue" << std::endl;
@@ -205,3 +259,6 @@ int BranchBound(Problem<type>& P,Solution<type,type2>& s,ptrVar<type> choiceVar,
   std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
   return 0;
 }
+
+
+#endif

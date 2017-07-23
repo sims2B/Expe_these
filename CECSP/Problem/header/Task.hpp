@@ -9,7 +9,8 @@
 #include <math.h> 
 #include <stdlib.h>
 #include <random>
-
+#include <ilcplex/ilocplex.h>
+#include <ilcplex/ilocplexi.h>
 //!!!!!!!!!!!bmin!=0!!!!!!!!!!!!!!!!
 
 
@@ -53,22 +54,25 @@ struct Task {
   inline int dataConsistency() const {return (Fi(bmax)*(di-ri) - Wi >=NEGATIVE_ZERO);}
  
   //compute the minimum energy consumption of a task inside an interval I
-  type2 energyConsumption(const Interval<type2>&) const;
-  //compute the minimum resource consumption of a task inside an interval I
-  type2 resourceConsumption(const Interval<type2>&) const;
+  type2 energyConsumption(const Interval<type>&) const;
   //compute the quantity of resource a task has to consume in an interval I to 
   //bring an energy "energy" to the task
-  type2 resourceConversion(const type2& energy, const Interval<type2>&) const;
+  type2 resourceConversionConcave(const type2& energy,const Interval<type>&) const;
+  type2 resourceConversionConvex(const type2& energy,const Interval<type>&) const;
+  type2 resourceConversion(const type2& energy,const Interval<type> &I) const;
+  
+  //compute the minimum resource consumption of a task inside an interval I
+  type2 resourceConsumption(const Interval<type>&) const;
 
   //compute the energy consumption of a task inside an interval I if the task is
   // left-shifted
-  type2 leftShift(const Interval<type2>&) const;
+  type2 leftShift(const Interval<type>&) const;
   //compute the energy consumption of a task inside an interval I if the task is
   // right-shifted
-  type2 rightShift(const Interval<type2>&) const;
+  type2 rightShift(const Interval<type>&) const;
   //compute the energy consumption of a task inside an interval I if the task is
   // both-shifted
-  type2 bothShift(const Interval<type2>&) const;
+  type2 bothShift(const Interval<type>&) const;
   
   type ri;
   type di;
@@ -154,11 +158,12 @@ void  Task<type,type2>::addConcavePiecewiseFunction(){
   for (int i=1;i<_nbPiece-1;++i) {
     t1=t2;
     t2=t1+ceil((double)(bmax - bmin)/(double)_nbPiece);
+    _c = _a *t1 + _c; 
     if (!isEqual(_a-1,(type2)_nbPiece-i))
       _a= _nbPiece-i+dis1(gen)%(int)((_a-1)-_nbPiece+i);
     else 
       _a= _nbPiece-i;
-    _c=Fi(t1)-_a*t1;
+    _c=_c-_a*t1;
     Piece<type2> _P(Interval<type2>(t1,t2),LinearFunction<type2>(_a,_c));
     Fi.F.push_back(_P);
   }
@@ -166,8 +171,9 @@ void  Task<type,type2>::addConcavePiecewiseFunction(){
   //random generation of the last piece of the function
   if (_nbPiece!=1){
     t1=t2;
+    _c = _a *t1 + _c; 
     _a= 1+dis1(gen)%(int)_a;
-    _c=Fi(t1)-_a*t1;
+    _c=_c-_a*t1;
     Piece<type2> _P(Interval<type2>(t1,bmax),LinearFunction<type2>(_a,_c));
     Fi.F.push_back(_P);
   }
@@ -243,8 +249,7 @@ void Task<type,type2>::displayTask() const{
   std::cout << "bi_min= "<< bmin << std::endl;
   std::cout << "bi_max= "<< bmax << std::endl;
   std::cout << "Wi= " << Wi << std::endl;
-  for (int q=0;q<Fi.nbPiece;++q) 
-    Fi.F[q].f.displayLinearFunction();
+  Fi.displayFunction();
 }
 
 
@@ -265,9 +270,10 @@ template<> void Task<int,int>::updateSMax();
 template<> void Task<int,double>::updateSMax();
 
 template<typename type,typename type2>
-type2 Task<type,type2>::leftShift(const Interval<type2> &I) const{
-  type2 nrj=(type2)0.0;
-  if (I.t1 < ri + Wi/Fi(bmax) + NEGATIVE_ZERO){
+type2 Task<type,type2>::leftShift(const Interval<type> &I) const{
+  return std::max((type2)0.0,Wi-Fi(bmax)*(type2)std::max(I.t1 - ri, (type)0.0));
+/* type2 nrj=(type2)0.0;
+  if (I.t1 < ri + Wi/Fi(bmax) + NEGATIVE_ZERO &&  I.t2 > ri){
     if (I.t2  >= di + NEGATIVE_ZERO){
       if (I.t1 >= ri + POSITIVE_ZERO) nrj=Wi-Fi(bmax)*(I.t1-ri);
       else nrj = Wi;
@@ -281,19 +287,22 @@ type2 Task<type,type2>::leftShift(const Interval<type2> &I) const{
 		     ,Wi-Fi(bmax)*(I.t1-ri));
     }
   }
-  return nrj;
+  return nrj;*/
 }
 
-template<>
+/*template<>
 int Task<int,int>::leftShift(const Interval<int> &I) const;
 template<>
-double Task<int,double>::leftShift(const Interval<double> &I) const;
-
+double Task<int,double>::leftShift(const Interval<int> &I) const;
+*/
 //attention aux arrondi et aux smax et emin
 template<typename type,typename type2>
-type2 Task<type,type2>::rightShift(const Interval<type2> &I) const{
+type2 Task<type,type2>::rightShift(const Interval<type> &I) const{
+
+  return std::max((type2)0.0,Wi-Fi(bmax)*(type2)std::max(di - I.t2, (type)0.0));
+  /*
   type2 nrj=(type2)0.0;
-  if (I.t2 > di - Wi/Fi(bmax) + POSITIVE_ZERO){
+  if (I.t2 > di - Wi/Fi(bmax) + POSITIVE_ZERO && I.t1 < di){
     if (I.t1 <= ri + POSITIVE_ZERO ){
       if (I.t2 <= di + NEGATIVE_ZERO) nrj=Wi-Fi(bmax)*(di-I.t2);
       else nrj = Wi;
@@ -307,43 +316,118 @@ type2 Task<type,type2>::rightShift(const Interval<type2> &I) const{
 		     ,Wi-Fi(bmax)*(di-I.t2));
     }
   }
-  return nrj;
+  return nrj;*/
 }
 
-template<>
+/*template<>
 int Task<int,int>::rightShift(const Interval<int> &I) const;
 template<>
-double Task<int,double>::rightShift(const Interval<double> &I) const;
-
+double Task<int,double>::rightShift(const Interval<int> &I) const;
+*/
 template<typename type,typename type2>
-type2 Task<type,type2>::bothShift(const Interval<type2> &I) const{
+type2 Task<type,type2>::bothShift(const Interval<type> &I) const{
   return std::max(Fi(bmin)*(I.t2-I.t1),
 		  Wi-Fi(bmax)*(std::max((type)0.0,I.t1-ri) + std::max(di-I.t2,(type)0.0)));
 }
 
 template<typename type,typename type2>
-type2 Task<type,type2>::energyConsumption(const Interval<type2>& I) const{
-  return /*std::min(*/std::min(leftShift(I),rightShift(I))/*, bothShift(I))*/;
+type2 Task<type,type2>::energyConsumption(const Interval<type>& I) const{
+  // std:: cout << "***********début calcul conso nrj*******\n"; 
+  // std:: cout << " LS " << leftShift(I) << " RS " << rightShift(I) << " BS " << bothShift(I) << std::endl;
+ type2 nrj=std::min(std::min(leftShift(I),rightShift(I)),bothShift(I));
+ //  std:: cout << "***********fin calcul conso nrj*******\n";
+  return nrj;
 }
 
 template<typename type,typename type2>
-type2 Task<type,type2>::resourceConversion(const type2& energy,const Interval<type2> &I) const{
-  type2 max=0.0;
-  Interval<type2> J(ri,di);
-  for (int q=0;q<Fi.nbPiece;++q) 
-    max= std::max((energy- sizeIntersection(J,I)*Fi.F[q].f.c)/Fi.F[q].f.a,
-		  max);
-  if (bmin!=0.0)  
-    return std::max(bmin*energy/Fi(bmin),
+type2 Task<type,type2>::resourceConversionConcave(const type2& energy,const Interval<type> &I) const{
+  const type J(sizeIntersection(I,Interval<type>(ri,di)));
+  if ( bmin!=0.0 && energy <= Fi(bmin) * J) return bmin*energy/Fi(bmin);
+  else {  
+    type2 max=0.0;
+    for (int q=0;q<Fi.nbPiece;++q) 
+      max= std::max((energy - J *Fi.F[q].f.c)/Fi.F[q].f.a,
 		    max);
-  else
     return max;
+  }
 }
 
+template<>
+int Task<int,int>::resourceConversionConcave(const int& energy,const Interval<int> &I) const;
+
+template<>
+double Task<int,double>::resourceConversionConcave(const double& energy,const Interval<int> &I) const;
 
 template<typename type,typename type2>
-type2 Task<type,type2>::resourceConsumption(const Interval<type2> &I) const{
-  return resourceConversion(this->energyConsumption(I),I);
+type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Interval<type> &I) const{
+  const type J(sizeIntersection(I,Interval<type>(ri,di)));
+  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) return bmin* energy/Fi(bmin);
+  else {  
+    IloEnv env;
+    IloModel model(env);
+    const int Q= Fi.nbPiece;
+    int q;
+    IloNumVarArray lambda(env,Q+1,0,J,ILOFLOAT);
+  
+    IloExpr expr(env);
+    for (q=0 ; q < Q ; ++q){
+      expr += lambda[q] * Fi.F[q].I.t1;
+    }
+    expr += lambda[Q] * Fi.F[Q-1].I.t2;
+    model.add(IloMinimize(env,expr));
+    expr.end();
+
+    IloExpr expr2(env);
+    for (q=0 ; q<Q ; ++q){
+      expr2 += lambda[q] * Fi(Fi.F[q].I.t1);
+    }
+    expr2 += lambda[Q] * Fi(Fi.F[Q-1].I.t2);
+    model.add(expr2 >= energy);
+    expr2.end();
+ 
+    IloExpr expr3(env);
+    for (q=0 ; q<Q+1 ; ++q){
+      expr3 += lambda[q];
+    }
+    model.add(expr3 <= J);
+    expr3.end();
+    
+    IloCplex cplex(model);
+    cplex.setOut(env.getNullStream());
+    if (cplex.solve())
+      return (type2)cplex.getObjValue();
+    else {
+      std::cout << " houston nous avons un problème " << std::endl;
+      return std::numeric_limits<type2>::min();
+    }
+  }
+}
+
+template<>
+int Task<int,int>::resourceConversionConvex(const int& energy,const Interval<int> &I) const;
+
+template<>
+double Task<int,double>::resourceConversionConvex(const double& energy,const Interval<int> &I) const;
+
+template<typename type,typename type2>
+type2 Task<type,type2>::resourceConversion(const type2& energy,const Interval<type> &I) const{
+  if (Fi.nbPiece == 1 || Fi.isConcave()){
+    return resourceConversionConcave(energy,I); 
+  }
+  else if (Fi.isConvex()){
+    return resourceConversionConvex(energy,I);
+  }
+  else
+    std::cout << " houston nous avons un autre problème " << std::endl;
+  return 1;
+}
+
+template<typename type,typename type2>
+type2 Task<type,type2>::resourceConsumption(const Interval<type> &I) const{
+  //std:: cout << "*************début calcul conso resource*********\n";
+  type2 res=resourceConversion(this->energyConsumption(I),I);
+  // std:: cout << "*************fin calcul conso resource*********\n";
+  return res;
 }
 
 int rdtsc();

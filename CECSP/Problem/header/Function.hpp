@@ -35,6 +35,8 @@ template<typename type> struct Function{
   int isContinuous() const;
   //retrun 1 if the function is increasing (non necessarily strictly), 0 otw
   int isIncreasing() const;
+  
+  //!!!!!!!!! To check for the integer case!!!!!!!!
   //retrun 1 if the function is convex, 0 otw
   int isConvex() const;
   //retrun 1 if the function is concave, 0 otw
@@ -90,11 +92,11 @@ int Function<type>::isIncreasing() const{
 template<typename type>
 int Function<type>::isConvex() const{
   //slope is increasing
-  type prev_slope=(F(F[0].I.t2) -F(F[0].I.t1))/(F[0].I.t2 - F[0].I.t1);
-  type curr_slope;
+  double prev_slope=(double)((*this)(F[0].I.t2) -(*this)(F[0].I.t1))/(double)(F[0].I.t2 - F[0].I.t1);
+  double curr_slope;
   for (int i=1;i<nbPiece;++i){
-    curr_slope = (F(F[i].I.t2) -F(F[i].I.t1))/(F[i].I.t2 - F[i].I.t1);
-    if (curr_slope > prev_slope) return 0;
+    curr_slope = (double)((*this)(F[i].I.t2) -(*this)(F[i].I.t1))/(double)(F[i].I.t2 - F[i].I.t1);
+    if (curr_slope < prev_slope + NEGATIVE_ZERO) return 0;
     prev_slope=curr_slope;
   }
   return 1; 
@@ -103,11 +105,11 @@ int Function<type>::isConvex() const{
 template<typename type>
 int Function<type>::isConcave() const{
   //slope is decreasing
-  type prev_slope=(F(F[0].I.t2) -F(F[0].I.t1))/(F[0].I.t2 - F[0].I.t1);
-  type curr_slope;
+  double prev_slope=(double)((*this)(F[0].I.t2) -(*this)(F[0].I.t1))/(double)(F[0].I.t2 - F[0].I.t1);
+  double curr_slope;
   for (int i=1;i<nbPiece;++i){
-    curr_slope = (F(F[i].I.t2) -F(F[i].I.t1))/(F[i].I.t2 - F[i].I.t1);
-    if (curr_slope < prev_slope) return 0;
+    curr_slope = (double)((*this)(F[i].I.t2) -(*this)(F[i].I.t1))/(double)(F[i].I.t2 - F[i].I.t1);
+    if (curr_slope > prev_slope + POSITIVE_ZERO) return 0;
     prev_slope=curr_slope;
   }
   return 1; 
