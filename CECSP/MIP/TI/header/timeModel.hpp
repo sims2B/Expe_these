@@ -590,6 +590,7 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
 	}
       }
     }
+
     for (i=0; i<nbTask; i++) {
       IloExpr exprx(env);
       for (t=0; t<P.A[i].ri;t++)
