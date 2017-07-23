@@ -483,14 +483,14 @@ int createConvexConstraints(const Problem<type,type2>& P, IloEnv& env,
     const int nbTask=P.nbTask;	
     
     //objective
-    /*   IloExpr expr(env);
+    IloExpr expr(env);
     for (i=0;i<nbTask;++i){
       for (t=0;t<P.D;++t)
 	expr += b[i][t];
     }
     model.add(IloMinimize(env,expr));
     expr.end();
-    */
+    
     // (sum x_it == 1) et (sum yit==1)
     for (i=0; i<nbTask; i++) {
       IloExpr exprx(env);
