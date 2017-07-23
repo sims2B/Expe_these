@@ -9,6 +9,7 @@ int Solution<int,double>::isValid(const Problem<int,double> &P) const{
   int e,i;
   double sum=0.0;
   double energy=0.0;
+  std::cout << " check solution\n";
   for (i=0;i<nbTask;++i) {
     if (P.r(i) > st[i]) return 0;
     if (P.d(i) < ft[i]) return 0;
