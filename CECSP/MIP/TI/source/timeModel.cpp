@@ -55,11 +55,11 @@ int modelToSol(const Problem<int,double> &P, Solution<int,double> &s,IloCplex&
   std::cout << "!!!!ATTETNTION !!!! peut etre une erreur d'arondi\n"; 
   for (i=0;i<P.nbTask;++i){
     for (t=P.r(i);t<=P.smax(i);++t){   
-      if (isEqual(cplex.getValue(x[i][t]),1))
+      if (isEqual((double)cplex.getValue(x[i][t]),1.0))
 	s.st[i]=t;
     }
     for (t=P.emin(i)-1;t<P.d(i);++t) {    
-      if (isEqual(cplex.getValue(y[i][t]),1))
+      if (isEqual((double)cplex.getValue(y[i][t]),1.0))
 	s.ft[i]=t+1;
     }
     for (t=P.r(i);t<P.d(i);++t)
