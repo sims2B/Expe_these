@@ -333,7 +333,7 @@ type2 Task<type,type2>::bothShift(const Interval<type> &I) const{
 template<typename type,typename type2>
 type2 Task<type,type2>::energyConsumption(const Interval<type>& I) const{
   // std:: cout << "***********début calcul conso nrj*******\n"; 
-  // std:: cout << " LS " << leftShift(I) << " RS " << rightShift(I) << " BS " << bothShift(I) << std::endl;
+  std:: cout << ": LS " << leftShift(I) << " RS " << rightShift(I) << " BS " << bothShift(I) << std::endl;
  type2 nrj=std::min(std::min(leftShift(I),rightShift(I)),bothShift(I));
  //  std:: cout << "***********fin calcul conso nrj*******\n";
   return nrj;
@@ -361,8 +361,9 @@ double Task<int,double>::resourceConversionConcave(const double& energy,const In
 template<typename type,typename type2>
 type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Interval<type> &I) const{
   const type J(sizeIntersection(I,Interval<type>(ri,di)));
-  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) return bmin* energy/Fi(bmin);
-  else {  
+  //  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) return bmin* energy/Fi(bmin);
+  // else {
+  std::cout << "on passe au bon endroit \n";
     IloEnv env;
     IloModel model(env);
     const int Q= Fi.nbPiece;
@@ -400,15 +401,15 @@ type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Inter
       std::cout << " houston nous avons un problème " << std::endl;
       return std::numeric_limits<type2>::min();
     }
-  }
+    //  }
 }
 
 template<>
 int Task<int,int>::resourceConversionConvex(const int& energy,const Interval<int> &I) const;
 
-template<>
+/*template<>
 double Task<int,double>::resourceConversionConvex(const double& energy,const Interval<int> &I) const;
-
+*/
 template<typename type,typename type2>
 type2 Task<type,type2>::resourceConversion(const type2& energy,const Interval<type> &I) const{
   if (Fi.nbPiece == 1 || Fi.isConcave()){

@@ -129,13 +129,13 @@ int Task<int,int>::resourceConversionConvex(const int& energy,const Interval<int
   }
 }
 
-template<>
+/*template<>
 double Task<int,double>::resourceConversionConvex(const double& energy,const Interval<int> &I) const {
-  /*  std:: cout << "*********début calcul conversion resource*****\n";
+    std:: cout << "*********début calcul conversion resource*****\n";
   displayTask();
   I.displayInterval();
   std::cout << "energy " << energy << std::endl;
-  std:: cout << "size J " << J << std::endl;*/
+  std:: cout << "size J " << J << std::endl;
   const int J=sizeIntersection(I,Interval<int>(ri,di));
   if (bmin!=0.0 &&  energy <= Fi(bmin) * J) 
     return bmin*(int)ceil((double)energy/(double)Fi(bmin));
@@ -181,3 +181,4 @@ double Task<int,double>::resourceConversionConvex(const double& energy,const Int
     }
   }
 }
+*/

@@ -75,7 +75,14 @@ struct Problem {
   type2 totalResourceConsumption(const Interval<type>&) const;
   //return 0 if the ER in interval I fails
   inline int energeticReasonning(const Interval<type>& I,type2 total) const
-  {return (B*(I.t2-I.t1) - total>= NEGATIVE_ZERO);}
+  {int res=(B*(I.t2-I.t1) - total>= NEGATIVE_ZERO);
+    if (!res) {
+      displayProblem();
+      std::cout << "Interval qui chie: " ;
+      I.displayInterval();
+      std:: cout << "et res req= "<< total << std::endl;}
+    return res;
+  }
 
   //vérifier ajustement !!!
   int adjustmentEmin(const Interval<type>&,int,type2);
@@ -274,9 +281,12 @@ template<typename type,typename type2>
 type2 Problem<type,type2>::totalResourceConsumption(const Interval<type> &I) const{
   // std:: cout << "***************début calcul total conso resource***********\n";
   type2 conso=0.0;
-  for (int i=0;i<nbTask;++i)
+  for (int i=0;i<nbTask;++i){
     conso+=A[i].resourceConsumption(I); 
-  //  std:: cout << "***************fin calcul total conso resource***********\n";
+    std::cout << "conso de " << i << " dans " ;
+    I.displayInterval();
+    std::cout << " "<<A[i].resourceConsumption(I) << std::endl;
+  }  //  std:: cout << "***************fin calcul total conso resource***********\n";
   return conso;
 }
 
