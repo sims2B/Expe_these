@@ -21,7 +21,7 @@ DEBUG_FLAGS= -W  -Werror -Wall -gstabs
 
 
 ### PROPERTIES ########################################
-PROJECTNAME=bin/modelTI_debug
+PROJECTNAME=bin/modelTI
 SRCS=~/Dev2016/CECSP/Problem/source/Task.cpp \
       ~/Dev2016/CECSP/Problem/source/Solution.cpp \
 	./source/timeModel.cpp \
