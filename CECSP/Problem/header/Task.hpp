@@ -395,10 +395,13 @@ type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Inter
     
     IloCplex cplex(model);
     cplex.setOut(env.getNullStream());
-    if (cplex.solve())
+    if (cplex.solve()){
+      env.end();
       return (type2)cplex.getObjValue();
+    }
     else {
       std::cout << " houston nous avons un problème " << std::endl;
+      env.end();
       return std::numeric_limits<type2>::min();
     }
     //  }
