@@ -1,15 +1,27 @@
 #include "Solution.hpp"
+#include "Satisfiability.hpp"
 #include <iostream>
 #include <fstream>
+#include <sys/time.h>
 
 int main(int,char* argv[]){
+  struct timeval tim;
+
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
+  std::ofstream instanceTW(argv[2],std::ios::out);
   instance >> nbTask ;
   Problem<int,double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
-  P.displayProblem();
+  gettimeofday(&tim,NULL);
+  double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
+  intervalTotalAdjust(P);
+  gettimeofday(&tim,NULL);
+  double t2=tim.tv_sec+(tim.tv_usec/1000000.0);
+  std::cout << "temps d'exectution : " << t2-t1 << std::endl;
+  P.writeInFile(instanceTW);
+  /*P.displayProblem();
 
   
   Task<int,double> T= P.A[9];
@@ -28,7 +40,7 @@ int main(int,char* argv[]){
 	    << T.energyConsumption(Interval<int>(12,18))<< std:: endl;
   std::cout << "resource consumption= " 
   << T.resourceConsumption(Interval<int>(12,18))<< std:: endl;
-  /*
+  
    std::cout << " \n ////////////////////TEST LINEAR FUNCTION/////////////////////// \n";
 
     LinearFunction<int> fint;

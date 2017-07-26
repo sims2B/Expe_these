@@ -45,32 +45,32 @@ int intervalTotalAdjust(Problem<type,type2>& P)  {
   computeCheckInterval(listInt,P);
   type total;
   for (uint i=0; i<listInt.size();++i){
-    if (listInt[i].t1 < listInt[i].t2){
-      total=P.totalResourceConsumption(listInt[i]);
-      for (int j=0 ; j < P.nbTask ; ++j ){
-	if (P.adjustmentEmin(listInt[i],j,total))
-	  ++performed;
-	if (P.adjustmentRi(listInt[i],j,total))
-	  ++performed;
-	if (P.adjustmentSmax(listInt[i],j,total))
-	  ++performed;
-	if (P.adjustmentDi(listInt[i],j,total))
-	  ++performed;
-      }
+    total=P.totalResourceConsumption(listInt[i]);
+    for (int j=0 ; j < P.nbTask ; ++j ){
+      if (P.adjustmentEmin(listInt[i],j,total))
+	++performed;
+      if (P.adjustmentRi(listInt[i],j,total))
+	++performed;
+      if (P.adjustmentSmax(listInt[i],j,total))
+	++performed;
+      if (P.adjustmentDi(listInt[i],j,total))
+	++performed;
     }
   } 
   for (int j=0 ; j < P.nbTask ; ++j ){
     listInt.clear();
     computeRSInterval(listInt,P,j);
     for (uint i=0; i<listInt.size();++i){
+      total=P.totalResourceConsumption(listInt[i]);
       if (P.adjustmentSmax(listInt[i],j,total))
 	++performed;
-	if (P.adjustmentDi(listInt[i],j,total))
-	  ++performed;
+      if (P.adjustmentDi(listInt[i],j,total))
+	++performed;
     }
     listInt.clear();
     computeLSInterval(listInt,P,j);
     for (uint i=0; i<listInt.size();++i){   
+      total=P.totalResourceConsumption(listInt[i]);
       if (P.adjustmentRi(listInt[i],j,total))
 	++performed;
       if (P.adjustmentEmin(listInt[i],j,total))
