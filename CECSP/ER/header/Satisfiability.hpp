@@ -4,6 +4,8 @@
 
 #include "ListInterval.hpp"
 
+#include <iostream>
+#include <fstream>
 ///////////////////////////////////////////////////////////////////
 /////////////////////////// DEFINITION ////////////////////////////
 ///////////////////////////////////////////////////////////////////
@@ -13,7 +15,7 @@ template<typename type,typename type2=type>
 int intervalTest(const Problem<type,type2>&);
 //filter n (return nbAdjust)
 template<typename type,typename type2=type>
-int intervalTotalAdjust(Problem<type,type2> &);
+int intervalTotalAdjust(Problem<type,type2> &, std::ofstream&);
 //checker+filter
 //return 0 if the ER fails, and nbAdjust+1 otherwise
 template<typename type,typename type2=type>
@@ -38,7 +40,7 @@ int intervalTest(const Problem<type,type2>& P){
 }
 
 template<typename type,typename type2>
-int intervalTotalAdjust(Problem<type,type2>& P)  {
+int intervalTotalAdjust(Problem<type,type2>& P,std::ofstream& file)  {
   int performed=0;
   IntervalList<type> listInt;
   listInt.reserve(4*P.nbTask);
@@ -76,7 +78,8 @@ int intervalTotalAdjust(Problem<type,type2>& P)  {
       if (P.adjustmentEmin(listInt[i],j,total))
 	++performed;
     }
-  }   
+  }
+  P.writeInFile(file);
   return performed;
 }
 
