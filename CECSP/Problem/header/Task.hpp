@@ -396,8 +396,9 @@ type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Inter
     IloCplex cplex(model);
     cplex.setOut(env.getNullStream());
     if (cplex.solve()){
+      type2 res=(type2)cplex.getObjValue();
       env.end();
-      return (type2)cplex.getObjValue();
+      return res;
     }
     else {
       std::cout << " houston nous avons un problème " << std::endl;
