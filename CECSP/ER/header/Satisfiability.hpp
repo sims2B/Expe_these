@@ -57,6 +57,7 @@ int intervalTotalAdjust(Problem<type,type2>& P,std::ofstream& file)  {
 	++performed;
       if (P.adjustmentDi(listInt[i],j,total))
 	++performed;
+      P.writeInFile(file);
     }
   } 
   for (int j=0 ; j < P.nbTask ; ++j ){
@@ -79,7 +80,6 @@ int intervalTotalAdjust(Problem<type,type2>& P,std::ofstream& file)  {
 	++performed;
     }
   }
-  P.writeInFile(file);
   return performed;
 }
 
