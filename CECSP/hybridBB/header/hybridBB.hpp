@@ -231,7 +231,7 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	else {
 	  ++cptMIP;
 	  P1.updateHorizon();
-	  //	  if (!SolveConvex(P1,s)){
+	  if (!SolveConvex(P1,s)){
 	    gettimeofday(&tim,NULL);
 	    t2=tim.tv_sec+(tim.tv_usec/1000000.0);
 	    std::cout << "Instance résolue" << std::endl;
@@ -243,7 +243,7 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	    std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
 	    std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
 	    return 1;
-	    //  }
+	  }
 	}
       }
       else

@@ -16,10 +16,11 @@ int main(int,char* argv[]){
   instance.close();
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
-  intervalTotalAdjust(P);
+  int adjust=intervalTotalAdjust(P)-1;
   gettimeofday(&tim,NULL);
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
+  std::cout << "nbAdjust= " << adjust << std::endl;
   P.writeInFile(instanceTW);
   /*P.displayProblem();
 
