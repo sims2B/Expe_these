@@ -333,7 +333,7 @@ type2 Task<type,type2>::bothShift(const Interval<type> &I) const{
 template<typename type,typename type2>
 type2 Task<type,type2>::energyConsumption(const Interval<type>& I) const{
   // std:: cout << "***********début calcul conso nrj*******\n"; 
-  std:: cout << ": LS " << leftShift(I) << " RS " << rightShift(I) << " BS " << bothShift(I) << std::endl;
+  //std:: cout << ": LS " << leftShift(I) << " RS " << rightShift(I) << " BS " << bothShift(I) << std::endl;
  type2 nrj=std::min(std::min(leftShift(I),rightShift(I)),bothShift(I));
  //  std:: cout << "***********fin calcul conso nrj*******\n";
   return nrj;
@@ -363,7 +363,7 @@ type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Inter
   const type J(sizeIntersection(I,Interval<type>(ri,di)));
   //  if (bmin!=0.0 &&  energy <= Fi(bmin) * J) return bmin* energy/Fi(bmin);
   // else {
-  std::cout << "on passe au bon endroit \n";
+  //  std::cout << "on passe au bon endroit \n";
     IloEnv env;
     IloModel model(env);
     const int Q= Fi.nbPiece;
