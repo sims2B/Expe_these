@@ -26,7 +26,7 @@ sub handle_file {
     my $name = basename($file);
     if ($file=~ /.*$/) {
 	    system("echo '$name' >> $target");
-	    system("timeout --signal=9 7220s ./bin/hybridBB $file 3 1 5 >> $target 2>&1 ");
+	    system("timeout --signal=9 7200s ./bin/hybridBB $file 3 1 1000 >> $target 2>&1 ");
 
 	    system("echo '     ***********************************************************************' >> $target");
     }
