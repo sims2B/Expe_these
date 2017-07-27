@@ -12,7 +12,7 @@ int main(int /*argc*/, char* argv[]){
   struct timeval tim;
   
   std::ifstream instance(argv[1],std::ios::in);
-  std::ifstream instanceTW(argv[5],std::ios::in);
+  std::ofstream instanceTW(argv[5],std::ios::out);
   if (!instance)   {    
     std::cout << "Ouverture fichier instance impossible" << std::endl;
     return 0;
