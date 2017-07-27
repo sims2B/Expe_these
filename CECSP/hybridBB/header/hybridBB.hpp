@@ -236,13 +236,13 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	    gettimeofday(&tim,NULL);
 	    t2=tim.tv_sec+(tim.tv_usec/1000000.0);
 	    std::cout << "Instance résolue" << std::endl;
-	    std::cout << "Total time : " <<t2-t1 << "\n";
+	    //std::cout << "Total time : " <<t2-t1 << "\n";
 	    std::cout << "Tree time : " <<t2-t1-timeMIP << "\n";
-	    std::cout << "MIP time : " <<timeMIP << "\n";
+	    /*	    std::cout << "MIP time : " <<timeMIP << "\n";
 	    std::cout << "le nombre de noeud : " << nbNode<<std::endl;
 	    std::cout << "le nombre de MIP : " << cptMIP <<std::endl;
 	    std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
-	    std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
+*/	    std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
 	    return 1;
 	  }
 	}
@@ -254,10 +254,10 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
     t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   }
   std::cout << "Instance non résolue" << std::endl;
-  std::cout << "le nombre de noeud : " << nbNode<<std::endl;
+  /*  std::cout << "le nombre de noeud : " << nbNode<<std::endl;
   std::cout << "le nombre de MIP : " << cptMIP <<std::endl;
   std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
-  std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
+  */std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
   return 0;
 }
 
