@@ -52,7 +52,7 @@ int main(int /*argc*/, char* argv[]){
   }
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
-  std::cout << "le bb a dit " << BranchBound(P,s,choiceVar,TotalTest,epsilon,intanceTW,0.5) <<std::endl;
+  std::cout << "le bb a dit " << BranchBound(P,s,choiceVar,TotalTest,epsilon,instanceTW,0.5) <<std::endl;
   gettimeofday(&tim,NULL);
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
