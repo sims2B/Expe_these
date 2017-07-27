@@ -232,7 +232,7 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	else {
 	  ++cptMIP;
 	  P1.updateHorizon();
-	  if (!SolveConvex(P1,s)){
+	  if (!LPsolveConvex(P) && !SolveConvex(P1,s)){
 	    gettimeofday(&tim,NULL);
 	    t2=tim.tv_sec+(tim.tv_usec/1000000.0);
 	    std::cout << "Instance résolue" << std::endl;
