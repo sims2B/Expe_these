@@ -12,6 +12,7 @@ int main(int /*argc*/, char* argv[]){
   struct timeval tim;
   
   std::ifstream instance(argv[1],std::ios::in);
+  std::ifstream instanceTW(argv[5],std::ios::in);
   if (!instance)   {    
     std::cout << "Ouverture fichier instance impossible" << std::endl;
     return 0;
@@ -51,7 +52,7 @@ int main(int /*argc*/, char* argv[]){
   }
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
-  std::cout << "le bb a dit " << BranchBound(P,s,choiceVar,TotalTest,epsilon,0.5) <<std::endl;
+  std::cout << "le bb a dit " << BranchBound(P,s,choiceVar,TotalTest,epsilon,0.5,intanceTW) <<std::endl;
   gettimeofday(&tim,NULL);
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
