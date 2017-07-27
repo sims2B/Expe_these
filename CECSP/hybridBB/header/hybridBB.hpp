@@ -54,7 +54,7 @@ template<typename type,typename type2 =type>
 void createBranch(Problem<type,type2>&,int,std::stack<Problem<type,type2>>&,double);
 
 template<typename type,typename type2= type>
-int BranchBound(Problem<type,type2>&, Solution<type,type2>&, ptrVar<type,type2>, ptrTest<type,type2>,type,std::ofstream&,double parameter=0.5);
+int BranchBound(Problem<type,type2>&, Solution<type,type2>&, ptrVar<type,type2>, ptrTest<type,type2>,type,double parameter=0.5);
 
 
 
@@ -202,7 +202,7 @@ template<>
 void createBranch(Problem<int,double>& P,int x,std::stack<Problem<int,double>>& explore, double param);
 
 template<typename type,typename type2= type>
-int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2> choiceVar, ptrTest<type,type2> TotalTest,  type epsilon, std::ofstream& file,double param){
+int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2> choiceVar, ptrTest<type,type2> TotalTest,  type epsilon,double param){
   struct timeval tim;
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
@@ -232,7 +232,7 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	else {
 	  ++cptMIP;
 	  P1.updateHorizon();
-	  //	  if (!SolveConvex(P1,s)){
+	  if (!SolveConvex(P1,s)){
 	    gettimeofday(&tim,NULL);
 	    t2=tim.tv_sec+(tim.tv_usec/1000000.0);
 	    std::cout << "Instance résolue" << std::endl;
@@ -243,9 +243,8 @@ int BranchBound(Problem<type,type2>& P,Solution<type,type2>& s,ptrVar<type,type2
 	    std::cout << "le nombre de MIP : " << cptMIP <<std::endl;
 	    std::cout << "le nombre de consistensy fail : " << cptConsistency<<std::endl;
 	    std::cout << "le nombre de adjust : " << cptAdjust<<std::endl;
-	    P1.writeInFile(file);
 	    return 1;
-	    //  }
+	  }
 	}
       }
       else
