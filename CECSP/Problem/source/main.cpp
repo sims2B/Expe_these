@@ -12,16 +12,16 @@ int main(int,char* argv[]){
   std::ofstream instanceTW(argv[2],std::ios::out);
   instance >> nbTask ;
   Problem<int,double> P(nbTask);
-  P.readFromFile(instance);
+   P.readFromFile(instance);
   instance.close();
   gettimeofday(&tim,NULL);
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);
-  int adjust=intervalTotalAdjust(P,instanceTW);
+  int adjust=intervalTotalAdjust(P);
   gettimeofday(&tim,NULL);
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
   std::cout << "nbAdjust= " << adjust << std::endl;
-  //  P.writeInFile(instanceTW);
+  P.writeTWInFile(instanceTW);
   /*P.displayProblem();
 
   

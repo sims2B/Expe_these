@@ -1,5 +1,21 @@
 #!/usr/bin/perl
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 use strict;
 use warnings;
 use File::Basename;
@@ -26,7 +42,7 @@ sub handle_file {
     my $name = basename($file);
     if ($file=~ /.*$/) {
 	    system("echo '$name' >> $target");
-	    system("timeout --signal=9 7200s ./bin/hybridBB_Convex $file 3 1 1000 >> $target 2>&1 ");
+	    system("timeout --signal=9 7200s ./bin/hybridBB $file 3 1 1000 >> $target 2>&1 ");
 
 	    system("echo '     ***********************************************************************' >> $target");
     }

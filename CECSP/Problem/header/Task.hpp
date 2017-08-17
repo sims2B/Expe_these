@@ -368,7 +368,7 @@ type2 Task<type,type2>::resourceConversionConvex(const type2& energy,const Inter
     IloModel model(env);
     const int Q= Fi.nbPiece;
     int q;
-    IloNumVarArray lambda(env,Q+1,0,J,ILOFLOAT);
+    IloNumVarArray lambda(env,Q+1,0,J,ILOINT);
   
     IloExpr expr(env);
     for (q=0 ; q < Q ; ++q){

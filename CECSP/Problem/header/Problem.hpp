@@ -49,6 +49,8 @@ struct Problem {
   void addConvexPiecewiseFunction();
   //write the instance of Problem in a file
   void writeInFile(std::ofstream& new_inst) const;
+  //write the time windows of each task (ri, smax, emin, di) in a file
+  void writeTWInFile(std::ofstream& new_inst) const;
 
   inline type r(int i) const {return A[i].ri;}
   inline type d(int i) const {return A[i].di;}
@@ -234,6 +236,20 @@ void Problem<type,type2>::writeInFile(std::ofstream& new_inst) const{
     }
   }
 }
+
+
+template<typename type,typename type2>
+void Problem<type,type2>::writeTWInFile(std::ofstream& new_inst) const{
+  for (int i=0;i<nbTask;++i) {
+    new_inst << i << " " 
+	     << A[i].ri << " " 
+	     << A[i].smax << " " 
+	     << A[i].emin << " " 
+	     << A[i].di ;
+    new_inst << std::endl;
+  }
+}
+
 
 template<typename type,typename type2>
 Problem<type,type2>& Problem<type,type2>::operator=(const Problem<type,type2>& P){

@@ -7,6 +7,7 @@ use Cwd;
 
 my $path = Cwd::realpath(shift);
 my $target = Cwd::realpath(shift);
+my $target2 = Cwd::realpath(shift);
 
 sub explore {
     my $p=shift;
@@ -25,10 +26,11 @@ sub handle_file {
     my $file = shift;
     my $name = basename($file);
     if ($file=~ /.*$/) {
-	    system("echo '$name' >> $target");
-	    system("timeout --signal=9 7200s ./bin/hybridBB_Convex $file 3 1 1000 >> $target 2>&1 ");
-
-	    system("echo '     ***********************************************************************' >> $target");
+			my $fichier = $name;
+			$fichier =~ s/(.+)\.[^.]+/$1/;
+	    system("echo '$name' >> $target2");
+	    system("timeout --signal=9 7200s ./bin/le_nom $file $target/$fichier\_TW\_ERint.txt >> $target2 2>&1");
+	    system("echo '**********************************************************'>> $target2");
     }
 }
 
