@@ -6,10 +6,12 @@
 int main(int,char *argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
+  std::ifstream TW(argv[2],std::ios::in);
  
   instance >> nbTask ;
   Problem<int,double> P(nbTask);
   P.readFromFile(instance);
+  P.readtimeWindows(TW);
   instance.close();
   
   Solution<int,double> s(nbTask,P.D);  

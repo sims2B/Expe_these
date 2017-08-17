@@ -26,11 +26,11 @@ sub handle_file {
 	my $name = basename($file);
 	$name =~ s/(.+)\.[^.]+/$1/;
 	if ($file =~ /.*$/) {
-		#my $fichier = $name;
-		#$fichier =~ s/(.+)\.[^.]+/$1/;
+		my $fichier = $name;
+		$fichier =~ s/(.+)\.[^.]+/$1/;
 		system("echo $name >> $target");
 		#system("./bin/modelTI $file $target/$fichier\_second\_conv\_id.txt");
-		system("./bin/modelTI $file >> $target 2>&1");
+		system("./bin/modelTI $file ../TW\_ERfloat/$fichier\_TW\_ERfloat.txt >> $target 2>&1");
 	}
 }
 

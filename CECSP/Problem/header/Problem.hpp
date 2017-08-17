@@ -41,6 +41,7 @@ struct Problem {
   //read an instance of Problem inclded in a file and set all the parameter to 
   //the correct value (do not construct the instance, use the constructor before)
   void readFromFile(std::ifstream&); 
+  int readtimeWindows(std::ifstream&);
   //generate random concave piecewise functions for all task and set Wi to a 
   //random number in [1/2*fi(bmax) * (di-ri),fi(bmax) * (di-ri)] 
   void addConcavePiecewiseFunction();
@@ -136,6 +137,18 @@ void Problem<type,type2>::updateHorizon(){
     R = ((R > r(i))?  r(i) : R);
     D = ((D < d(i))?  d(i) : D);
   }
+}
+template<typename type,typename type2>
+int Problem<type,type2>::readtimeWindows(std::ifstream& fileTW){
+  int i,EST,LST,EET,LET;
+  while (!fileTW.eof()){
+    fileTW >> i >> EST >> LST >> EET >> LET;
+    A[i].ri=EST;
+    A[i].smax = LST;
+    A[i].emin=EET;
+    A[i].di= LET;
+  }
+  return 0;
 }
 
 template<typename type,typename type2>
