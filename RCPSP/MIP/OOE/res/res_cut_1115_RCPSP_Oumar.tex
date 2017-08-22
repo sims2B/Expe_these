@@ -1,0 +1,58 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} \usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\begin{document}
+
+\section{without cuts}
+\subsection{with default settings}
+\begin{center}
+	\begin{tabular}{|cc|cccc|}
+	\hline
+       \multicolumn{2}{|c|}{first sol.}& \multicolumn{4}{c|}{final sol.}\\ 
+	\hline 
+  time(s) & gap & time & gap &\%opt  & root gap\\ 
+ \hline 
+0.191592 & 0.0340969 & 34.7534 & 9.86058e-07 & 100 & -0.548572\\ 
+\hline 
+\end{tabular}
+\end{center}
+\subsection{with $t_{e+1}-t_e$ bounds}
+\begin{center}
+	\begin{tabular}{|cc|cccc|}
+	\hline
+       \multicolumn{2}{|c|}{first sol.}& \multicolumn{4}{c|}{final sol.}\\ 
+	\hline 
+  time(s) & gap & time & gap &\%opt  & root gap\\ 
+ \hline 
+0.170545 & 0.0328778 & 30.2945 & 8.58986e-07 & 100 & -0.552093\\ 
+\hline 
+\end{tabular}
+\end{center}
+\section{with cuts}
+\subsection{with preemptive cuts}
+\begin{center}
+	\begin{tabular}{|cc|ccccc|}
+	\hline
+     \multicolumn{2}{|c|}{first sol.}& \multicolumn{5}{c|}{final sol.}\\ 
+	\hline 
+  time(s) & gap & time & gap &\%opt &  \# cuts & root gap\\ 
+ \hline 
+0.178289 & 0.0383951 & 30.3072 & 1.46653e-06 & 100 & 1 & -inf\\ 
+\hline 
+\end{tabular}
+\end{center}
+\subsection{with preemptive cuts and $t_{e+1}-t_e$ bounds}
+\begin{center}
+	\begin{tabular}{|cc|ccccc|}
+	\hline
+     \multicolumn{2}{|c|}{first sol.}& \multicolumn{5}{c|}{final sol.}\\ 
+	\hline 
+  time(s) & gap & time & gap &\%opt &  \# cuts & root gap\\ 
+ \hline 
+0.290435 & 0.0328078 & 33.052 & 1.0025e-06 & 100 & 1 & -0.550327\\ 
+\hline 
+\end{tabular}
+\end{center}
+\end{document}

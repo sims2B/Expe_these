@@ -1,0 +1,108 @@
+SYSTEM     = x86-64_sles10_4.1
+LIBFORMAT  = static_pic
+
+#------------------------------------------------------------
+
+CPLEXDIR      = /home/mnattaf/Library/cplex_216/cplex
+CONCERTDIR    = /home/mnattaf/Library/cplex_216/concert
+
+# ---------------------------------------------------------------------
+# Compiler selection 
+# ---------------------------------------------------------------------
+
+CCC = g++ -O0
+CC  = gcc -O0
+JAVAC = javac 
+
+# ---------------------------------------------------------------------
+# Compiler options 
+# ---------------------------------------------------------------------
+
+CCOPT = -m64 -O -fPIC -fexceptions -DNDEBUG -DIL_STD
+COPT  = -m64 -fPIC 
+JOPT  = -classpath $(CPLEXDIR)/lib/cplex.jar -O
+
+# ---------------------------------------------------------------------
+# Link options and libraries
+# ---------------------------------------------------------------------
+
+CPLEXBINDIR   = $(CPLEXDIR)/bin/$(BINDIST)
+CPLEXJARDIR   = $(CPLEXDIR)/lib/cplex.jar
+CPLEXLIBDIR   = $(CPLEXDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
+CONCERTLIBDIR = $(CONCERTDIR)/lib/$(SYSTEM)/$(LIBFORMAT)
+
+CCLNFLAGS = -L$(CPLEXLIBDIR) -lilocplex -lcplex -L$(CONCERTLIBDIR) -lconcert -lm -pthread
+CLNFLAGS  = -L$(CPLEXLIBDIR) -lcplex -lm -pthread
+JAVA      = java -d64 -Djava.library.path=$(CPLEXDIR)/bin/x86-64_sles10_4.1 -classpath $(CPLEXJARDIR):
+
+all:
+	make all_c
+	make all_cpp
+	make all_java
+
+execute: all
+	make execute_c
+	make execute_cpp
+	make execute_java
+CONCERTINCDIR = $(CONCERTDIR)/include
+CPLEXINCDIR   = $(CPLEXDIR)/include
+
+EXDIR         = $(CPLEXDIR)/examples
+EXINC         = $(EXDIR)/include
+EXDATA        = $(EXDIR)/data
+EXSRCC        = $(EXDIR)/src/c
+EXSRCCX       = $(EXDIR)/src/c_x
+EXSRCCPP      = $(EXDIR)/src/cpp
+EXSRCJAVA     = $(EXDIR)/src/java
+
+CFLAGS  = $(COPT)  -I$(CPLEXINCDIR)
+CCFLAGS = $(CCOPT) -I$(CPLEXINCDIR) -I$(CONCERTINCDIR) 
+JCFLAGS = $(JOPT)
+
+
+#------------------------------------------------------------
+#  make all      : to compile the examples. 
+#  make execute  : to compile and execute the examples.
+#------------------------------------------------------------
+clean :
+	rm -rf *.o *~ *.class	
+	/bin/rm -rf *.o *~ *.class
+	/bin/rm -rf $(C_EX) $(CX_EX) $(CPP_EX)
+	/bin/rm -rf *.mps *.ord *.sos *.lp *.sav *.net *.msg *.log *.clp
+
+# ------------------------------------------------------------
+
+Alvares: Alvares.o
+	$(CCC) $(CCFLAGS) Alvares.o -o Alvares $(CCLNFLAGS)
+Alvares.o: $ Alvares.cpp
+	$(CCC) -c $(CCFLAGS) $ Alvares.cpp -o Alvares.o
+
+christofides: christofides.o
+	$(CCC) $(CCFLAGS) christofides.o -o christofides $(CCLNFLAGS)
+christofides.o: $ christofides.cpp
+	$(CCC) -c $(CCFLAGS) $ christofides.cpp -o christofides.o
+
+pritsker: pritsker.o
+	$(CCC) $(CCFLAGS) pritsker.o -o pritsker $(CCLNFLAGS)
+pritsker.o: $ pritsker.cpp
+	$(CCC) -c $(CCFLAGS) $ pritsker.cpp -o pritsker.o
+
+EventOnOff: EventOnOff.o
+	$(CCC) $(CCFLAGS) EventOnOff.o -o EventOnOff $(CCLNFLAGS)
+EventOnOff.o: $ EventOnOff.cpp
+	$(CCC) -c $(CCFLAGS) $ EventOnOff.cpp -o EventOnOff.o
+
+EventOnOffPrec: EventOnOffPrec.o
+	$(CCC) $(CCFLAGS) EventOnOffPrec.o -o EventOnOffPrec $(CCLNFLAGS)
+EventOnOffPrec.o: $ EventOnOffPrec.cpp
+	$(CCC) -c $(CCFLAGS) $ EventOnOffPrec.cpp -o EventOnOffPrec.o
+
+ModelEvent: ModelEvent.o
+	$(CCC) $(CCFLAGS) ModelEvent.o -o ModelEvent $(CCLNFLAGS)
+ModelEvent.o: $ ModelEvent.cpp
+	$(CCC) -c $(CCFLAGS) $ ModelEvent.cpp -o ModelEvent.o
+
+
+# Local Variables:
+# mode: makefile
+# End:

@@ -1,0 +1,23 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} \usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\begin{document}
+
+The first table describes the results without any cuts and the second
+one presents the results with the preemptive cuts,
+i.e. $z_{ie}+z_{if}-z_{ig} \le 1, \ e<f<g$. For both table, the first
+column stands for the instance size, the second and third ones
+describe when the first solution is found and the gap of this
+solution.  The other columns present the time needed to solve the
+instance (if solved optimally), the percentage of instances solved
+optimally and the root gap. For the second table, the last column
+shows the number of cuts.
+
+\section{without cuts}
+
+
+
+
+\subsection{with $t_{e+1}-t_e$ bounds}
