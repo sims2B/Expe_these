@@ -30,7 +30,8 @@ sub handle_file {
 		$fichier =~ s/(.+)\.[^.]+/$1/;
 		system("echo $name >> $target");
 		#system("./bin/modelTI $file $target/$fichier\_second\_conv\_id.txt");
-		system("./bin/modelTI $file ../TW\_ERfloat/$fichier\_TW\_ERfloat.txt >> $target 2>&1");
+		system("./bin/modelTI $file /home/mnattaf/instance_CECSP/instance_CECSP_function/convex_piecewise_linear_function/inst_first_run/inst_conv_id/TW\_ERint/$fichier\_TW\_ERint.txt >> $target 2>&1");
+		system("echo ********************************************************** >> $target");
 	}
 }
 
