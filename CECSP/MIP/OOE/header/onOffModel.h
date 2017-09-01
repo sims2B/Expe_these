@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <vector>
 #include <ilcplex/ilocplex.h>
-#include "Solution.h"
+#include "Solution.hpp"
 
 
 typedef std::tuple<int,double,int> evt;

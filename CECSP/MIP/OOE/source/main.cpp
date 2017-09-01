@@ -7,18 +7,16 @@ int main(int argc,char *argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
   instance >> nbTask ;
-  Problem<double> P(nbTask);
+  Problem<double,double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
-  Solution<double> s(nbTask,2*nbTask);
-  
+  Solution<double,double> s(nbTask,2*nbTask-1);
   std::vector<int> config(9,0);
   for (int i=2;i<11 && i<argc;++i)
     config[i-2]=atoi(argv[i]);
    if (!LPsolveOO(P,config))
     if (!solveOO(P,s,config))  {
       std::cout << "Hurray!\n";
-      std::cout << "...\n";
       std::cout << "valide? " << s.isValid(P) << std::endl;}
     else{
       std::cout << "...\n";

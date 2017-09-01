@@ -8,7 +8,7 @@ bool intervalComp(const Interval<double> &i,const Interval<double> &j) {
 }
 
 
-int boundEvts(const Problem<double>& P, std::vector<double>& bd){
+int boundEvts(const Problem<double,double>& P, std::vector<double>& bd){
   const int n=P.nbTask;
   std::vector<double> I(2*n);
   for (int i=0;i<n;++i){
@@ -24,8 +24,8 @@ int boundEvts(const Problem<double>& P, std::vector<double>& bd){
   return 0;
 }
 
-int boundSepEvts(const Problem<double>& P,std::vector<std::vector<double>>& bound, const int& sep){
-  std::vector<Interval<double>> I(2*P.nbTask);
+int boundSepEvts(const Problem<double,double>& P,std::vector<std::vector<double>>& bound, const int& sep){
+  std::vector<Interval<double>> I(2*P.nbTask,Interval<double>(0,0));
   for (int i=0;i<P.nbTask;++i){
     I[2*i]=Interval<double>(P.r(i),P.smax(i));
     I[2*i+1]=Interval<double>(P.emin(i),P.d(i));

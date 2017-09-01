@@ -20,10 +20,7 @@ DEBUG_FLAGS= -W  -Werror -Wall -g
 
 ### PROPERTIES ########################################
 PROJECTNAME=bin/modelOO
-SRCS=	~/Dev2016/CECSP/Problem/source/LinearFunction.cpp \
-~/Dev2016/CECSP/Problem/source/Interval.cpp \
-~/Dev2016/CECSP/Problem/source/Piece.cpp \
-~/Dev2016/CECSP/Problem/source/Task.cpp \
+SRCS=~/Dev2016/CECSP/Problem/source/Task.cpp \
 ~/Dev2016/CECSP/Problem/source/Problem.cpp \
 ~/Dev2016/CECSP/Problem/source/Solution.cpp \
 /home/mnattaf/Dev2016/CECSP/MIP/pre_proc/pre_proc.cpp \

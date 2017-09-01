@@ -832,7 +832,7 @@ int createConstraintNonConsump(const Problem<double>& P, IloModel& model,
   else{
     for (int i=0;i<P.nbTask;i++){
       for (int e=0;e<2*P.nbTask-1;e++)
-	model.add(z[i][e]*M>= b[i][e]);
+	model.add(z[i][e]*M >= b[i][e]);
     }
   }
   return 0;

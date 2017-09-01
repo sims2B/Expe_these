@@ -25,7 +25,7 @@ struct Solution{
   //resize all vector to their original size (typically used after a call to clear())
   void reAlloc(int,int);
 
-  void displaySolution();
+  void displaySolution() const;
   //write the instance of Solution in a file
   void writeInFile(std::ofstream& new_inst) const;
   //check the validity of the solution
@@ -78,7 +78,7 @@ void Solution<type,type2>::reAlloc(int nbTask,int nbSlot){
 }
 
 template<typename type,typename type2>
-void Solution<type,type2>::displaySolution(){
+void Solution<type,type2>::displaySolution() const{
   std::cout << "sol vaut : " << std::endl;
   for (uint i=0;i<st.size();++i){
     std::cout << "st["<<i<<"]="<<st[i]<< std::endl;
@@ -127,28 +127,29 @@ int Solution<type,type2>::isValid(const Problem<type,type2> &P) const{
     if (st[i] < P.r(i) + NEGATIVE_ZERO) return 0;
     if (ft[i] > P.d(i) + POSITIVE_ZERO) return 0;
   }
-
   for (i=0;i<nbTask;++i) {
     for (e=0;e<E-1;++e){
-      if (event[e] < st[i] + POSITIVE_ZERO || event[e] >= ft[i] + POSITIVE_ZERO){
+      if (event[e] < st[i] + NEGATIVE_ZERO || event[e] >= ft[i] + POSITIVE_ZERO){
 	if (b[i][e] > POSITIVE_ZERO && P.bmin(i)!=0.0) return 0;
       }
     }
   }
-
   for (i=0;i<nbTask;++i) {
     energy=0.0; 
     for (e=0;e<E-1;++e){
       if (!isEqual(event[e+1],event[e]) && 
-	  event[e] > st[i] && event[e] < ft[i] &&
+	  event[e] >= st[i]+POSITIVE_ZERO && event[e] < ft[i]+NEGATIVE_ZERO &&
 	  (b[i][e] < P.bmin(i) + NEGATIVE_ZERO || 
 	   b[i][e] > P.bmax(i) + POSITIVE_ZERO))
 	return 0;
+    }
+
+    for (e=0;e<E-1;++e){
       //energy 
       if (!isEqual(b[i][e],0.0))
 	energy+=(P.A[i].Fi(b[i][e]))*(event[e+1]-event[e]);
     }
-    if (energy < P.W(i) + NEGATIVE_ZERO) return 0;	 
+    if (energy < P.W(i) + NEGATIVE_ZERO) return 0;
   }
   
   //cumulative constraint
