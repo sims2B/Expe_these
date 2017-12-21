@@ -192,7 +192,7 @@ int setCplexParam(IloCplex& cplex, IloEnv& env){
   //Set cplex parameter
   cplex.setParam(IloCplex::TiLim, time_limit);
   //cplex.setParam(IloCplex::Threads, 2);
-  cplex.setOut(env.getNullStream());
+  //cplex.setOut(env.getNullStream());
   //cplex.setParam(IloCplex::PreLinear, 0);
 
   return 0;
@@ -273,7 +273,7 @@ int LPsolveOO(const Problem<double>& P,const std::vector<int>& config){
       if (config[0]){
       IloInt cptCut=0;
       IloInt nodeDepth=0;
-      cplex.use(noPreemption_tk(env,P,z, 0.01, cptCut,nodeDepth,10));
+      cplex.use(noPreemption_tk(env,P,z, 0.01, cptCut, nodeDepth, 10));
     }
     
     // solve !
@@ -396,7 +396,7 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
   try  {
     IloNum start,time_exec;
     const int n = P.nbTask;
-    IloInt cptCut=0;
+    IloInt cptCut = 0;
 
     // create cplex model
     IloEnv env;
@@ -587,14 +587,14 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     assert(config[2]+config[3]<=1);
     std::vector<std::vector<double>> bound(2*P.nbTask-1);
     std::vector<double> bd(2*P.nbTask,P.D);
+    
     createObj(P,env,model,b);//objective min b_ie
     createConstraintOrd(P,model,t);//contrainte te < te+1
     createConstraintOneStart(P,env,model,z);//contrai sum zie>=1
     createConstraintNonPreemp(P,env,model,z);//non preemption
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
-    createConstraintMinDur(P,model,t,z);//durée minimale
+    //createConstraintMinDur(P,model,t,z);//durée minimale
     createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
-    createConstraintEnergyNul( P,  env,  model,   w,  z);
     createConstraintBmax(P,model,t,b);//contrainte bmax
     createConstraintNonConsump(P,model,z,b,config[4]);//bie=0 si zie=0
     
@@ -609,9 +609,12 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     else if (config[2]){
       boundSepEvts(P,bound,config[2]);
       createConstraintBmin(P,model,t,z,b,bound); //contrainte bmin
+      createConstraintEnergyNul( P,  env,  model,   w,  z /*, bound*/);
     }
-    else 
+    else {
       createConstraintBmin(P,model,t,z,b,config[3]); //contrainte bmin
+    createConstraintEnergyNul( P,  env,  model,   w,  z );
+    }
     
     if (config[6])
       boundEvts(P,bd);
@@ -645,8 +648,8 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
 int createObj(const Problem<double>& P,IloEnv& env, IloModel& model,
 	      IloNumVarMatrix& b){
   IloExpr expr(env);
-  for (int i=0;i<P.nbTask;++i) {
-    for (int e=0;e<2*P.nbTask-1;++e)
+  for (int i=0; i < P.nbTask;++i) {
+    for (int e=0;e < 2*P.nbTask-1 ; ++e)
       expr+=b[i][e];
   }
   model.add(IloMinimize(env,expr));
@@ -660,8 +663,8 @@ int createObj(const Problem<double>& P,IloEnv& env, IloModel& model,
 
 int createConstraintOrd(const Problem<double>& P,IloModel& model, 
 			IloNumVarArray& t){
-  for (int e=0;e<2*P.nbTask-1;e++)
-    model.add(t[e]<=t[e+1]); 
+  for (int e = 0 ; e < 2*P.nbTask-1 ; e++)
+    model.add(t[e] <= t[e+1]); 
   return 0;
 }
 
@@ -679,19 +682,30 @@ int createConstraintOneStart(const Problem<double>& P, IloEnv& env,
 
 int createConstraintTimeW(const Problem<double>& P, IloModel& model,
 			  IloNumVarArray& t, IloNumVarMatrix& z, const std::vector<double>& M_te){
-  const int E=2*P.nbTask;  
-  for (int i=0;i<P.nbTask;i++) {
-    model.add(z[i][0]*P.r(i) <= t[0]);
-    for (int e=1;e<E-1;++e){
-      model.add(z[i][e]*P.r(i) <= t[e]);
+  const int E = 2*P.nbTask;
+  for (int i = 0 ; i < P.nbTask ; i++) {
+    
+    model.add(z[i][0] * P.r(i) <= t[0]);
+
+    for (int e = 1 ; e < E-1 ; ++e){
+
+      model.add(z[i][e] * P.r(i) <= t[e]);
+      int bound_9 =  std::max( std::min (P.D , M_te[e]),
+			     std::min ( (M_te[e] + P.smax(i))/2 ,
+					(P.D + P.smax(i))/2 ));
+      int bound_10 =  std::max( std::min (P.D , M_te[e]),
+			     std::min ( (M_te[e] + P.d(i))/2 ,
+					(P.D + P.d(i))/2 ));
+      
       model.add(t[e] <= (z[i][e]-z[i][e-1])*P.smax(i) + 
-		(1-(z[i][e]-z[i][e-1]))*M_te[e]);
+		(1-(z[i][e]-z[i][e-1]))* bound_9);
       model.add(P.d(i)*(z[i][e-1]-z[i][e]) + 
-		(1-(z[i][e-1]-z[i][e]))*M_te[e]>= t[e]);
+		(1-(z[i][e-1]-z[i][e]))* bound_10 >= t[e]);
+      
       model.add(t[e] >= (z[i][e-1]-z[i][e])*P.emin(i));
     }
-    model.add(P.d(i)*z[i][E-2] + 
-	      (1-z[i][E-2])*P.D >= t[E-1]);
+    
+    model.add(P.d(i)*z[i][E-2] + (1-z[i][E-2])*P.D >= t[E-1]);
     model.add(t[E-1] >= z[i][E-2]*P.emin(i));
   }
   return 0;
@@ -720,15 +734,19 @@ int createConstraintTimeW(const Problem<double>& P, IloModel& model,
 int createConstraintNonPreemp(const Problem<double>& P, IloEnv& env, 
 			      IloModel& model, IloNumVarMatrix& z){
   const int E=2*P.nbTask;
-  for (int i=0;i<P.nbTask;i++) {
-    for (int e=1;e<E-1;e++) {
+  
+  for (int i = 0 ; i < P.nbTask ; i++) {
+    for (int e = 1 ; e < E-1 ; e++) {
+
       IloExpr expr(env);
       IloExpr expr2(env);
-      for (int f=0;f<e;f++)
+      
+      for (int f = 0 ; f < e ; f++)
 	expr+=z[i][f];
       model.add(expr <= e*(1-(z[i][e]-z[i][e-1])));
       expr.end();
-      for (int f=e;f<E-1;f++)
+      
+      for (int  f = e ; f < E-1 ; f++)
 	expr2+=z[i][f];
       model.add(expr2 <= (E-e)*(1+(z[i][e]-z[i][e-1])));
       expr2.end();
@@ -764,28 +782,50 @@ int createConstraintMinDur(const Problem<double>& P, IloModel& model, IloNumVarA
 }
 
 
-int createConstraintEnergyNul(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& w, IloNumVarMatrix& z){
+int createConstraintEnergyNul(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& w, IloNumVarMatrix& z,const std::vector<std::vector<double>> &M_evt){
   for (int i = 0; i < P.nbTask; ++i)
     for (int e = 0; e < 2 * P.nbTask - 1; ++e)
-      model.add( w[i][e] <=  P.W(i)*z[i][e] );
+      model.add( w[i][e] <= M_evt[e][0] * z[i][e] * P.A[i].Fi.F[0].f.c );
   return 0;
+}
+
+int createConstraintEnergyNul(const Problem<double>& P, IloEnv& env, IloModel& model, IloNumVarMatrix& w, IloNumVarMatrix& z){
+  
+    for (int i = 0; i < P.nbTask; ++i)
+    for (int e = 0; e < 2 * P.nbTask - 1; ++e)
+    model.add( w[i][e] <=  P.W(i) * z[i][e] );
+    return 0;
+  /*
+  for (int i = 0; i < P.nbTask; ++i)
+    for (int e = 0; e < 2 * P.nbTask - 1; ++e)
+      model.add( w[i][e] <=  P.W(i) * z[i][e] *(P.d(i)-P.r(i)));
+  return 0;*/
 }
 
 int createConstraintEnergy(const Problem<double>& P, IloEnv& env, IloModel& model, 
 			   IloNumVarArray& t, 
 			   IloNumVarMatrix& b, IloNumVarMatrix& w){
-  for (int i=0;i<P.nbTask;++i){
+  for (int i = 0 ; i < P.nbTask ; ++i){
     IloExpr expr(env);
-    for (int e=0;e<2*P.nbTask-1;++e){
-      for (int q=0;q<P.A[i].Fi.nbPiece;++q)
+    for (int e = 0 ; e < 2*P.nbTask-1 ; ++e){
+      for (int q = 0 ; q < P.A[i].Fi.nbPiece ; ++q)
 	model.add(P.A[i].Fi.F[q].f.a*b[i][e]+
-		  P.A[i].Fi.F[q].f.c*(t[e+1]-t[e])>=w[i][e]);
+		  P.A[i].Fi.F[q].f.c*(t[e+1]-t[e]) >= w[i][e]);
       expr+=w[i][e];
     }
     model.add(expr == P.W(i));
     expr.end();
   }
+  /*
 
+  for (int i = 0 ; i < P.nbTask ; ++i){
+    IloExpr expr(env);
+    for (int e = 0 ; e < 2*P.nbTask-1 ; ++e){
+      expr+= P.A[i].Fi.F[0].f.a*b[i][e] + w[i][e];
+      model.add(P.A[i].Fi.F[0].f.c*(t[e+1]-t[e]) >= w[i][e]);
+    }
+    model.add(expr >= P.W(i));
+    }*/
   return 0;
 }
 
@@ -813,8 +853,8 @@ int createConstraintBmin(const Problem<double>&P, IloModel& model, IloNumVarArra
 
 int createConstraintBmax(const Problem<double>&P, IloModel& model, 
 			 IloNumVarArray& t, IloNumVarMatrix& b){
-  for (int i=0;i<P.nbTask;i++){
-    for (int e=0;e<2*P.nbTask-1;e++)
+  for (int i = 0 ; i < P.nbTask ; i++){
+    for (int e = 0 ; e < 2*P.nbTask-1 ; e++)
       model.add((t[e+1]-t[e])*P.bmax(i) >= b[i][e]);
   }
   return 0;
@@ -824,14 +864,14 @@ int createConstraintBmax(const Problem<double>&P, IloModel& model,
 int createConstraintNonConsump(const Problem<double>& P, IloModel& model, 
 			       IloNumVarMatrix& z , IloNumVarMatrix& b, int bigM){
   if (!bigM){
-    for (int i=0;i<P.nbTask;i++){
-      for (int e=0;e<2*P.nbTask-1;e++)
+    for (int i = 0 ; i < P.nbTask ; i++){
+      for (int e = 0 ; e < 2*P.nbTask-1 ; e++)
 	model.add(z[i][e]*(P.bmax(i)*(P.d(i)-P.r(i))) >= b[i][e]);
     }
   }
   else{
-    for (int i=0;i<P.nbTask;i++){
-      for (int e=0;e<2*P.nbTask-1;e++)
+    for (int i = 0 ; i < P.nbTask ; i++){
+      for (int e = 0 ; e < 2*P.nbTask-1 ; e++)
 	model.add(z[i][e]*M >= b[i][e]);
     }
   }

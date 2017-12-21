@@ -5,9 +5,14 @@
 #include <sys/time.h>
 
 int main(int,char* argv[]){
-  struct timeval tim;
+  Problem<int,int> P = generate(atoi(argv[1]),10);
+  
+  std::ofstream output(argv[2],std::ios::out);
+  P.writeInFile(output);
+  output.close();
+  /*struct timeval tim;
 
-  int nbTask;
+ int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
   std::ofstream instanceTW(argv[2],std::ios::out);
   instance >> nbTask ;
@@ -22,7 +27,7 @@ int main(int,char* argv[]){
   std::cout << "temps d'exectution : " << t2-t1 << std::endl;
   std::cout << "nbAdjust= " << adjust << std::endl;
   P.writeTWInFile(instanceTW);
-  /*P.displayProblem();
+  P.displayProblem();
 
   
   Task<int,double> T= P.A[9];
@@ -149,7 +154,7 @@ int main(int,char* argv[]){
   std::cout << "left of 1 in [1,3]=> 2 \t obtenu: " <<un.leftShift(Interval<int>(1,3))<< std::endl;
   std::cout << "right of 1 in [1,3]=> 5 \t obtenu: " <<un.rightShift(Interval<int>(1,3))<< std::endl;
   std::cout << "both of 1 in [1,3]=> 2 \t obtenu: " <<un.bothShift(Interval<int>(1,3))<< std::endl;
-*/
-   return 0;
+
+   return 0;*/
  
 }

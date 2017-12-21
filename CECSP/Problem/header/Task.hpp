@@ -34,6 +34,10 @@ struct Task {
   //latest start time and earliest end time 
   Task(type,type,type2,type2,type2,Function<type2>);
 
+  
+  //generate a linear function and set the function Fi to this function
+  void addLinearFunction();
+
   //generate a concave piecewise linear function and set the function Fi to this 
   //function
   void addConcavePiecewiseFunction();
@@ -117,7 +121,32 @@ template<>
 Task<int,int>::Task(int _ri,int _di,int _Wi,int _bmin,int _bmax,Function<int> _Fi) ;
 
 template<>
-Task<int,double>::Task(int _ri,int _di,double  _Wi,double  _bmin,double _bmax,Function<double> _Fi) ;
+Task<int,double>::Task(int _ri,int _di,double  _Wi,double  _bmin,
+		       double _bmax, Function<double> _Fi) ;
+
+
+
+
+template<typename type,typename type2>
+void  Task<type,type2>::addLinearFunction(){  
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> disA(1,10);
+
+  type2 _a = disA(gen);
+
+  Fi.F.erase(Fi.F.begin(),Fi.F.end());
+  Fi.F.reserve(1);
+  Fi.nbPiece=1;
+
+  std::uniform_int_distribution<> disC(- _a * bmin,10);
+  //random generation of c0 (if bmin=0 c1=0) in [0,10]
+
+  type _c= disC(gen);
+ 
+  Piece<type2> _P(Interval<type2>(bmin,bmax),LinearFunction<type2>(_a,_c));
+  Fi.F.push_back(_P);
+}
 
 template<typename type,typename type2>
 void  Task<type,type2>::addConcavePiecewiseFunction(){  

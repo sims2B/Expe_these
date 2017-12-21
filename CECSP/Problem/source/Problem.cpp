@@ -163,3 +163,47 @@ int Problem<int,double>::adjustmentDi(const Interval<int> &I,int i,double total)
   }
   else return 0;
 }
+
+
+
+
+Problem<int,int> generate(int nbTask, int B){
+  Problem<int,int> Q(nbTask,B);
+  for (int i = 0 ; i < nbTask ; ++i){
+    //init random
+    int  Wi, bmin, bmax, ri, di;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_int_distribution<> disA(1,10);
+    int _a = disA(gen);
+    std::uniform_int_distribution<> disC(0,10);
+    //random generation of c0 (if bmin=0 c1=0) in [0,10]
+    int _c= disC(gen);
+    
+    
+    //Wi!!!
+    std::uniform_int_distribution<> disWi(_a + _c , (_a * B *1.25+ _c) );
+    Wi = disWi(gen);
+    //bmin!!!
+    std::uniform_int_distribution<> disBmin(0,std::max((0.25 * Wi - _c)/_a,(double)1)); 
+    bmin = disBmin(gen);
+    //bmax!!!
+    std::uniform_int_distribution<> disBmax(std::max(4,bmin) , std::max(2*bmin,8));
+    bmax = disBmax(gen);
+    //ri!!!
+    std::uniform_int_distribution<> disRi(0 , 0.5 * nbTask);
+    ri = disRi(gen);
+    //di!!!
+    int emin = ceil((double)ri + (double)Wi / ((double)_a * (double)bmax + (double)_c));
+    std::uniform_int_distribution<> disDi(emin , emin + nbTask);
+    di = disDi(gen);
+    Piece<int> _P(Interval<int>(bmin,bmax),LinearFunction<int>(_a,_c));
+    PieceList<int> P(1,_P);
+    std::cout << ri << " " << di << " " << Wi << " " << bmin << " " << bmax << " " << _a << " " << _c<<std::endl;
+    Task<int,int> T(ri,di,Wi,bmin,bmax,P);
+    Q.A.push_back(T);
+  }
+  Q.updateHorizon();
+  return Q;
+}

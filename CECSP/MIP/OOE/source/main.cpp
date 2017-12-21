@@ -4,6 +4,8 @@
 
 
 int main(int argc,char *argv[]){
+  if (argc != 12)
+    std::cout << "wring argument number";
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
   instance >> nbTask ;

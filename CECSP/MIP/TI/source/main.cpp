@@ -6,16 +6,14 @@
 int main(int,char *argv[]){
   int nbTask;
   std::ifstream instance(argv[1],std::ios::in);
-  std::ifstream TW(argv[2],std::ios::in);
  
   instance >> nbTask ;
   Problem<int,double> P(nbTask);
   P.readFromFile(instance);
-  P.readtimeWindows(TW);
   instance.close();
-  
-  Solution<int,double> s(nbTask,P.D);  
-   if (!LPsolveConvex(P)){
+
+
+  Solution<int,double> s(nbTask,P.D);
   if (!SolveConvex(P,s)){
     std::cout << "Hurray!\n"; 
     std::cout << "valide? " << s.isValid(P) << std::endl; 
@@ -24,13 +22,29 @@ int main(int,char *argv[]){
   else  
     std::cout << "...\n";
   std::cout << "**************************************************" <<std::endl;
+
+  return 0;
+}
+  /*
+  std::ofstream output(argv[2],std::ios::out);
+  Problem<int,double> Q(P);
+  Q.addLinearFunction();
+  for (int i = 0 ; i < Q.nbTask ; ++i){
+    double W = 0.0;
+    for (uint t = 0 ; t < s.b[i].size() ; ++t){
+      if (!isEqual(s.b[i][t],0.0))
+	W= W + Q.A[i].Fi(s.b[i][t]);
+    }
+    Q.A[i].Wi=(int)floor(W);
   }
+  Q.writeInFile(output);
+
   return 0;
 }
 
 ///////////////////////Ecriture solution dans un fichier ///////////////////////
 //////////////plus création instance a partir de la solution //////////////
-/*std::ofstream output(argv[2],std::ios::out);
+
   std::ofstream instance_PL(argv[3],std::ios::out);
   s.writeInFile(output);
   output.close();
@@ -45,5 +59,15 @@ int main(int,char *argv[]){
   Q.A[i].Wi=floor(W);
   }
   Q.writeInFile(instance_PL);
-*/
+
+
+  std::ifstream TW(argv[2],std::ios::in);
+  P.readtimeWindows(TW);
+  
+  Solution<int,double> s(nbTask,P.D);  
+   if (!LPsolveConvex(P)){
  
+}
+
+ 
+*/

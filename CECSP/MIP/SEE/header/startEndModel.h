@@ -1,6 +1,6 @@
 #include <ilcplex/ilocplex.h>
 #include <ilcplex/ilocplexi.h>
-#include "Solution.h"
+#include "Solution.hpp"
 
 
 const double M=10000;
@@ -67,7 +67,7 @@ IloNumVarMatrix&);
 int createConstraintMinDur(const Problem<double>&, IloModel&, IloNumVarArray&,IloNumVarMatrix& ,IloNumVarMatrix&);
 
 int createConstraintEnergy(const Problem<double>&, IloEnv&, IloModel&, IloNumVarArray&,  IloNumVarMatrix&, IloNumVarMatrix&);
-
+int createConstraintNulEnergy(const Problem<double>& P,IloEnv& env, IloModel& model, IloNumVarMatrix& x, IloNumVarMatrix& y, IloNumVarMatrix& w);
 
 int createConstraintBmin(const Problem<double>&P, IloModel&, IloEnv&, IloNumVarArray&, IloNumVarMatrix&, IloNumVarMatrix&,IloNumVarMatrix&,
 const std::vector<std::vector<double>>&);

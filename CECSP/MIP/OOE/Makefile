@@ -13,17 +13,17 @@ RELEASE_DIR=${HOME}/local
 DEBUG=0#enable to provide debug infos
 
 ### FLAGS #############################################
-LDFLAGS= -L/home/mnattaf/Library/cplex_12_6/cplex/lib/x86-64_linux/static_pic -L/home/mnattaf/Library/cplex_12_6/concert/lib/x86-64_linux/static_pic
+LDFLAGS= -L/home/mnattaf/Library/CPLEX_1271/cplex/lib/x86-64_linux/static_pic -L/home/mnattaf/Library/CPLEX_1271/concert/lib/x86-64_linux/static_pic
 LDLIBS= -lconcert -lilocplex -lcplex -lpthread
-CPPFLAGS= -I/home/mnattaf/Dev2016/CECSP/Problem/header -I/home/mnattaf/Dev2016/CECSP/Problem/source  -I./header -I/home/mnattaf/Dev2016/CECSP/MIP/pre_proc/ -I/home/mnattaf/Library/cplex_12_6/cplex/include -I/home/mnattaf/Library/cplex_12_6/concert/include -std=c++11 -O2 -m64 -fPIC -march=native  -DIL_STD 
+CPPFLAGS= -I/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/header -I/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source  -I./header -I/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/MIP/pre_proc/ -I/home/mnattaf/Library/CPLEX_1271/cplex/include -I/home/mnattaf/Library/CPLEX_1271/concert/include -std=c++11 -O2 -m64 -fPIC -march=native  -DIL_STD 
 DEBUG_FLAGS= -W  -Werror -Wall -g
 
 ### PROPERTIES ########################################
 PROJECTNAME=bin/modelOO
-SRCS=~/Dev2016/CECSP/Problem/source/Task.cpp \
-~/Dev2016/CECSP/Problem/source/Problem.cpp \
-~/Dev2016/CECSP/Problem/source/Solution.cpp \
-/home/mnattaf/Dev2016/CECSP/MIP/pre_proc/pre_proc.cpp \
+SRCS=/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Task.cpp \
+/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Problem.cpp \
+/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Solution.cpp \
+/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/MIP/pre_proc/pre_proc.cpp \
 ./source/onOffModel.cpp \
 ./source/main.cpp
 

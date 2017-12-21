@@ -37,11 +37,14 @@ struct Problem {
   //update of the upper and lower bound on the horizon (in case of update on 
   //task time window)
   void updateHorizon();
- 
+
+  
   //read an instance of Problem inclded in a file and set all the parameter to 
   //the correct value (do not construct the instance, use the constructor before)
   void readFromFile(std::ifstream&); 
   int readtimeWindows(std::ifstream&);
+  //generate random linear functions for all task  
+  void addLinearFunction();
   //generate random concave piecewise functions for all task and set Wi to a 
   //random number in [1/2*fi(bmax) * (di-ri),fi(bmax) * (di-ri)] 
   void addConcavePiecewiseFunction();
@@ -102,6 +105,11 @@ struct Problem {
 };
 
 
+  //try to generate according to David's framework....
+
+Problem<int,int> generate(int,int);
+
+
 ///////////////////////////////////////////////////////////////////
 //////////////////////// IMPLEMENTATION ///////////////////////////
 ///////////////////////////////////////////////////////////////////
@@ -138,6 +146,9 @@ void Problem<type,type2>::updateHorizon(){
     D = ((D < d(i))?  d(i) : D);
   }
 }
+
+
+
 template<typename type,typename type2>
 int Problem<type,type2>::readtimeWindows(std::ifstream& fileTW){
   int i,EST,LST,EET,LET;
@@ -186,6 +197,12 @@ void Problem<type,type2>::readFromFile(std::ifstream& instance){
     
   }
   this->updateHorizon();
+}
+
+template<typename type, typename type2>
+void Problem<type,type2>::addLinearFunction(){
+  for (int i=0;i<nbTask;++i) 
+    A[i].addLinearFunction();
 }
 
 template<typename type,typename type2>

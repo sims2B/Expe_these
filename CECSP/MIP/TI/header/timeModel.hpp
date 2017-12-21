@@ -12,7 +12,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifndef TIME_LIMIT
-#define time_limit 1000
+#define time_limit 100
 #endif
 
 typedef IloArray<IloNumVarArray> IloNumVarMatrix;
