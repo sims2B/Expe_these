@@ -595,6 +595,7 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     createConstraintCapacity(P,env,model,t,b);//contrainte capacity
     //createConstraintMinDur(P,model,t,z);//durée minimale
     createConstraintEnergy(P,env,model,t,b,w);//contrainte Wi
+    createConstraintEnergyNul( P,  env,  model,   w,  z );
     createConstraintBmax(P,model,t,b);//contrainte bmax
     createConstraintNonConsump(P,model,z,b,config[4]);//bie=0 si zie=0
     
@@ -608,12 +609,10 @@ int createOOConstraints(const Problem<double>& P, IloEnv& env, IloModel& model, 
     }
     else if (config[2]){
       boundSepEvts(P,bound,config[2]);
-      createConstraintBmin(P,model,t,z,b,bound); //contrainte bmin
-      createConstraintEnergyNul( P,  env,  model,   w,  z /*, bound*/);
+      createConstraintBmin(P,model,t,z,b,bound); //contrainte bminw
     }
     else {
       createConstraintBmin(P,model,t,z,b,config[3]); //contrainte bmin
-    createConstraintEnergyNul( P,  env,  model,   w,  z );
     }
     
     if (config[6])

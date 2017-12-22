@@ -10,7 +10,7 @@ typedef IloArray<IloNumVarArray> IloNumVarMatrix;
 
 
 #ifndef time_limit
-#define time_limit 1000
+#define time_limit 100
 #endif
 #ifndef DBL_MAX
 #define DBL_MAX std::numeric_limits<double>::max()

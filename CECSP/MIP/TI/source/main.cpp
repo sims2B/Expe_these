@@ -14,7 +14,7 @@ int main(int,char *argv[]){
 
 
   Solution<int,double> s(nbTask,P.D);
-  if (!SolveConvex(P,s)){
+  if (!SolveConcave(P,s)){
     std::cout << "Hurray!\n"; 
     std::cout << "valide? " << s.isValid(P) << std::endl; 
  

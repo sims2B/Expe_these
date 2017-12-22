@@ -275,6 +275,7 @@ int SolveConvex(const Problem<type,type2>& P,Solution<type,type2> &s) {
 	       <<"\nFinal gap: \t" << cplex.getMIPRelativeGap()
 	       << std::endl;   
     modelToSol(P,s,cplex,x,y,b);
+    s.displaySolution();
     env.end();
     return 0;
   }
