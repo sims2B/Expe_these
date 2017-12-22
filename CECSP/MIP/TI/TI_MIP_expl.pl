@@ -28,7 +28,7 @@ sub handle_file {
 	if ($file =~ /.*$/) {
 		my $fichier = $name;
 		$fichier =~ s/(.+)\.[^.]+/$1/;
-		#system("echo $name >> $target");
+		system("echo $name >> $target");
 		system("./bin/modelTI $file >> $target");
 		#system("./bin/modelTI $file /home/mnattaf/instance_CECSP/instance_CECSP_function/convex_piecewise_linear_function/inst_first_run/inst_conv_id/TW\_ERint/$fichier\_TW\_ERint.txt >> $target 2>&1");
 		#system("echo ********************************************************** >> $target");
