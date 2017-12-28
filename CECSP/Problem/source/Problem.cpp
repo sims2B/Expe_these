@@ -183,13 +183,13 @@ Problem<int,int> generate(int nbTask, int B){
     
     
     //Wi!!!
-    std::uniform_int_distribution<> disWi(_a + _c , (_a * B *1.25+ _c) );
+    std::uniform_int_distribution<> disWi(_a + _c , (_a * B *1.5+ _c) );
     Wi = disWi(gen);
     //bmin!!!
-    std::uniform_int_distribution<> disBmin(0,std::max((0.25 * Wi - _c)/_a,(double)1)); 
+    std::uniform_int_distribution<> disBmin(1,std::max((0.5 * Wi - _c)/_a,(double)2)); 
     bmin = disBmin(gen);
     //bmax!!!
-    std::uniform_int_distribution<> disBmax(std::max(4,bmin) , std::max(2*bmin,8));
+    std::uniform_int_distribution<> disBmax(1.5*bmin , std::min(3*bmin,B));
     bmax = disBmax(gen);
     //ri!!!
     std::uniform_int_distribution<> disRi(0 , 0.5 * nbTask);

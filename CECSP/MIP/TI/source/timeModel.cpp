@@ -53,17 +53,17 @@ int modelToSol(const Problem<int,double> &P, Solution<int,double> &s,IloCplex&
 	       cplex,IloNumVarMatrix& x,IloNumVarMatrix& y, IloNumVarMatrix& b){
   int i,t;
   std::cout << "!!!!ATTETNTION !!!! peut etre une erreur d'arondi\n"; 
-  for (i=0;i<P.nbTask;++i){
-    for (t=P.r(i);t<=P.smax(i);++t){   
+  for (i=0 ; i < P.nbTask ; ++i){
+    for (t= P.r(i) ; t <= P.smax(i) ; ++t){   
       if (isEqual((double)cplex.getValue(x[i][t]),1.0))
-	s.st[i]=t;
+	s.st[i] = t;
     }
-    for (t=P.emin(i)-1;t<P.d(i);++t) {    
+    for (t = P.emin(i)-1 ; t < P.d(i) ; ++t) {    
       if (isEqual((double)cplex.getValue(y[i][t]),1.0))
-	s.ft[i]=t+1;
+	s.ft[i] = t+1;
     }
     for (t=P.r(i);t<P.d(i);++t)
-      s.b[i][t]=cplex.getValue(b[i][t]);
+      s.b[i][t] = cplex.getValue(b[i][t]);
   }
   for (i=0;i<P.D+1;++i)
     s.event.push_back(i);

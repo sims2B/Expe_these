@@ -13,12 +13,12 @@ int Solution<int,double>::isValid(const Problem<int,double> &P) const{
     if (P.r(i) > st[i]) return 0;
     if (P.d(i) < ft[i]) return 0;
   }  
-  // std::cout << "tw ok \n";
+  //  std::cout << "tw ok \n";
   for (i=0;i<nbTask;++i)
     for (e=0;e<E-1;++e)
       if ( event[e] < st[i] || event[e] >= ft[i] )
 	if (b[i][e]>POSITIVE_ZERO && P.bmin(i)!=0) return 0;
-  // std::cout << "bie=0 ok \n";
+  //std::cout << "bie=0 ok \n";
   for (i=0;i<nbTask;++i) {
     energy=0.0; 
     for (e=0;e<E-1;++e){
@@ -27,7 +27,7 @@ int Solution<int,double>::isValid(const Problem<int,double> &P) const{
 	   b[i][e] > P.bmax(i) + POSITIVE_ZERO) )
 	return 0;
       
-      //        std::cout << "b"<<i<<"min at max ok \n";
+      //std::cout << "b"<<i<<"min at max ok \n";
     }
     //std::cout << "testing energy\n";
     for (e=0;e<E-1;++e)

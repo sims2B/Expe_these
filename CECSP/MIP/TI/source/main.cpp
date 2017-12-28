@@ -11,40 +11,41 @@ int main(int,char *argv[]){
   Problem<int,double> P(nbTask);
   P.readFromFile(instance);
   instance.close();
-
-
   Solution<int,double> s(nbTask,P.D);
-  if (!SolveConcave(P,s)){
-    std::cout << "Hurray!\n"; 
+  if (!solve(P,s,"linear")){
+    //    s.displaySolution();
+    std::ofstream output(argv[2],std::ios::out);
+    Problem<int,double> Q(P);
+    Q.addLinearFunction();
+    for (int i = 0 ; i < Q.nbTask ; ++i){
+      double W = 0.0;
+      for (uint t = 0 ; t < s.b[i].size() ; ++t){
+	if (!isEqual(s.b[i][t],0.0))
+	  W += Q.A[i].Fi(s.b[i][t]);
+      }
+      Q.A[i].Wi=(int)floor(W);
+      if (Q.A[i].Wi < Q.A[i].Fi(Q.bmin(i)) )
+	Q.A[i].Wi=Q.A[i].Fi(Q.bmin(i));
+    }
+    Q.writeInFile(output);
+     std::cout << "Hurray!\n"; 
     std::cout << "valide? " << s.isValid(P) << std::endl; 
- 
+    
   }
   else  
     std::cout << "...\n";
   std::cout << "**************************************************" <<std::endl;
-
+  
   return 0;
 }
-  /*
-  std::ofstream output(argv[2],std::ios::out);
-  Problem<int,double> Q(P);
-  Q.addLinearFunction();
-  for (int i = 0 ; i < Q.nbTask ; ++i){
-    double W = 0.0;
-    for (uint t = 0 ; t < s.b[i].size() ; ++t){
-      if (!isEqual(s.b[i][t],0.0))
-	W= W + Q.A[i].Fi(s.b[i][t]);
-    }
-    Q.A[i].Wi=(int)floor(W);
+/*
+  return 0;
   }
-  Q.writeInFile(output);
 
-  return 0;
-}
-
-///////////////////////Ecriture solution dans un fichier ///////////////////////
-//////////////plus création instance a partir de la solution //////////////
-
+  ///////////////////////Ecriture solution dans un fichier ///////////////////////
+  //////////////plus création instance a partir de la solution //////////////
+    
+   
   std::ofstream instance_PL(argv[3],std::ios::out);
   s.writeInFile(output);
   output.close();
@@ -65,9 +66,9 @@ int main(int,char *argv[]){
   P.readtimeWindows(TW);
   
   Solution<int,double> s(nbTask,P.D);  
-   if (!LPsolveConvex(P)){
+  if (!LPsolveConvex(P)){
  
-}
+  }
 
  
 */
