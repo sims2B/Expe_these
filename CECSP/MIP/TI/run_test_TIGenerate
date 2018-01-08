@@ -1,8 +1,8 @@
 inst10_4_LIN_f5
 Sol n°1 obj: 	78.3889
-Sol n°1 time: 	0.0461781
+Sol n°1 time: 	0.0455961
 Sol n°1 gap: 	1e+75
-Final status: 	Optimal en 12.1701
+Final status: 	Optimal en 12.0292
 Final objective: 72.1667
 Final gap: 	9.85373e-05
 !!!!ATTETNTION !!!! peut etre une erreur d'arondi
@@ -11,13 +11,283 @@ valide? 1
 **************************************************
 inst30_4_LIN_f5
 Sol n°1 obj: 	361.925
-Sol n°1 time: 	13.4944
+Sol n°1 time: 	13.4485
 Sol n°1 gap: 	1e+75
-Final status: 	Feasible en 109.183
-Final objective: 327.06
-Final gap: 	0.025701
+Final status: 	Feasible en 100.007
+Final objective: 326.81
+Final gap: 	0.0249557
 !!!!ATTETNTION !!!! peut etre une erreur d'arondi
 Hurray!
 valide? 1
 **************************************************
 inst20_4_LIN_f5
+Sol n°1 obj: 	221.364
+Sol n°1 time: 	0.470638
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 201.611
+Final gap: 	0.028639
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_8_LIN_f5
+Sol n°1 obj: 	336.905
+Sol n°1 time: 	48.858
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.007
+Final objective: 327.333
+Final gap: 	0.0702985
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst25_4_LIN_f5
+Sol n°1 obj: 	263.482
+Sol n°1 time: 	4.5972
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.005
+Final objective: 249.746
+Final gap: 	0.0330033
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_7_LIN_f5
+Sol n°1 obj: 	240
+Sol n°1 time: 	0.454738
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 206.429
+Final gap: 	0.0386142
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_0_LIN_f5
+Sol n°1 obj: 	235.517
+Sol n°1 time: 	0.657445
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 209.97
+Final gap: 	0.0246666
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_9_LIN_f5
+Sol n°1 obj: 	200.258
+Sol n°1 time: 	2.28083
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.006
+Final objective: 190.671
+Final gap: 	0.0343425
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_5_LIN_f5
+Sol n°1 obj: 	233.856
+Sol n°1 time: 	0.647168
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.005
+Final objective: 201.677
+Final gap: 	0.0455231
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_7_LIN_f5
+...
+**************************************************
+inst10_7_LIN_f5
+Sol n°1 obj: 	118.048
+Sol n°1 time: 	0.0962079
+Sol n°1 gap: 	1e+75
+Final status: 	Optimal en 14.211
+Final objective: 109.276
+Final gap: 	9.83383e-05
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst10_9_LIN_f5
+Sol n°1 obj: 	151.719
+Sol n°1 time: 	0.108522
+Sol n°1 gap: 	1e+75
+Final status: 	Optimal en 71.8062
+Final objective: 133.476
+Final gap: 	9.9491e-05
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_9_LIN_f5
+Sol n°1 obj: 	305.148
+Sol n°1 time: 	5.58692
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.011
+Final objective: 272.412
+Final gap: 	0.0302961
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_1_LIN_f5
+Sol n°1 obj: 	242.971
+Sol n°1 time: 	3.13196
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.006
+Final objective: 231.592
+Final gap: 	0.0250638
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst25_8_LIN_f5
+...
+**************************************************
+inst20_6_LIN_f5
+Sol n°1 obj: 	243.091
+Sol n°1 time: 	2.72571
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.005
+Final objective: 220.337
+Final gap: 	0.0513301
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_2_LIN_f5
+...
+**************************************************
+inst25_6_LIN_f5
+Sol n°1 obj: 	256.714
+Sol n°1 time: 	1.89648
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.007
+Final objective: 225.043
+Final gap: 	0.0360656
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_3_LIN_f5
+Sol n°1 obj: 	216.944
+Sol n°1 time: 	1.16733
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 206.167
+Final gap: 	0.0225573
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst25_7_LIN_f5
+Sol n°1 obj: 	288.479
+Sol n°1 time: 	2.54859
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.007
+Final objective: 261.932
+Final gap: 	0.0273158
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_6_LIN_f5
+...
+**************************************************
+inst30_3_LIN_f5
+Sol n°1 obj: 	321.694
+Sol n°1 time: 	39.5536
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.009
+Final objective: 304.543
+Final gap: 	0.0360987
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst25_0_LIN_f5
+...
+**************************************************
+inst25_9_LIN_f5
+Sol n°1 obj: 	349.762
+Sol n°1 time: 	11.7703
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.006
+Final objective: 342.09
+Final gap: 	0.0212537
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst30_5_LIN_f5
+Sol n°1 obj: 	287.133
+Sol n°1 time: 	1.26897
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.008
+Final objective: 259.229
+Final gap: 	0.0398199
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst10_0_LIN_f5
+Sol n°1 obj: 	114.875
+Sol n°1 time: 	0.0728869
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.003
+Final objective: 99.4583
+Final gap: 	0.00116013
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst25_2_LIN_f5
+...
+**************************************************
+inst25_1_LIN_f5
+Sol n°1 obj: 	333.13
+Sol n°1 time: 	14.8542
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 308.605
+Final gap: 	0.0242445
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst10_2_LIN_f5
+Sol n°1 obj: 	96.3833
+Sol n°1 time: 	0.0931499
+Sol n°1 gap: 	1e+75
+Final status: 	Optimal en 16.5737
+Final objective: 94.1611
+Final gap: 	9.48351e-05
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_2_LIN_f5
+Sol n°1 obj: 	220.267
+Sol n°1 time: 	1.42364
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.005
+Final objective: 212.862
+Final gap: 	0.0235525
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
+inst20_8_LIN_f5
+Sol n°1 obj: 	260.821
+Sol n°1 time: 	1.23527
+Sol n°1 gap: 	1e+75
+Final status: 	Feasible en 100.004
+Final objective: 251.071
+Final gap: 	0.0168453
+!!!!ATTETNTION !!!! peut etre une erreur d'arondi
+Hurray!
+valide? 1
+**************************************************
