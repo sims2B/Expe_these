@@ -26,11 +26,11 @@ sub handle_file {
     my $name = basename($file);
     $name =~ s/(.+)\.[^.]+/$1/;
     if ($file =~ /.*$/) {
-#	my $fichier = $name;
-#	$fichier =~ s/(.+)\.[^.]+/$1/;
-	system(" echo $name >> $target");
-	system("./bin/modelTI $file >> $target");
-#	system("./bin/modelTI $file $target/$fichier\_LIN\_f5.txt  ");
+	my $fichier = $name;
+	$fichier =~ s/(.+)\.[^.]+/$1/;
+#	system(" echo $name >> $target");
+#   system("./bin/modelTI $file >> $target");
+	system("./bin/modelTI $file $target/$fichier\_LIN\_f5.txt  ");
 	#		system("echo ********************************************************** >> $target");
     }
 }

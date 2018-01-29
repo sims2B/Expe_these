@@ -1,5 +1,5 @@
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wignored-attributes"
+//#pragma GCC diagnostic push
+//#pragma GCC diagnostic ignored "-Wignored-attributes"
 #ifndef DEF_TASK
 #define DEF_TASK
 
@@ -141,7 +141,7 @@ void  Task<type,type2>::addLinearFunction(){
   Fi.F.reserve(1);
   Fi.nbPiece=1;
 
-  std::uniform_int_distribution<> disC( - _a * bmin ,10);
+  std::uniform_int_distribution<> disC( 0 ,10);
   //random generation of c0 (if bmin=0 c1=0) in [0,10]
 
   type _c= disC(gen);
@@ -469,4 +469,4 @@ type2 Task<type,type2>::resourceConsumption(const Interval<type> &I) const{
 int rdtsc();
 #endif
 
-#pragma GCC diagnostic pop
+//#pragma GCC diagnostic pop

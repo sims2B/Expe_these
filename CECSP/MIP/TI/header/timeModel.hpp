@@ -1,5 +1,5 @@
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wignored-attributes"
+//#pragma GCC diagnostic push
+//#pragma GCC diagnostic ignored "-Wignored-attributes"
 
 #ifndef TIMEMODEL_HPP
 #define TIMEMODEL_HPP
@@ -470,4 +470,4 @@ int createConstraints(const Problem<type,type2>& P, IloEnv& env,
 
 #endif
 
-#pragma GCC diagnostic pop
+//#pragma GCC diagnostic pop
