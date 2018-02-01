@@ -183,20 +183,22 @@ Problem<int,int> generate(int nbTask, int B){
     
     
     //Wi!!!
-    std::uniform_int_distribution<> disWi(_a + _c , (_a * B *1.5+ _c) );
+    std::uniform_int_distribution<> disWi(_a + _c , (_a * B *2.5+ _c) );
     Wi = disWi(gen);
     //bmin!!!
-    std::uniform_int_distribution<> disBmin(1,std::max((0.5 * Wi - _c)/_a,(double)2)); 
+    std::uniform_int_distribution<> disBmin(1 , std::max(( 1 + 0.25 * Wi - _c)/_a,(double)2)); 
     bmin = disBmin(gen);
+    if (bmin > B) bmin = B;
     //bmax!!!
-    std::uniform_int_distribution<> disBmax(1.5*bmin , std::min(3*bmin,B));
+    std::uniform_int_distribution<> disBmax(B - 0.25 * B - 1 , B);
     bmax = disBmax(gen);
+    if (bmax < bmin) bmax = bmin;
     //ri!!!
     std::uniform_int_distribution<> disRi(0 , 0.5 * nbTask);
     ri = disRi(gen);
     //di!!!
-    int emin = ceil((double)ri + (double)Wi / ((double)_a * (double)bmax + (double)_c));
-    std::uniform_int_distribution<> disDi(emin , emin + nbTask);
+    int emax = ceil((double)ri + (double)Wi / ((double)_a * (double)bmin + (double)_c));
+    std::uniform_int_distribution<> disDi(emax , emax + nbTask);
     di = disDi(gen);
     Piece<int> _P(Interval<int>(bmin,bmax),LinearFunction<int>(_a,_c));
     PieceList<int> P(1,_P);
@@ -204,6 +206,11 @@ Problem<int,int> generate(int nbTask, int B){
     Task<int,int> T(ri,di,Wi,bmin,bmax,P);
     Q.A.push_back(T);
   }
+  int Rmin = 0.5 * nbTask;
+  for (int i = 0 ; i < nbTask ; ++i)
+    (Rmin > Q.r(i) ? Rmin = Q.r(i) : Rmin = Rmin);
+  for (int i = 0 ; i < nbTask ; ++i)
+    Q.A[i].ri -= Rmin;
   Q.updateHorizon();
   return Q;
 }

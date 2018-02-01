@@ -1,3 +1,4 @@
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #ifndef DEF_PROBLEM
 #define DEF_PROBLEM
 
