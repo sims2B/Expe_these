@@ -6,7 +6,7 @@ use File::Basename;
 use Cwd;
 
 my $path = Cwd::realpath(shift);
-my $target = Cwd::realpath(shift);
+#my $target = Cwd::realpath(shift);
 
 sub explore {
     my $p = shift;
@@ -29,8 +29,8 @@ sub handle_file {
 	my $fichier = $name;
 	$fichier =~ s/(.+)\.[^.]+/$1/;
 #	system(" echo $name >> $target");
-#   system("./bin/modelTI $file >> $target");
-	system("./bin/modelTI $file $target/$fichier\_LIN\_f5.txt  ");
+   system("mv $file $path/$fichier\_f4.txt");
+#	system("./bin/modelTI $file $target/$fichier\_LIN\_f5.txt  ");
 	#		system("echo ********************************************************** >> $target");
     }
 }
