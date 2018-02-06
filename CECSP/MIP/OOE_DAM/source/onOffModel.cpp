@@ -361,6 +361,8 @@ int solveOO(const Problem<double>& P,Solution<double,double> &s,const std::vecto
       }
     }
     else{
+      std::cout << " ; ; ;" <<time_limit << ";";
+      std::cout << " ; ; ; ; ; ; ; ; \n";
       env.end();
       return 1;
     }
