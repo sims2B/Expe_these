@@ -29,7 +29,7 @@ sub handle_file {
 	my $fichier = $name;
 	$fichier =~ s/(.+)\.[^.]+/$1/;
 #	system(" echo $name >> $target");
-   system("mv $file $path/$fichier\_f4.txt");
+#   system("mv $file $path/$fichier\_f4.txt");
 #	system("./bin/modelTI $file $target/$fichier\_LIN\_f5.txt  ");
 	#		system("echo ********************************************************** >> $target");
     }

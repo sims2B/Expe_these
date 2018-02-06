@@ -20,10 +20,10 @@ DEBUG_FLAGS= -W  -Wall -Werror -g
 
 ### PROPERTIES ########################################
 PROJECTNAME=bin/le_nom
-SRCS=/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Task.cpp \
-	/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Problem.cpp \
-	/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/Problem/source/Solution.cpp \
-	/home/mnattaf/Documents/Toulouse/Dev_Toulouse/CECSP/ER/source/ListInterval.cpp \
+SRCS=/home/mnattaf/Dev2016/CECSP/Problem/source/Task.cpp \
+	/home/mnattaf/Dev2016/CECSP/Problem/source/Problem.cpp \
+	/home/mnattaf/Dev2016/CECSP/Problem/source/Solution.cpp \
+	/home/mnattaf/Dev2016/CECSP/ER/source/ListInterval.cpp \
 	./source/main.cpp
 
 
